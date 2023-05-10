@@ -1,12 +1,12 @@
 /*************************************************************************
-                           Sensor  -  description
+                           AirWatcher  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Réalisation de la classe <Sensor> (fichier Sensor.cpp) ------------
+//---------- Réalisation de la classe <AirWatcher> (fichier AirWatcher.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -15,14 +15,14 @@
 using namespace std;
 
 //------------------------------------------------------ Include personnel
-#include "Sensor.h"
+#include "AirWatcher.h"
 
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Sensor::Méthode ( liste des paramètres )
+// type AirWatcher::Méthode ( liste des paramètres )
 // Algorithme :
 //
 //{
@@ -30,7 +30,7 @@ using namespace std;
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-Sensor & Sensor::operator = ( const Sensor & unSensor )
+AirWatcher & AirWatcher::operator = ( const AirWatcher & unAirWatcher )
 // Algorithme :
 //
 {
@@ -38,46 +38,34 @@ Sensor & Sensor::operator = ( const Sensor & unSensor )
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Sensor::Sensor ( const Sensor & unSensor )
+AirWatcher::AirWatcher ( const AirWatcher & unAirWatcher )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <Sensor>" << endl;
+    cout << "Appel au constructeur de copie de <AirWatcher>" << endl;
 #endif
-} //----- Fin de Sensor (constructeur de copie)
+} //----- Fin de AirWatcher (constructeur de copie)
 
 
-Sensor::Sensor ( )
+AirWatcher::AirWatcher ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Sensor>" << endl;
+    cout << "Appel au constructeur de <AirWatcher>" << endl;
 #endif
-} //----- Fin de Sensor
+} //----- Fin de AirWatcher
 
-Sensor::Sensor ( int pId, float pLatitude, float pLongitude )
+
+AirWatcher::~AirWatcher ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Sensor>" << endl;
+    cout << "Appel au destructeur de <AirWatcher>" << endl;
 #endif
-    this -> id = pId;
-    this -> latitude = pLatitude;
-    this -> longitude = pLongitude;
-} //----- Fin de Sensor
-
-
-Sensor::~Sensor ( )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au destructeur de <Sensor>" << endl;
-#endif
-} //----- Fin de ~Sensor
+} //----- Fin de ~AirWatcher
 
 
 //------------------------------------------------------------------ PRIVE

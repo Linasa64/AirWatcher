@@ -1,29 +1,28 @@
 /*************************************************************************
-                           PrivateUser  -  description
+                           ControllerComputation  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface de la classe <PrivateUser> (fichier PrivateUser.h) ----------------
-#if ! defined ( PRIVATEUSER_H )
-#define PRIVATEUSER_H
+//---------- Interface de la classe <ControllerComputation> (fichier ControllerComputation.h) ----------------
+#if ! defined ( CONTROLLERCOMPUTATION_H )
+#define CONTROLLERCOMPUTATION_H
 
 //--------------------------------------------------- Interfaces utilisées
-#include<string.h>
 
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <PrivateUser>
+// Rôle de la classe <ControllerComputation>
 //
 //
 //------------------------------------------------------------------------
 
-class PrivateUser : public User
+class ControllerComputation 
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -37,7 +36,7 @@ public:
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    PrivateUser & operator = ( const PrivateUser & unPrivateUser );
+    ControllerComputation & operator = ( const ControllerComputation & unControllerComputation );
     // Mode d'emploi :
     //
     // Contrat :
@@ -45,25 +44,19 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    PrivateUser ( const PrivateUser & unPrivateUser );
+    ControllerComputation ( const ControllerComputation & unControllerComputation );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    PrivateUser ( );
+    ControllerComputation ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    PrivateUser ( string pUserId, string pLogin, string pPassword );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-    virtual ~PrivateUser ( );
+    virtual ~ControllerComputation ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -75,12 +68,10 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    string userId;
-    int reputationPoint;
 
 };
 
-//-------------------------------- Autres définitions dépendantes de <PrivateUser>
+//-------------------------------- Autres définitions dépendantes de <ControllerComputation>
 
-#endif // PRIVATEUSER_H
+#endif // CONTROLLERCOMPUTATION_H
 

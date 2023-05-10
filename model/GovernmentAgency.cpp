@@ -16,6 +16,7 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "GovernmentAgency.h"
+#include "User.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -27,6 +28,11 @@ using namespace std;
 //
 //{
 //} //----- Fin de Méthode
+
+string GetId()
+{
+    return "Government";
+}
 
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -49,6 +55,15 @@ GovernmentAgency::GovernmentAgency ( const GovernmentAgency & unGovernmentAgency
 
 
 GovernmentAgency::GovernmentAgency ( )
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au constructeur de <GovernmentAgency>" << endl;
+#endif
+} //----- Fin de GovernmentAgency
+
+GovernmentAgency::GovernmentAgency (string pLogin, string pPassword ) : User(pLogin, pPassword)
 // Algorithme :
 //
 {

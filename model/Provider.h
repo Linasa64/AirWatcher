@@ -11,6 +11,7 @@
 #define PROVIDER_H
 
 //--------------------------------------------------- Interfaces utilisées
+#include<string.h>
 
 //------------------------------------------------------------- Constantes
 
@@ -22,7 +23,7 @@
 //
 //------------------------------------------------------------------------
 
-class Provider 
+class Provider : User
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -56,6 +57,12 @@ public:
     // Contrat :
     //
 
+    Provider ( string pProviderId, string pLogin, string pPassword );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
     virtual ~Provider ( );
     // Mode d'emploi :
     //
@@ -68,7 +75,7 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-
+    string providerId;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Provider>

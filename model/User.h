@@ -11,7 +11,7 @@
 #define USER_H
 
 //--------------------------------------------------- Interfaces utilisées
-
+#include <string>
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -28,11 +28,9 @@ class User
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
     // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    // Permet de renvoyer l'ID d'un User sous forme de string
+    virtual string GetId() = 0;
 
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -56,6 +54,12 @@ public:
     // Contrat :
     //
 
+    User ( string pLogin, string pPassword );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
     virtual ~User ( );
     // Mode d'emploi :
     //
@@ -68,6 +72,8 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
+    string login;
+    string password;
 
 };
 

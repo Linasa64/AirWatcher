@@ -11,6 +11,7 @@
 #define ATTRIBUTES_H
 
 //--------------------------------------------------- Interfaces utilisées
+#include<string.h>
 
 //------------------------------------------------------------- Constantes
 
@@ -56,6 +57,12 @@ public:
     // Contrat :
     //
 
+    Attributes ( string pAttributeId, string pUnit, string pDescription );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
     virtual ~Attributes ( );
     // Mode d'emploi :
     //
@@ -68,6 +75,9 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
+    string attributeId;
+    string unit;
+    string description;
 
 };
 

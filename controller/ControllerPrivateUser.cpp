@@ -1,12 +1,12 @@
 /*************************************************************************
-                           Sensor  -  description
+                           Cleaner  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Réalisation de la classe <Sensor> (fichier Sensor.cpp) ------------
+//---------- Réalisation de la classe <Cleaner> (fichier Cleaner.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -15,14 +15,14 @@
 using namespace std;
 
 //------------------------------------------------------ Include personnel
-#include "Sensor.h"
+#include "Cleaner.h"
 
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Sensor::Méthode ( liste des paramètres )
+// type Cleaner::Méthode ( liste des paramètres )
 // Algorithme :
 //
 //{
@@ -30,7 +30,7 @@ using namespace std;
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-Sensor & Sensor::operator = ( const Sensor & unSensor )
+Cleaner & Cleaner::operator = ( const Cleaner & unCleaner )
 // Algorithme :
 //
 {
@@ -38,46 +38,34 @@ Sensor & Sensor::operator = ( const Sensor & unSensor )
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Sensor::Sensor ( const Sensor & unSensor )
+Cleaner::Cleaner ( const Cleaner & unCleaner )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <Sensor>" << endl;
+    cout << "Appel au constructeur de copie de <Cleaner>" << endl;
 #endif
-} //----- Fin de Sensor (constructeur de copie)
+} //----- Fin de Cleaner (constructeur de copie)
 
 
-Sensor::Sensor ( )
+Cleaner::Cleaner ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Sensor>" << endl;
+    cout << "Appel au constructeur de <Cleaner>" << endl;
 #endif
-} //----- Fin de Sensor
+} //----- Fin de Cleaner
 
-Sensor::Sensor ( int pId, float pLatitude, float pLongitude )
+
+Cleaner::~Cleaner ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Sensor>" << endl;
+    cout << "Appel au destructeur de <Cleaner>" << endl;
 #endif
-    this -> id = pId;
-    this -> latitude = pLatitude;
-    this -> longitude = pLongitude;
-} //----- Fin de Sensor
-
-
-Sensor::~Sensor ( )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au destructeur de <Sensor>" << endl;
-#endif
-} //----- Fin de ~Sensor
+} //----- Fin de ~Cleaner
 
 
 //------------------------------------------------------------------ PRIVE

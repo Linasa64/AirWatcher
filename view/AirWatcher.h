@@ -1,29 +1,28 @@
 /*************************************************************************
-                           PrivateUser  -  description
+                           AirWatcher  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface de la classe <PrivateUser> (fichier PrivateUser.h) ----------------
-#if ! defined ( PRIVATEUSER_H )
-#define PRIVATEUSER_H
+//---------- Interface de la classe <AirWatcher> (fichier AirWatcher.h) ----------------
+#if ! defined ( AIRWATCHER_H )
+#define AIRWATCHER_H
 
 //--------------------------------------------------- Interfaces utilisées
-#include<string.h>
 
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <PrivateUser>
+// Rôle de la classe <AirWatcher>
 //
 //
 //------------------------------------------------------------------------
 
-class PrivateUser : public User
+class AirWatcher 
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -37,7 +36,7 @@ public:
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    PrivateUser & operator = ( const PrivateUser & unPrivateUser );
+    AirWatcher & operator = ( const AirWatcher & unAirWatcher );
     // Mode d'emploi :
     //
     // Contrat :
@@ -45,25 +44,19 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    PrivateUser ( const PrivateUser & unPrivateUser );
+    AirWatcher ( const AirWatcher & unAirWatcher );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    PrivateUser ( );
+    AirWatcher ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    PrivateUser ( string pUserId, string pLogin, string pPassword );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-    virtual ~PrivateUser ( );
+    virtual ~AirWatcher ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -75,12 +68,10 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    string userId;
-    int reputationPoint;
 
 };
 
-//-------------------------------- Autres définitions dépendantes de <PrivateUser>
+//-------------------------------- Autres définitions dépendantes de <AirWatcher>
 
-#endif // PRIVATEUSER_H
+#endif // AIRWATCHER_H
 

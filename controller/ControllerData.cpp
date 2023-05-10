@@ -1,12 +1,12 @@
 /*************************************************************************
-                           Sensor  -  description
+                           ControllerData  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Réalisation de la classe <Sensor> (fichier Sensor.cpp) ------------
+//---------- Réalisation de la classe <ControllerData> (fichier ControllerData.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -15,14 +15,14 @@
 using namespace std;
 
 //------------------------------------------------------ Include personnel
-#include "Sensor.h"
+#include "ControllerData.h"
 
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Sensor::Méthode ( liste des paramètres )
+// type ControllerData::Méthode ( liste des paramètres )
 // Algorithme :
 //
 //{
@@ -30,7 +30,7 @@ using namespace std;
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-Sensor & Sensor::operator = ( const Sensor & unSensor )
+ControllerData & ControllerData::operator = ( const ControllerData & unControllerData )
 // Algorithme :
 //
 {
@@ -38,46 +38,34 @@ Sensor & Sensor::operator = ( const Sensor & unSensor )
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Sensor::Sensor ( const Sensor & unSensor )
+ControllerData::ControllerData ( const ControllerData & unControllerData )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <Sensor>" << endl;
+    cout << "Appel au constructeur de copie de <ControllerData>" << endl;
 #endif
-} //----- Fin de Sensor (constructeur de copie)
+} //----- Fin de ControllerData (constructeur de copie)
 
 
-Sensor::Sensor ( )
+ControllerData::ControllerData ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Sensor>" << endl;
+    cout << "Appel au constructeur de <ControllerData>" << endl;
 #endif
-} //----- Fin de Sensor
+} //----- Fin de ControllerData
 
-Sensor::Sensor ( int pId, float pLatitude, float pLongitude )
+
+ControllerData::~ControllerData ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Sensor>" << endl;
+    cout << "Appel au destructeur de <ControllerData>" << endl;
 #endif
-    this -> id = pId;
-    this -> latitude = pLatitude;
-    this -> longitude = pLongitude;
-} //----- Fin de Sensor
-
-
-Sensor::~Sensor ( )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au destructeur de <Sensor>" << endl;
-#endif
-} //----- Fin de ~Sensor
+} //----- Fin de ~ControllerData
 
 
 //------------------------------------------------------------------ PRIVE

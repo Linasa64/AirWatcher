@@ -11,7 +11,7 @@
 #define MEASUREMENT_H
 
 //--------------------------------------------------- Interfaces utilisées
-
+#include "Attributes.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -56,6 +56,12 @@ public:
     // Contrat :
     //
 
+    Measurement ( time_t timestamp, double value, Attributes attributes );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
     virtual ~Measurement ( );
     // Mode d'emploi :
     //
@@ -68,7 +74,9 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-
+    time_t timestamp;
+    double value;
+    Attributes attributes;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Measurement>

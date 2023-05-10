@@ -22,7 +22,7 @@
 //
 //------------------------------------------------------------------------
 
-class GovernmentAgency 
+class GovernmentAgency : public User
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -51,6 +51,12 @@ public:
     //
 
     GovernmentAgency ( );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    GovernmentAgency ( string login, string password );
     // Mode d'emploi :
     //
     // Contrat :

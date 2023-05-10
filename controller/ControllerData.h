@@ -1,29 +1,28 @@
 /*************************************************************************
-                           PrivateUser  -  description
+                           ControllerData  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface de la classe <PrivateUser> (fichier PrivateUser.h) ----------------
-#if ! defined ( PRIVATEUSER_H )
-#define PRIVATEUSER_H
+//---------- Interface de la classe <ControllerData> (fichier ControllerData.h) ----------------
+#if ! defined ( CONTROLLERDATA_H )
+#define CONTROLLERDATA_H
 
 //--------------------------------------------------- Interfaces utilisées
-#include<string.h>
 
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <PrivateUser>
+// Rôle de la classe <ControllerData>
 //
 //
 //------------------------------------------------------------------------
 
-class PrivateUser : public User
+class ControllerData 
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -37,7 +36,7 @@ public:
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    PrivateUser & operator = ( const PrivateUser & unPrivateUser );
+    ControllerData & operator = ( const ControllerData & unControllerData );
     // Mode d'emploi :
     //
     // Contrat :
@@ -45,29 +44,25 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    PrivateUser ( const PrivateUser & unPrivateUser );
+    ControllerData ( const ControllerData & unControllerData );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    PrivateUser ( );
+    ControllerData ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    PrivateUser ( string pUserId, string pLogin, string pPassword );
+    virtual ~ControllerData ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~PrivateUser ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    static Database retrieveData(string )
 
 //------------------------------------------------------------------ PRIVE
 
@@ -75,12 +70,10 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    string userId;
-    int reputationPoint;
 
 };
 
-//-------------------------------- Autres définitions dépendantes de <PrivateUser>
+//-------------------------------- Autres définitions dépendantes de <ControllerData>
 
-#endif // PRIVATEUSER_H
+#endif // CONTROLLERDATA_H
 

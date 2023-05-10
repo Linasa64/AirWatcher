@@ -1,29 +1,30 @@
 /*************************************************************************
-                           PrivateUser  -  description
+                           History  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface de la classe <PrivateUser> (fichier PrivateUser.h) ----------------
-#if ! defined ( PRIVATEUSER_H )
-#define PRIVATEUSER_H
+//---------- Interface de la classe <History> (fichier History.h) ----------------
+#if ! defined ( HISTORY_H )
+#define HISTORY_H
 
 //--------------------------------------------------- Interfaces utilisées
-#include<string.h>
-
+#include<map>
+#include<list>
+using namespace std;
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <PrivateUser>
+// Rôle de la classe <History>
 //
 //
 //------------------------------------------------------------------------
 
-class PrivateUser : public User
+class History 
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -37,7 +38,7 @@ public:
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    PrivateUser & operator = ( const PrivateUser & unPrivateUser );
+    History & operator = ( const History & unHistory );
     // Mode d'emploi :
     //
     // Contrat :
@@ -45,25 +46,19 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    PrivateUser ( const PrivateUser & unPrivateUser );
+    History ( const History & unHistory );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    PrivateUser ( );
+    History ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    PrivateUser ( string pUserId, string pLogin, string pPassword );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-    virtual ~PrivateUser ( );
+    virtual ~History ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -75,12 +70,10 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    string userId;
-    int reputationPoint;
-
+    map< int, list<float>> queryDuration;
 };
 
-//-------------------------------- Autres définitions dépendantes de <PrivateUser>
+//-------------------------------- Autres définitions dépendantes de <History>
 
-#endif // PRIVATEUSER_H
+#endif // HISTORY_H
 

@@ -1,28 +1,27 @@
 /*************************************************************************
-                           Sensor  -  description
+                           History  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Réalisation de la classe <Sensor> (fichier Sensor.cpp) ------------
+//---------- Réalisation de la classe <History> (fichier History.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
 #include <iostream>
-using namespace std;
 
 //------------------------------------------------------ Include personnel
-#include "Sensor.h"
+#include "History.h"
 
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Sensor::Méthode ( liste des paramètres )
+// type History::Méthode ( liste des paramètres )
 // Algorithme :
 //
 //{
@@ -30,7 +29,7 @@ using namespace std;
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-Sensor & Sensor::operator = ( const Sensor & unSensor )
+History & History::operator = ( const History & unHistory )
 // Algorithme :
 //
 {
@@ -38,46 +37,34 @@ Sensor & Sensor::operator = ( const Sensor & unSensor )
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Sensor::Sensor ( const Sensor & unSensor )
+History::History ( const History & unHistory )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <Sensor>" << endl;
+    cout << "Appel au constructeur de copie de <History>" << endl;
 #endif
-} //----- Fin de Sensor (constructeur de copie)
+} //----- Fin de History (constructeur de copie)
 
 
-Sensor::Sensor ( )
+History::History ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Sensor>" << endl;
+    cout << "Appel au constructeur de <History>" << endl;
 #endif
-} //----- Fin de Sensor
+} //----- Fin de History
 
-Sensor::Sensor ( int pId, float pLatitude, float pLongitude )
+
+History::~History ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Sensor>" << endl;
+    cout << "Appel au destructeur de <History>" << endl;
 #endif
-    this -> id = pId;
-    this -> latitude = pLatitude;
-    this -> longitude = pLongitude;
-} //----- Fin de Sensor
-
-
-Sensor::~Sensor ( )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au destructeur de <Sensor>" << endl;
-#endif
-} //----- Fin de ~Sensor
+} //----- Fin de ~History
 
 
 //------------------------------------------------------------------ PRIVE

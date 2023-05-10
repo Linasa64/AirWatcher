@@ -57,6 +57,18 @@ Measurement::Measurement ( )
 #endif
 } //----- Fin de Measurement
 
+Measurement::Measurement ( time_t timestamp, double value, Attributes attributes )
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au constructeur de <Measurement>" << endl;
+#endif
+    this->timestamp = timestamp;
+    this->value = value;
+    this->attributes = attributes;
+} //----- Fin de Measurement
+
 
 Measurement::~Measurement ( )
 // Algorithme :
