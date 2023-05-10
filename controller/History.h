@@ -11,7 +11,8 @@
 #define HISTORY_H
 
 //--------------------------------------------------- Interfaces utilisées
-
+#include<map>
+#include<list>
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -68,7 +69,7 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-
+map<int, list<float>> queryDuration;
 };
 
 //-------------------------------- Autres définitions dépendantes de <History>

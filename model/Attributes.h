@@ -11,6 +11,7 @@
 #define ATTRIBUTES_H
 
 //--------------------------------------------------- Interfaces utilisées
+#include<string.h>
 
 //------------------------------------------------------------- Constantes
 
@@ -68,6 +69,9 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
+    string attributeId;
+    string unit;
+    string description;
 
 };
 

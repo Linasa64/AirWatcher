@@ -16,6 +16,7 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Provider.h"
+#include "User.h"
 
 //------------------------------------------------------------- Constantes
 

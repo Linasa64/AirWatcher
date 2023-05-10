@@ -68,6 +68,9 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
+    int id;
+    float latitude;
+    float longitude;
 
 };
 

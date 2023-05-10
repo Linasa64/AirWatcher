@@ -11,7 +11,7 @@
 #define MEASUREMENT_H
 
 //--------------------------------------------------- Interfaces utilisées
-
+#include "Attributes.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -68,7 +68,9 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-
+    time_t timestamp;
+    double value;
+    Attributes attributes;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Measurement>

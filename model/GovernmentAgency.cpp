@@ -16,6 +16,7 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "GovernmentAgency.h"
+#include "User.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -27,6 +28,11 @@ using namespace std;
 //
 //{
 //} //----- Fin de Méthode
+
+string GetId()
+{
+    return "Government";
+}
 
 
 //------------------------------------------------- Surcharge d'opérateurs
