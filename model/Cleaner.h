@@ -11,7 +11,7 @@
 #define CLEANER_H
 
 //--------------------------------------------------- Interfaces utilisées
-
+#include<ctime>
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -68,7 +68,11 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-
+    int cleanerId;
+    float latitude;
+    float longitude;
+    time_t timestampStart;
+    time_t timestamp stop;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Cleaner>
