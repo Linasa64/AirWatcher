@@ -12,7 +12,6 @@
 
 //-------------------------------------------------------- Include système
 #include <iostream>
-using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "History.h"

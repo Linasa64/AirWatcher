@@ -56,6 +56,12 @@ public:
     // Contrat :
     //
 
+    Cleaner ( int cleanerId, float latitude, float longitude, time_t timestampStart, time_t timestampStop );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
     virtual ~Cleaner ( );
     // Mode d'emploi :
     //
@@ -72,7 +78,7 @@ protected:
     float latitude;
     float longitude;
     time_t timestampStart;
-    time_t timestamp stop;
+    time_t timestampStop;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Cleaner>

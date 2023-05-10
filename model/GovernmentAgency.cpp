@@ -63,6 +63,15 @@ GovernmentAgency::GovernmentAgency ( )
 #endif
 } //----- Fin de GovernmentAgency
 
+GovernmentAgency::GovernmentAgency (string pLogin, string pPassword ) : User(pLogin, pPassword)
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au constructeur de <GovernmentAgency>" << endl;
+#endif
+} //----- Fin de GovernmentAgency
+
 
 GovernmentAgency::~GovernmentAgency ( )
 // Algorithme :

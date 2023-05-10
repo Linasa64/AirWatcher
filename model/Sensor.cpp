@@ -57,6 +57,18 @@ Sensor::Sensor ( )
 #endif
 } //----- Fin de Sensor
 
+Sensor::Sensor ( int pId, float pLatitude, float pLongitude )
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au constructeur de <Sensor>" << endl;
+#endif
+    this -> id = pId;
+    this -> latitude = pLatitude;
+    this -> longitude = pLongitude;
+} //----- Fin de Sensor
+
 
 Sensor::~Sensor ( )
 // Algorithme :

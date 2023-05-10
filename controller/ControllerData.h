@@ -62,6 +62,8 @@ public:
     // Contrat :
     //
 
+    static Database retrieveData(string )
+
 //------------------------------------------------------------------ PRIVE
 
 protected:
