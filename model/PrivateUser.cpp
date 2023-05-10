@@ -30,7 +30,7 @@ using namespace std;
 //} //----- Fin de Méthode
 
 string PrivateUser::GetId() {
-    return "";
+    return userId;
 }
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -61,7 +61,7 @@ PrivateUser::PrivateUser ( )
 #endif
 } //----- Fin de PrivateUser
 
-PrivateUser::PrivateUser ( string userId, string login, string password ) : User(login, password)
+PrivateUser::PrivateUser ( string userId ) : User()
 // Algorithme :
 //
 {

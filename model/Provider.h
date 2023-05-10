@@ -25,8 +25,7 @@
 //
 //
 //------------------------------------------------------------------------
-class User;
-class Provider : User
+class Provider : public User
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -60,7 +59,7 @@ public:
     // Contrat :
     //
 
-    Provider ( string pProviderId, string pLogin, string pPassword );
+    Provider ( string pProviderId );
     // Mode d'emploi :
     //
     // Contrat :

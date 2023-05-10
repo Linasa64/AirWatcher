@@ -42,7 +42,7 @@ public:
     //
     // Contrat :
     //
-
+    friend ostream & operator << (ostream &out, const Cleaner & c);
 
 //-------------------------------------------- Constructeurs - destructeur
     Cleaner ( const Cleaner & unCleaner );

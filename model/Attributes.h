@@ -37,9 +37,14 @@ public:
     //
     // Contrat :
     //
+    string GetAttributeId();
+    string GetUnit();
+    string GetDescription();
 
 
 //------------------------------------------------- Surcharge d'opérateurs
+    friend ostream & operator << (ostream &out, const Attributes & a);
+
     Attributes & operator = ( const Attributes & unAttributes );
     // Mode d'emploi :
     //

@@ -10,6 +10,7 @@
 #if ! defined ( USER_H )
 #define USER_H
 
+using namespace std;
 //--------------------------------------------------- Interfaces utilisées
 #include <string>
 #include <sstream>

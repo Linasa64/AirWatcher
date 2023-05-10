@@ -45,7 +45,7 @@ public:
     //
     // Contrat :
     // */
-
+    friend ostream & operator << (ostream &out, const Measurement & m);
 
 //-------------------------------------------- Constructeurs - destructeur
     Measurement ( const Measurement & unMeasurement );
@@ -60,7 +60,7 @@ public:
     // Contrat :
     //
 
-    Measurement ( time_t timestamp, double value, Attributes attributes );
+    Measurement ( time_t timestamp, double value, Attributes & attributes );
     // Mode d'emploi :
     //
     // Contrat :

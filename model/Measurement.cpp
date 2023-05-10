@@ -36,7 +36,10 @@ using namespace std;
 //
 {
 } //----- Fin de operator = */
-
+ostream & operator << (ostream &out, const Measurement & m)
+{
+    return out << "Timestamp: " << m.timestamp << ", Value: " << m.value << ", Attributes: " << endl << "{" << endl << m.attributes << "}" << endl;
+}
 
 //-------------------------------------------- Constructeurs - destructeur
 Measurement::Measurement ( const Measurement & unMeasurement )
@@ -58,7 +61,7 @@ Measurement::Measurement ( )
 #endif
 } //----- Fin de Measurement
 
-Measurement::Measurement ( time_t timestamp, double value, Attributes attributes )
+Measurement::Measurement ( time_t timestamp, double value, Attributes & attributes )
 // Algorithme :
 //
 {
@@ -67,7 +70,8 @@ Measurement::Measurement ( time_t timestamp, double value, Attributes attributes
 #endif
     this->timestamp = timestamp;
     this->value = value;
-    //this->attributes = attributes;
+    cout << "ici, on a : " << attributes << endl;
+    this->attributes = attributes;
 } //----- Fin de Measurement
 
 

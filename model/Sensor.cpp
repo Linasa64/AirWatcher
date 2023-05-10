@@ -37,6 +37,11 @@ using namespace std;
 {
 } //----- Fin de operator = */
 
+ostream & operator << (ostream &out, const Sensor & s)
+{
+    return  out << "Sensor ID: " << s.id << ", Latitude: " << s.latitude << ", Longitude: " << s.longitude << endl;
+}
+
 
 //-------------------------------------------- Constructeurs - destructeur
 Sensor::Sensor ( const Sensor & unSensor )

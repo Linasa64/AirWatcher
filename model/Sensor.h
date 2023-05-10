@@ -38,6 +38,8 @@ public:
 
 
 //------------------------------------------------- Surcharge d'opérateurs
+    friend ostream & operator << (ostream &out, const Sensor & s);
+
     Sensor & operator = ( const Sensor & unSensor );
     // Mode d'emploi :
     //

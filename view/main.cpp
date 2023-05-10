@@ -1,27 +1,47 @@
-/*#include "Attributes.h"
+/*
 #include "Cleaner.h"
-#include "Database.h"
-#include "GovernmentAgency.h"
-#include "Measurement.h"
-#include "PrivateUser.h"
-#include "Provider.h"
-#include "Sensor.h"
-#include "User.h" */
+#include "Database.h""
+
+ */
+#include "../model/Measurement.h"
+#include "../model/User.h"
+#include "../model/GovernmentAgency.h"
+#include "../model/Provider.h"
+#include "../model/PrivateUser.h"
 #include "../model/Sensor.h"
 #include "../model/Attributes.h"
 #include <ctime>
 #include <iostream>
-#include <cstring>
-#include<string>
+#include <string>
+#include <time.h>
 
 using namespace std;
 
 
 int main() {
 
+    // TEMPS
+    float timeStart, timeEnd, timeDiff;
+
+    // On stocke le temps initial
+    timeStart = clock();
+
     Sensor* s = new Sensor(1, 44.0, -1.0);
 
-    //Measurement* m = new Measurement();
+    cout << *s;
+
+    User *user[] =
+    {
+        new Provider("Provider0"),
+        new PrivateUser("User1"),
+        new GovernmentAgency()
+    };
+
+    for (int i = 0 ; i < 3 ; i++) {
+        cout << "User " << i << ": " << user[i]->GetId() << endl;
+    }
+
+    
 
     // Créer une structure tm qui contient les informations sur la date et l'heure
     tm datetime = {};
@@ -34,11 +54,27 @@ int main() {
 
     // Convertir la structure tm en time_t
     time_t timestamp = mktime(&datetime);
+    time_t now = time(0);
+
+    Attributes* a = new Attributes("O3", "µg/m3", "concentration d'ozone");
+    Measurement* m = new Measurement(now, 53.25, *a);
+
+    cout << "Attributes a : " << *a;
+    cout << "Measurement m : " << *m;
 
     // Utiliser le timestamp
     cout << "Le timestamp est : " << timestamp << endl;
 
+    cout << "Maintenant : " << now << endl;
+
     cout << "hello new version here" << endl;
+
+    // On stocke le temps final
+    timeEnd = clock();
+
+    // On fait la différence temps final - temps initial et on met en ms
+    timeDiff = (timeEnd - timeStart)/(CLOCKS_PER_SEC/1000);
+    cout << "Temps exécution : " << timeDiff << "ms" << endl;
 
     return 0;
 }

@@ -24,7 +24,6 @@
 //
 //
 //------------------------------------------------------------------------
-class User;
 class PrivateUser : public User
 {
 //----------------------------------------------------------------- PUBLIC
@@ -59,7 +58,7 @@ public:
     // Contrat :
     //
 
-    PrivateUser ( string pUserId, string pLogin, string pPassword );
+    PrivateUser ( string pUserId );
     // Mode d'emploi :
     //
     // Contrat :

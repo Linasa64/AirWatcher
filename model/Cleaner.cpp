@@ -35,7 +35,11 @@ using namespace std;
 //
 {
 } //----- Fin de operator = */
-
+ostream & operator << (ostream &out, const Cleaner & c)
+{
+    return out << "Cleaner ID: " << c.cleanerId << ", Latitude: " << c.latitude << ", Longitude: " << c.longitude
+        << ", Start Timestamp: " << c.timestampStart << ", Stop Timestamp: " << c.timestampStop << endl;
+}
 
 //-------------------------------------------- Constructeurs - destructeur
 Cleaner::Cleaner ( const Cleaner & unCleaner )

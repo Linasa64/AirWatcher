@@ -46,7 +46,7 @@ public:
     // Contrat :
     //
 
-
+    friend ostream & operator << (ostream &out, const Database & d);
 //-------------------------------------------- Constructeurs - destructeur
     Database ( const Database & unDatabase );
     // Mode d'emploi (constructeur de copie) :
@@ -74,7 +74,7 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-//set<User> users;
+set<User*> users;
 set<Sensor> sensors;
 
 

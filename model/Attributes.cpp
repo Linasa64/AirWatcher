@@ -27,15 +27,29 @@ using namespace std;
 //
 //{
 //} //----- Fin de Méthode
-
+    string Attributes::GetAttributeId() {return this->attributeId;}
+    string Attributes::GetUnit() {return this->unit;}
+    string Attributes::GetDescription() {return this->description;}
 
 //------------------------------------------------- Surcharge d'opérateurs
-/*Attributes & Attributes::operator = ( const Attributes & unAttributes )
+Attributes & Attributes::operator = ( const Attributes & unAttributes )
 // Algorithme :
 //
 {
+    if ( this != &unAttributes )
+    {
+        attributeId = unAttributes.attributeId;
+        unit = unAttributes.unit;
+        description = unAttributes.description;
+    }
+    return *this;
 } //----- Fin de operator =
-*/
+
+
+ostream & operator << (ostream &out, const Attributes & a)
+{
+    return out << "Attribute ID: " << a.attributeId << ", Unit: " << a.unit << ", Description: " << a.description << endl;
+}
 
 //-------------------------------------------- Constructeurs - destructeur
 Attributes::Attributes ( const Attributes & unAttributes )

@@ -22,7 +22,7 @@ using namespace std;
 
 //----------------------------------------------------------------- PUBLIC
 string Provider::GetId() {
-    return "";
+    return providerId;
 }
 //----------------------------------------------------- Méthodes publiques
 // type Provider::Méthode ( liste des paramètres )
@@ -60,7 +60,7 @@ Provider::Provider ( )
 #endif
 } //----- Fin de Provider
 
-Provider::Provider ( string providerId, string login, string password ) : User(login, password)
+Provider::Provider ( string providerId ) : User()
 // Algorithme :
 //
 {

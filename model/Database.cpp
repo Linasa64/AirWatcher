@@ -35,7 +35,10 @@ using namespace std;
 //
 {
 } //----- Fin de operator = */
-
+ostream & operator << (ostream &out, const Database & d)
+{
+    return out << "pas encore implémenté" << endl;
+}
 
 //-------------------------------------------- Constructeurs - destructeur
 Database::Database ( const Database & unDatabase )
