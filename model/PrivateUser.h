@@ -11,8 +11,10 @@
 #define PRIVATEUSER_H
 
 //--------------------------------------------------- Interfaces utilisées
-#include<string.h>
-
+#include<string>
+#include <list>
+#include "Sensor.h"
+#include "User.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -22,7 +24,7 @@
 //
 //
 //------------------------------------------------------------------------
-
+class User;
 class PrivateUser : public User
 {
 //----------------------------------------------------------------- PUBLIC
@@ -69,6 +71,10 @@ public:
     // Contrat :
     //
 
+    string GetId();
+
+    string to_string();
+
 //------------------------------------------------------------------ PRIVE
 
 protected:
@@ -77,6 +83,7 @@ protected:
 //----------------------------------------------------- Attributs protégés
     string userId;
     int reputationPoint;
+    list<Sensor> sensors;
 
 };
 
