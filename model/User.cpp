@@ -30,11 +30,11 @@ using namespace std;
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-User & User::operator = ( const User & unUser )
+/* User & User::operator = ( const User & unUser )
 // Algorithme :
 //
 {
-} //----- Fin de operator =
+} //----- Fin de operator = */
 
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -78,7 +78,11 @@ User::~User ( )
     cout << "Appel au destructeur de <User>" << endl;
 #endif
 } //----- Fin de ~User
-
+string User::to_string() const {  
+    stringstream strs;
+    strs << "User login: " << login << ", password: " << password << endl;
+    return strs.str();
+}
 
 //------------------------------------------------------------------ PRIVE
 

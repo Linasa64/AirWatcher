@@ -21,7 +21,9 @@ using namespace std;
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
-
+string Provider::GetId() {
+    return "";
+}
 //----------------------------------------------------- Méthodes publiques
 // type Provider::Méthode ( liste des paramètres )
 // Algorithme :
@@ -31,11 +33,11 @@ using namespace std;
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-Provider & Provider::operator = ( const Provider & unProvider )
+/* Provider & Provider::operator = ( const Provider & unProvider )
 // Algorithme :
 //
 {
-} //----- Fin de operator =
+} //----- Fin de operator = */
 
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -79,6 +81,12 @@ Provider::~Provider ( )
 #endif
 } //----- Fin de ~Provider
 
+
+string Provider::to_string()const {
+    stringstream strs;
+    strs << "Provider ID: " << providerId << ", Number of Cleaners: " << cleaners.size();
+    return strs.str();
+}
 
 //------------------------------------------------------------------ PRIVE
 

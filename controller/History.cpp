@@ -29,11 +29,11 @@
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-History & History::operator = ( const History & unHistory )
+/* History & History::operator = ( const History & unHistory )
 // Algorithme :
 //
 {
-} //----- Fin de operator =
+} //----- Fin de operator = */
 
 
 //-------------------------------------------- Constructeurs - destructeur

@@ -30,11 +30,11 @@ using namespace std;
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-AirWatcher & AirWatcher::operator = ( const AirWatcher & unAirWatcher )
+/* AirWatcher & AirWatcher::operator = ( const AirWatcher & unAirWatcher )
 // Algorithme :
 //
 {
-} //----- Fin de operator =
+} //----- Fin de operator = */
 
 
 //-------------------------------------------- Constructeurs - destructeur

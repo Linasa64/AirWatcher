@@ -12,6 +12,7 @@
 
 //-------------------------------------------------------- Include système
 #include <iostream>
+#include <sstream>
 using namespace std;
 
 //------------------------------------------------------ Include personnel
@@ -30,11 +31,11 @@ using namespace std;
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-Measurement & Measurement::operator = ( const Measurement & unMeasurement )
+/* Measurement & Measurement::operator = ( const Measurement & unMeasurement )
 // Algorithme :
 //
 {
-} //----- Fin de operator =
+} //----- Fin de operator = */
 
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -66,7 +67,7 @@ Measurement::Measurement ( time_t timestamp, double value, Attributes attributes
 #endif
     this->timestamp = timestamp;
     this->value = value;
-    this->attributes = attributes;
+    //this->attributes = attributes;
 } //----- Fin de Measurement
 
 
@@ -79,6 +80,12 @@ Measurement::~Measurement ( )
 #endif
 } //----- Fin de ~Measurement
 
+
+string Measurement::to_string()const {
+    stringstream strs;
+    strs << "Timestamp: " << timestamp << ", Value: " << value << endl;
+    return strs.str();
+}
 
 //------------------------------------------------------------------ PRIVE
 

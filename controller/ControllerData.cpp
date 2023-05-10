@@ -12,6 +12,7 @@
 
 //-------------------------------------------------------- Include système
 #include <iostream>
+#include <string>
 using namespace std;
 
 //------------------------------------------------------ Include personnel
@@ -30,11 +31,11 @@ using namespace std;
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-ControllerData & ControllerData::operator = ( const ControllerData & unControllerData )
+/* ControllerData & ControllerData::operator = ( const ControllerData & unControllerData )
 // Algorithme :
 //
 {
-} //----- Fin de operator =
+} //----- Fin de operator = */
 
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -66,6 +67,13 @@ ControllerData::~ControllerData ( )
     cout << "Appel au destructeur de <ControllerData>" << endl;
 #endif
 } //----- Fin de ~ControllerData
+
+static Database retrieveData(std::string path_sensors, std::string path_measurements, std::string path_attributes, std::string path_providers, std::string path_cleaners, std::string path_users) {
+    Database d1 = Database();
+    return d1;
+}
+
+
 
 
 //------------------------------------------------------------------ PRIVE

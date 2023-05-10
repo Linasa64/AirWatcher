@@ -12,6 +12,7 @@
 
 //-------------------------------------------------------- Include système
 #include <iostream>
+#include <sstream>
 using namespace std;
 
 //------------------------------------------------------ Include personnel
@@ -30,11 +31,11 @@ using namespace std;
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-Sensor & Sensor::operator = ( const Sensor & unSensor )
+/* Sensor & Sensor::operator = ( const Sensor & unSensor )
 // Algorithme :
 //
 {
-} //----- Fin de operator =
+} //----- Fin de operator = */
 
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -57,16 +58,16 @@ Sensor::Sensor ( )
 #endif
 } //----- Fin de Sensor
 
-Sensor::Sensor ( int pId, float pLatitude, float pLongitude )
+Sensor::Sensor ( int id, float latitude, float longitude )
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Sensor>" << endl;
 #endif
-    this -> id = pId;
-    this -> latitude = pLatitude;
-    this -> longitude = pLongitude;
+    this->id = id;
+    this->latitude = latitude;
+    this->longitude = longitude;
 } //----- Fin de Sensor
 
 
@@ -78,6 +79,12 @@ Sensor::~Sensor ( )
     cout << "Appel au destructeur de <Sensor>" << endl;
 #endif
 } //----- Fin de ~Sensor
+
+string Sensor::to_string() const {
+    stringstream strs;
+    strs << "Sensor ID: " << id << ", Latitude: " << latitude << ", Longitude: " << longitude << endl;
+    return strs.str();
+}
 
 
 //------------------------------------------------------------------ PRIVE

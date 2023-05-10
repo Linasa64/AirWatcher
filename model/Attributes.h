@@ -10,8 +10,11 @@
 #if ! defined ( ATTRIBUTES_H )
 #define ATTRIBUTES_H
 
+using namespace std;
 //--------------------------------------------------- Interfaces utilisées
-#include<string.h>
+#include <cstring>
+#include<string>
+#include <sstream>
 
 //------------------------------------------------------------- Constantes
 
@@ -68,6 +71,8 @@ public:
     //
     // Contrat :
     //
+
+    string to_string () const;
 
 //------------------------------------------------------------------ PRIVE
 

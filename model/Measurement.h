@@ -12,6 +12,9 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include "Attributes.h"
+#include <ctime>
+#include<string>
+
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -36,11 +39,12 @@ public:
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    Measurement & operator = ( const Measurement & unMeasurement );
+   
+/*     Measurement & operator = ( const Measurement & unMeasurement );
     // Mode d'emploi :
     //
     // Contrat :
-    //
+    // */
 
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -67,6 +71,8 @@ public:
     //
     // Contrat :
     //
+
+    string to_string() const;
 
 //------------------------------------------------------------------ PRIVE
 

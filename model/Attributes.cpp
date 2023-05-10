@@ -30,12 +30,12 @@ using namespace std;
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-Attributes & Attributes::operator = ( const Attributes & unAttributes )
+/*Attributes & Attributes::operator = ( const Attributes & unAttributes )
 // Algorithme :
 //
 {
 } //----- Fin de operator =
-
+*/
 
 //-------------------------------------------- Constructeurs - destructeur
 Attributes::Attributes ( const Attributes & unAttributes )
@@ -70,6 +70,7 @@ Attributes::Attributes ( string pAttributeId, string pUnit, string pDescription 
 } //----- Fin de Attributes
 
 
+
 Attributes::~Attributes ( )
 // Algorithme :
 //
@@ -79,7 +80,12 @@ Attributes::~Attributes ( )
 #endif
 } //----- Fin de ~Attributes
 
-
+string Attributes::to_string()const {
+    stringstream strs;
+    strs << "Attribute ID: " << attributeId << ", Unit: " << unit << ", Description: " << description;
+    //return strs.str();
+    return "";
+}
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées

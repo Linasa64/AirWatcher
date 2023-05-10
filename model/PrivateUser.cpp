@@ -29,13 +29,16 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
+string PrivateUser::GetId() {
+    return "";
+}
 
 //------------------------------------------------- Surcharge d'opérateurs
-PrivateUser & PrivateUser::operator = ( const PrivateUser & unPrivateUser )
+/* PrivateUser & PrivateUser::operator = ( const PrivateUser & unPrivateUser )
 // Algorithme :
 //
 {
-} //----- Fin de operator =
+} //----- Fin de operator = */
 
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -78,6 +81,10 @@ PrivateUser::~PrivateUser ( )
     cout << "Appel au destructeur de <PrivateUser>" << endl;
 #endif
 } //----- Fin de ~PrivateUser
+
+string PrivateUser::to_string(){
+    return "";
+}
 
 
 //------------------------------------------------------------------ PRIVE

@@ -11,8 +11,11 @@
 #define PROVIDER_H
 
 //--------------------------------------------------- Interfaces utilisées
-#include<string.h>
-
+#include<string>
+#include <sstream>
+#include "Cleaner.h"
+#include <list>
+#include "User.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -22,7 +25,7 @@
 //
 //
 //------------------------------------------------------------------------
-
+class User;
 class Provider : User
 {
 //----------------------------------------------------------------- PUBLIC
@@ -69,6 +72,10 @@ public:
     // Contrat :
     //
 
+    string GetId();
+
+    string to_string() const;
+
 //------------------------------------------------------------------ PRIVE
 
 protected:
@@ -76,6 +83,7 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
     string providerId;
+    list<Cleaner> cleaners;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Provider>

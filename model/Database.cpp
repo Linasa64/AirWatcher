@@ -30,11 +30,11 @@ using namespace std;
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-Database & Database::operator = ( const Database & unDatabase )
+/* Database & Database::operator = ( const Database & unDatabase )
 // Algorithme :
 //
 {
-} //----- Fin de operator =
+} //----- Fin de operator = */
 
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -66,6 +66,22 @@ Database::~Database ( )
     cout << "Appel au destructeur de <Database>" << endl;
 #endif
 } //----- Fin de ~Database
+
+string Database::to_string()const {
+/*         stringstream strs;
+        strs << "Database:" << std::endl;
+        strs << "Sensors:" << std::endl;
+        for (const auto& sensor : sensors) {
+            strs << sensor.to_string() << std::endl;
+        }
+        strs << "Users :" << std::endl;
+            for (const auto& user : users) {
+            strs << user.to_string() << std::endl;
+            strs << "Sensors:" << std::endl;
+        }
+        return strs.str(); */
+        return "";
+    }
 
 
 //------------------------------------------------------------------ PRIVE

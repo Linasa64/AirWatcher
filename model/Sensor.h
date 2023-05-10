@@ -12,6 +12,7 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include <list>
+#include <string>
 #include "Measurement.h"
 //------------------------------------------------------------- Constantes
 
@@ -68,6 +69,8 @@ public:
     //
     // Contrat :
     //
+
+    string to_string()const;
 
 //------------------------------------------------------------------ PRIVE
 

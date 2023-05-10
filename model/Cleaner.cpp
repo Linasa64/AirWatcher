@@ -30,11 +30,11 @@ using namespace std;
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-Cleaner & Cleaner::operator = ( const Cleaner & unCleaner )
+/* Cleaner & Cleaner::operator = ( const Cleaner & unCleaner )
 // Algorithme :
 //
 {
-} //----- Fin de operator =
+} //----- Fin de operator = */
 
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -79,6 +79,13 @@ Cleaner::~Cleaner ( )
     cout << "Appel au destructeur de <Cleaner>" << endl;
 #endif
 } //----- Fin de ~Cleaner
+
+string Cleaner::to_string() const {
+    stringstream strs;
+    strs << "Cleaner ID: " << cleanerId << ", Latitude: " << latitude << ", Longitude: " << longitude
+        << ", Start Timestamp: " << timestampStart << ", Stop Timestamp: " << timestampStop;
+    return strs.str();
+}
 
 
 //------------------------------------------------------------------ PRIVE

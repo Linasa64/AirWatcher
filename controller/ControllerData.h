@@ -11,7 +11,7 @@
 #define CONTROLLERDATA_H
 
 //--------------------------------------------------- Interfaces utilisées
-
+#include "../model/Database.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -62,7 +62,7 @@ public:
     // Contrat :
     //
 
-    static Database retrieveData(string )
+    static Database retrieveData(string path_sensors, string path_measurements, string path_attributes, string path_providers, string path_cleaners, string path_users);
 
 //------------------------------------------------------------------ PRIVE
 

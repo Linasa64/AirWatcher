@@ -11,7 +11,11 @@
 #define DATABASE_H
 
 //--------------------------------------------------- Interfaces utilisées
+#include <sstream>
+#include <set>
 
+#include"User.h"
+#include"Sensor.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -62,12 +66,17 @@ public:
     // Contrat :
     //
 
+    string to_string() const;
+
 //------------------------------------------------------------------ PRIVE
 
 protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
+//set<User> users;
+set<Sensor> sensors;
+
 
 };
 

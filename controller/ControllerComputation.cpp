@@ -30,11 +30,11 @@ using namespace std;
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-ControllerComputation & ControllerComputation::operator = ( const ControllerComputation & unControllerComputation )
+/* ControllerComputation & ControllerComputation::operator = ( const ControllerComputation & unControllerComputation )
 // Algorithme :
 //
 {
-} //----- Fin de operator =
+} //----- Fin de operator = */
 
 
 //-------------------------------------------- Constructeurs - destructeur

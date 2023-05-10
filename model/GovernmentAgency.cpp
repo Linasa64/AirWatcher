@@ -29,18 +29,18 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-string GetId()
+string GovernmentAgency::GetId() 
 {
     return "Government";
 }
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-GovernmentAgency & GovernmentAgency::operator = ( const GovernmentAgency & unGovernmentAgency )
+/* GovernmentAgency & GovernmentAgency::operator = ( const GovernmentAgency & unGovernmentAgency )
 // Algorithme :
 //
 {
-} //----- Fin de operator =
+} //----- Fin de operator = */
 
 
 //-------------------------------------------- Constructeurs - destructeur

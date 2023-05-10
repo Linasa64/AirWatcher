@@ -1,12 +1,12 @@
 /*************************************************************************
-                           Cleaner  -  description
+                           ControllerPrivateUser  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Réalisation de la classe <Cleaner> (fichier Cleaner.cpp) ------------
+//---------- Réalisation de la classe <ControllerPrivateUser> (fichier ControllerPrivateUser.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -15,14 +15,14 @@
 using namespace std;
 
 //------------------------------------------------------ Include personnel
-#include "Cleaner.h"
+#include "ControllerPrivateUser.h"
 
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Cleaner::Méthode ( liste des paramètres )
+// type ControllerPrivateUser::Méthode ( liste des paramètres )
 // Algorithme :
 //
 //{
@@ -30,42 +30,42 @@ using namespace std;
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-Cleaner & Cleaner::operator = ( const Cleaner & unCleaner )
+/* ControllerPrivateUser & ControllerPrivateUser::operator = ( const ControllerPrivateUser & unControllerPrivateUser )
 // Algorithme :
 //
 {
-} //----- Fin de operator =
+} //----- Fin de operator = */
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Cleaner::Cleaner ( const Cleaner & unCleaner )
+ControllerPrivateUser::ControllerPrivateUser ( const ControllerPrivateUser & unControllerPrivateUser )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <Cleaner>" << endl;
+    cout << "Appel au constructeur de copie de <ControllerPrivateUser>" << endl;
 #endif
-} //----- Fin de Cleaner (constructeur de copie)
+} //----- Fin de ControllerPrivateUser (constructeur de copie)
 
 
-Cleaner::Cleaner ( )
+ControllerPrivateUser::ControllerPrivateUser ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Cleaner>" << endl;
+    cout << "Appel au constructeur de <ControllerPrivateUser>" << endl;
 #endif
-} //----- Fin de Cleaner
+} //----- Fin de ControllerPrivateUser
 
 
-Cleaner::~Cleaner ( )
+ControllerPrivateUser::~ControllerPrivateUser ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <Cleaner>" << endl;
+    cout << "Appel au destructeur de <ControllerPrivateUser>" << endl;
 #endif
-} //----- Fin de ~Cleaner
+} //----- Fin de ~ControllerPrivateUser
 
 
 //------------------------------------------------------------------ PRIVE
