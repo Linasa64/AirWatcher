@@ -57,6 +57,19 @@ Cleaner::Cleaner ( )
 #endif
 } //----- Fin de Cleaner
 
+Cleaner::Cleaner ( int cleanerId, float latitude, float longitude, time_t timestampStart, time_t timestampStop )
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au constructeur de <Cleaner>" << endl;
+#endif
+    this->cleanerId = cleanerId;
+    this->latitude = latitude;
+    this->longitude = longitude;
+    this->timestampStart = timestampStart;
+    this->timestampStop = timestampStop;
+} //----- Fin de Cleaner
 
 Cleaner::~Cleaner ( )
 // Algorithme :

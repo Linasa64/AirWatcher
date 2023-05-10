@@ -56,6 +56,12 @@ public:
     // Contrat :
     //
 
+    GovernmentAgency ( string login, string password );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
     virtual ~GovernmentAgency ( );
     // Mode d'emploi :
     //

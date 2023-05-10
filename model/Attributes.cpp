@@ -57,6 +57,18 @@ Attributes::Attributes ( )
 #endif
 } //----- Fin de Attributes
 
+Attributes::Attributes ( string pAttributeId, string pUnit, string pDescription )
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au constructeur de <Attributes>" << endl;
+#endif
+    this -> attributeId = pAttributeId;
+    this -> unit = pUnit;
+    this -> description = pDescription;
+} //----- Fin de Attributes
+
 
 Attributes::~Attributes ( )
 // Algorithme :

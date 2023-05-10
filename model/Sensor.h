@@ -11,7 +11,8 @@
 #define SENSOR_H
 
 //--------------------------------------------------- Interfaces utilisées
-
+#include <list>
+#include "Measurement.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -56,6 +57,12 @@ public:
     // Contrat :
     //
 
+    Sensor ( int pId, float pLatitude, float pLongitude);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
     virtual ~Sensor ( );
     // Mode d'emploi :
     //
@@ -71,6 +78,7 @@ protected:
     int id;
     float latitude;
     float longitude;
+    list<Measurement> measurements;
 
 };
 

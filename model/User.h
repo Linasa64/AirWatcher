@@ -54,6 +54,12 @@ public:
     // Contrat :
     //
 
+    User ( string pLogin, string pPassword );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
     virtual ~User ( );
     // Mode d'emploi :
     //

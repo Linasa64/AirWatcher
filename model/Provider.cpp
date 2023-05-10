@@ -58,6 +58,17 @@ Provider::Provider ( )
 #endif
 } //----- Fin de Provider
 
+Provider::Provider ( string providerId, string login, string password ) : User(login, password)
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au constructeur de <Provider>" << endl;
+#endif
+
+    this->providerId = providerId;
+} //----- Fin de Provider
+
 
 Provider::~Provider ( )
 // Algorithme :

@@ -58,6 +58,17 @@ PrivateUser::PrivateUser ( )
 #endif
 } //----- Fin de PrivateUser
 
+PrivateUser::PrivateUser ( string userId, string login, string password ) : User(login, password)
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au constructeur de <PrivateUser>" << endl;
+#endif
+    this->userId = userId;
+    this -> reputationPoint = 0;
+} //----- Fin de PrivateUser
+
 
 PrivateUser::~PrivateUser ( )
 // Algorithme :

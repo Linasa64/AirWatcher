@@ -57,6 +57,12 @@ public:
     // Contrat :
     //
 
+    Attributes ( string pAttributeId, string pUnit, string pDescription );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
     virtual ~Attributes ( );
     // Mode d'emploi :
     //

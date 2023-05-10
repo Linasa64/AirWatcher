@@ -57,6 +57,12 @@ public:
     // Contrat :
     //
 
+    Provider ( string pProviderId, string pLogin, string pPassword );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
     virtual ~Provider ( );
     // Mode d'emploi :
     //
