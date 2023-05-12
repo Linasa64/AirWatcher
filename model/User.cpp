@@ -35,8 +35,9 @@ using namespace std;
 //
 {
 } //----- Fin de operator = */
-
-
+ostream & operator << (ostream &out, const User & u) {
+    return out;
+}
 //-------------------------------------------- Constructeurs - destructeur
 User::User ( const User & unUser )
 // Algorithme :

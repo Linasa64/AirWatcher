@@ -82,6 +82,11 @@ GovernmentAgency::~GovernmentAgency ( )
 #endif
 } //----- Fin de ~GovernmentAgency
 
+string GovernmentAgency::to_string() const {
+    stringstream strs;
+    strs << "GovernmentAgency" << endl;
+    return strs.str();
+}
 
 //------------------------------------------------------------------ PRIVE
 

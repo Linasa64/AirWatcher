@@ -69,7 +69,7 @@ PrivateUser::PrivateUser ( string userId ) : User()
     cout << "Appel au constructeur de <PrivateUser>" << endl;
 #endif
     this->userId = userId;
-    this -> reputationPoint = 0;
+    this -> reputationPoints = 0;
 } //----- Fin de PrivateUser
 
 
@@ -82,8 +82,10 @@ PrivateUser::~PrivateUser ( )
 #endif
 } //----- Fin de ~PrivateUser
 
-string PrivateUser::to_string(){
-    return "";
+string PrivateUser::to_string() const {
+    stringstream strs;
+    strs << "Cleaner ID: " << userId << ", Reputation points: " << reputationPoints << ", Nomber of sensors: " << sensors.size() << endl;
+    return strs.str();
 }
 
 

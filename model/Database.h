@@ -31,6 +31,9 @@ class Database
 //----------------------------------------------------------------- PUBLIC
 
 public:
+
+set<User*> users;
+set<Sensor> sensors;
 //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste des paramètres );
     // Mode d'emploi :
@@ -74,8 +77,7 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-set<User*> users;
-set<Sensor> sensors;
+
 
 
 };

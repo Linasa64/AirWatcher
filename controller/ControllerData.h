@@ -62,7 +62,11 @@ public:
     // Contrat :
     //
 
-    static Database retrieveData(string path_sensors, string path_measurements, string path_attributes, string path_providers, string path_cleaners, string path_users);
+    time_t convertDateStingToTimestamp(string date, const string& format = "%Y-%m-%d %H:%M:%S");
+
+    Database retrieveData(string path_sensors, string path_measurements, string path_attributes, string path_providers, string path_cleaners, string path_users);
+
+    
 
 //------------------------------------------------------------------ PRIVE
 
@@ -72,8 +76,9 @@ protected:
 //----------------------------------------------------- Attributs protégés
 
 };
-
 //-------------------------------- Autres définitions dépendantes de <ControllerData>
 
 #endif // CONTROLLERDATA_H
+
+
 

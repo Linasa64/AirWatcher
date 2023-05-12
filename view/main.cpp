@@ -3,6 +3,7 @@
 #include "Database.h""
 
  */
+#include "../model/Cleaner.h"
 #include "../model/Measurement.h"
 #include "../model/User.h"
 #include "../model/GovernmentAgency.h"
@@ -12,36 +13,36 @@
 #include "../model/Attributes.h"
 #include <ctime>
 #include <iostream>
+#include <map>
 #include <string>
 #include <time.h>
+#include "../controller/ControllerData.h"
+#include "../model/Database.h"
+#include <vector>
+#include <set>
+#include <fstream>
+#include <sstream>
+#include <locale>
+#include <iomanip>
+
 
 using namespace std;
 
-
 int main() {
 
-    // TEMPS
+    // TESTS TEMPS time_t
+    /* time_t t1, t2, t3;
+    t1 = convertDateStingToTimestamp("2019-03-01 12:00:00");
+    t2 = convertDateStingToTimestamp("2019-04-01 12:00:00");
+    t3 = t2 - t1;
+    cout << "DATE TEST : " << t3 << endl; */
+
+    // TESTS2 TEMPS time_t
+/*     
     float timeStart, timeEnd, timeDiff;
 
     // On stocke le temps initial
     timeStart = clock();
-
-    Sensor* s = new Sensor(1, 44.0, -1.0);
-
-    cout << *s;
-
-    User *user[] =
-    {
-        new Provider("Provider0"),
-        new PrivateUser("User1"),
-        new GovernmentAgency()
-    };
-
-    for (int i = 0 ; i < 3 ; i++) {
-        cout << "User " << i << ": " << user[i]->GetId() << endl;
-    }
-
-    
 
     // Créer une structure tm qui contient les informations sur la date et l'heure
     tm datetime = {};
@@ -56,12 +57,6 @@ int main() {
     time_t timestamp = mktime(&datetime);
     time_t now = time(0);
 
-    Attributes* a = new Attributes("O3", "µg/m3", "concentration d'ozone");
-    Measurement* m = new Measurement(now, 53.25, *a);
-
-    cout << "Attributes a : " << *a;
-    cout << "Measurement m : " << *m;
-
     // Utiliser le timestamp
     cout << "Le timestamp est : " << timestamp << endl;
 
@@ -74,7 +69,24 @@ int main() {
 
     // On fait la différence temps final - temps initial et on met en ms
     timeDiff = (timeEnd - timeStart)/(CLOCKS_PER_SEC/1000);
-    cout << "Temps exécution : " << timeDiff << "ms" << endl;
+    cout << "Temps exécution : " << timeDiff << "ms" << endl; */
+    
+
+    // TEST STRUCTURE DE DONNEES CONTENANT DES USER*
+/*     User* user[] =
+    {
+        new Provider("Provider0"),
+        new PrivateUser("User1"),
+        new GovernmentAgency()
+    };
+
+    for (int i = 0 ; i < 3 ; i++) {
+        cout << "User " << i << ": " << user[i]->to_string();
+    } */
+    
+    ControllerData controllerData;
+
+    Database d1 = controllerData.retrieveData("./dataset/sensors.csv", "./dataset/measurements.csv", "./dataset/attributes.csv", "./dataset/providers.csv", "./dataset/cleaners.csv", "./dataset/users.csv");
 
     return 0;
 }

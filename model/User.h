@@ -34,6 +34,9 @@ public:
     // Permet de renvoyer l'ID d'un User sous forme de string
     virtual string GetId() = 0;
 
+    virtual string to_string() const = 0;
+
+    friend ostream & operator << (ostream &out, const User & u);
 
 //------------------------------------------------- Surcharge d'opérateurs
     User & operator = ( const User & unUser );
@@ -67,8 +70,6 @@ public:
     //
     // Contrat :
     //
-
-    string to_string() const;
 
 //------------------------------------------------------------------ PRIVE
 

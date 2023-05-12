@@ -72,7 +72,7 @@ public:
 
     string GetId();
 
-    string to_string();
+    string to_string() const;
 
 //------------------------------------------------------------------ PRIVE
 
@@ -81,7 +81,7 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
     string userId;
-    int reputationPoint;
+    int reputationPoints;
     list<Sensor> sensors;
 
 };

@@ -69,6 +69,8 @@ public:
 
     string GetId();
 
+    string to_string() const;
+
 //------------------------------------------------------------------ PRIVE
 
 protected:

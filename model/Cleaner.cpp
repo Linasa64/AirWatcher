@@ -12,6 +12,8 @@
 
 //-------------------------------------------------------- Include système
 #include <iostream>
+#include <string>
+#include <iostream>
 using namespace std;
 
 //------------------------------------------------------ Include personnel
@@ -61,7 +63,7 @@ Cleaner::Cleaner ( )
 #endif
 } //----- Fin de Cleaner
 
-Cleaner::Cleaner ( int cleanerId, float latitude, float longitude, time_t timestampStart, time_t timestampStop )
+Cleaner::Cleaner ( string cleanerId, float latitude, float longitude, time_t timestampStart, time_t timestampStop )
 // Algorithme :
 //
 {

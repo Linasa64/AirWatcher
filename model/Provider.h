@@ -39,12 +39,18 @@ public:
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    Provider & operator = ( const Provider & unProvider );
+    //Provider & operator = ( const Provider & unProvider );
     // Mode d'emploi :
     //
     // Contrat :
     //
+    friend ostream & operator << (ostream &out, const Provider & p);
 
+    bool operator<(const Provider& other) const;
+
+    bool operator==(const Provider& other) const;
+
+    string GetId() const;
 
 //-------------------------------------------- Constructeurs - destructeur
     Provider ( const Provider & unProvider );
@@ -73,7 +79,11 @@ public:
 
     string GetId();
 
+    list<Cleaner*> GetCleaners();
+
     string to_string() const;
+
+    void AddCleaner( Cleaner * cleaner);
 
 //------------------------------------------------------------------ PRIVE
 
@@ -82,7 +92,7 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
     string providerId;
-    list<Cleaner> cleaners;
+    list<Cleaner*> cleaners;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Provider>

@@ -17,6 +17,7 @@ using namespace std;
 //------------------------------------------------------ Include personnel
 #include "Provider.h"
 #include "User.h"
+#include <list>
 
 //------------------------------------------------------------- Constantes
 
@@ -38,8 +39,31 @@ string Provider::GetId() {
 //
 {
 } //----- Fin de operator = */
+ostream & operator << (ostream &out, const Provider & p)
+{
+    out << "Provider ID: " << p.providerId << ", Number of Cleaners: " << p.cleaners.size() << endl << "Cleaners :" << endl;
+    for (Cleaner* cleaner : p.cleaners) {
+        out << "\t" << *cleaner;
+    }
+    return out;
+}
 
+string Provider::GetId() const {
+    return this->providerId;
+}
 
+bool Provider::operator<(const Provider& other) const {
+    return (this->providerId < other.providerId);
+}
+
+bool operator<(const Provider& p1, const Provider& p2) {
+    return p1.GetId() < p2.GetId();
+}
+
+bool Provider::operator==(const Provider& other) const
+{
+    return this->GetId() == other.GetId();
+}
 //-------------------------------------------- Constructeurs - destructeur
 Provider::Provider ( const Provider & unProvider )
 // Algorithme :
@@ -79,15 +103,30 @@ Provider::~Provider ( )
 #ifdef MAP
     cout << "Appel au destructeur de <Provider>" << endl;
 #endif
+    for (Cleaner* cleaner : cleaners) {
+        delete cleaner;
+        // Faire quelque chose avec chaque élément de la liste
+    }
 } //----- Fin de ~Provider
 
 
 string Provider::to_string()const {
     stringstream strs;
-    strs << "Provider ID: " << providerId << ", Number of Cleaners: " << cleaners.size();
+    strs << "Provider ID: " << providerId << ", Number of Cleaners: " << cleaners.size() << endl << "Cleaners :" << endl;
+    for (Cleaner* cleaner : cleaners) {
+        strs << "\t" << *cleaner;
+    }
     return strs.str();
 }
 
+void Provider::AddCleaner( Cleaner * cleaner)
+{
+    cleaners.push_back(cleaner);
+}
+
+list<Cleaner*> Provider::GetCleaners() {
+    return this->cleaners;
+}
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées

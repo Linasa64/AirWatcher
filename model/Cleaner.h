@@ -13,6 +13,9 @@
 //--------------------------------------------------- Interfaces utilisées
 #include<ctime>
 #include <sstream>
+#include <string>
+#include <iostream>
+using namespace std;
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -57,7 +60,7 @@ public:
     // Contrat :
     //
 
-    Cleaner ( int cleanerId, float latitude, float longitude, time_t timestampStart, time_t timestampStop );
+    Cleaner ( string cleanerId, float latitude, float longitude, time_t timestampStart, time_t timestampStop );
     // Mode d'emploi :
     //
     // Contrat :
@@ -76,7 +79,7 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    int cleanerId;
+    string cleanerId;
     float latitude;
     float longitude;
     time_t timestampStart;
