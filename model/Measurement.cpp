@@ -29,20 +29,21 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-
 //------------------------------------------------- Surcharge d'opérateurs
 /* Measurement & Measurement::operator = ( const Measurement & unMeasurement )
 // Algorithme :
 //
 {
 } //----- Fin de operator = */
-ostream & operator << (ostream &out, const Measurement & m)
+ostream &operator<<(ostream &out, const Measurement &m)
 {
-    return out << "Timestamp: " << m.timestamp << ", Value: " << m.value << ", Attributes: " << endl << "{" << endl << m.attributes << "}" << endl;
+    return out << "Timestamp: " << m.timestamp << ", Value: " << m.value << ", Attributes: " << endl
+               << "{" << endl
+               << m.attributes << "}" << endl;
 }
 
 //-------------------------------------------- Constructeurs - destructeur
-Measurement::Measurement ( const Measurement & unMeasurement )
+Measurement::Measurement(const Measurement &unMeasurement)
 // Algorithme :
 //
 {
@@ -51,8 +52,7 @@ Measurement::Measurement ( const Measurement & unMeasurement )
 #endif
 } //----- Fin de Measurement (constructeur de copie)
 
-
-Measurement::Measurement ( )
+Measurement::Measurement()
 // Algorithme :
 //
 {
@@ -61,7 +61,7 @@ Measurement::Measurement ( )
 #endif
 } //----- Fin de Measurement
 
-Measurement::Measurement ( time_t timestamp, double value, Attributes & attributes )
+Measurement::Measurement(time_t timestamp, double value, Attributes &attributes)
 // Algorithme :
 //
 {
@@ -74,8 +74,7 @@ Measurement::Measurement ( time_t timestamp, double value, Attributes & attribut
     this->attributes = attributes;
 } //----- Fin de Measurement
 
-
-Measurement::~Measurement ( )
+Measurement::~Measurement()
 // Algorithme :
 //
 {
@@ -84,8 +83,8 @@ Measurement::~Measurement ( )
 #endif
 } //----- Fin de ~Measurement
 
-
-string Measurement::to_string()const {
+string Measurement::to_string() const
+{
     stringstream strs;
     strs << "Timestamp: " << timestamp << ", Value: " << value << endl;
     return strs.str();
@@ -94,4 +93,3 @@ string Measurement::to_string()const {
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-

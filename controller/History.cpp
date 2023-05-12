@@ -27,7 +27,6 @@
 //{
 //} //----- Fin de Méthode
 
-
 //------------------------------------------------- Surcharge d'opérateurs
 /* History & History::operator = ( const History & unHistory )
 // Algorithme :
@@ -35,9 +34,8 @@
 {
 } //----- Fin de operator = */
 
-
 //-------------------------------------------- Constructeurs - destructeur
-History::History ( const History & unHistory )
+History::History(const History &unHistory)
 // Algorithme :
 //
 {
@@ -46,8 +44,7 @@ History::History ( const History & unHistory )
 #endif
 } //----- Fin de History (constructeur de copie)
 
-
-History::History ( )
+History::History()
 // Algorithme :
 //
 {
@@ -56,8 +53,7 @@ History::History ( )
 #endif
 } //----- Fin de History
 
-
-History::~History ( )
+History::~History()
 // Algorithme :
 //
 {
@@ -66,8 +62,6 @@ History::~History ( )
 #endif
 } //----- Fin de ~History
 
-
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-

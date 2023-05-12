@@ -7,7 +7,7 @@
 *************************************************************************/
 
 //---------- Interface de la classe <User> (fichier User.h) ----------------
-#if ! defined ( USER_H )
+#if !defined(USER_H)
 #define USER_H
 
 using namespace std;
@@ -24,65 +24,62 @@ using namespace std;
 //
 //------------------------------------------------------------------------
 
-class User 
+class User
 {
-//----------------------------------------------------------------- PUBLIC
+    //----------------------------------------------------------------- PUBLIC
 
 public:
-//----------------------------------------------------- Méthodes publiques
+    //----------------------------------------------------- Méthodes publiques
     // Mode d'emploi :
     // Permet de renvoyer l'ID d'un User sous forme de string
     virtual string GetId() = 0;
 
     virtual string to_string() const = 0;
 
-    friend ostream & operator << (ostream &out, const User & u);
+    friend ostream &operator<<(ostream &out, const User &u);
 
-//------------------------------------------------- Surcharge d'opérateurs
-    User & operator = ( const User & unUser );
+    //------------------------------------------------- Surcharge d'opérateurs
+    User &operator=(const User &unUser);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-
-//-------------------------------------------- Constructeurs - destructeur
-    User ( const User & unUser );
+    //-------------------------------------------- Constructeurs - destructeur
+    User(const User &unUser);
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    User ( );
+    User();
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    User ( string pLogin, string pPassword );
+    User(string pLogin, string pPassword);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~User ( );
+    virtual ~User();
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-//------------------------------------------------------------------ PRIVE
+    //------------------------------------------------------------------ PRIVE
 
 protected:
-//----------------------------------------------------- Méthodes protégées
+    //----------------------------------------------------- Méthodes protégées
 
-//----------------------------------------------------- Attributs protégés
+    //----------------------------------------------------- Attributs protégés
     string login;
     string password;
-
 };
 
 //-------------------------------- Autres définitions dépendantes de <User>
 
 #endif // USER_H
-

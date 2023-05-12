@@ -30,21 +30,20 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-
 //------------------------------------------------- Surcharge d'opérateurs
 /* Cleaner & Cleaner::operator = ( const Cleaner & unCleaner )
 // Algorithme :
 //
 {
 } //----- Fin de operator = */
-ostream & operator << (ostream &out, const Cleaner & c)
+ostream &operator<<(ostream &out, const Cleaner &c)
 {
     return out << "Cleaner ID: " << c.cleanerId << ", Latitude: " << c.latitude << ", Longitude: " << c.longitude
-        << ", Start Timestamp: " << c.timestampStart << ", Stop Timestamp: " << c.timestampStop << endl;
+               << ", Start Timestamp: " << c.timestampStart << ", Stop Timestamp: " << c.timestampStop << endl;
 }
 
 //-------------------------------------------- Constructeurs - destructeur
-Cleaner::Cleaner ( const Cleaner & unCleaner )
+Cleaner::Cleaner(const Cleaner &unCleaner)
 // Algorithme :
 //
 {
@@ -53,8 +52,7 @@ Cleaner::Cleaner ( const Cleaner & unCleaner )
 #endif
 } //----- Fin de Cleaner (constructeur de copie)
 
-
-Cleaner::Cleaner ( )
+Cleaner::Cleaner()
 // Algorithme :
 //
 {
@@ -63,7 +61,7 @@ Cleaner::Cleaner ( )
 #endif
 } //----- Fin de Cleaner
 
-Cleaner::Cleaner ( string cleanerId, float latitude, float longitude, time_t timestampStart, time_t timestampStop )
+Cleaner::Cleaner(string cleanerId, float latitude, float longitude, time_t timestampStart, time_t timestampStop)
 // Algorithme :
 //
 {
@@ -77,7 +75,7 @@ Cleaner::Cleaner ( string cleanerId, float latitude, float longitude, time_t tim
     this->timestampStop = timestampStop;
 } //----- Fin de Cleaner
 
-Cleaner::~Cleaner ( )
+Cleaner::~Cleaner()
 // Algorithme :
 //
 {
@@ -86,15 +84,14 @@ Cleaner::~Cleaner ( )
 #endif
 } //----- Fin de ~Cleaner
 
-string Cleaner::to_string() const {
+string Cleaner::to_string() const
+{
     stringstream strs;
     strs << "Cleaner ID: " << cleanerId << ", Latitude: " << latitude << ", Longitude: " << longitude
-        << ", Start Timestamp: " << timestampStart << ", Stop Timestamp: " << timestampStop;
+         << ", Start Timestamp: " << timestampStart << ", Stop Timestamp: " << timestampStop;
     return strs.str();
 }
-
 
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-

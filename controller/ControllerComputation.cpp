@@ -28,7 +28,6 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-
 //------------------------------------------------- Surcharge d'opérateurs
 /* ControllerComputation & ControllerComputation::operator = ( const ControllerComputation & unControllerComputation )
 // Algorithme :
@@ -36,9 +35,8 @@ using namespace std;
 {
 } //----- Fin de operator = */
 
-
 //-------------------------------------------- Constructeurs - destructeur
-ControllerComputation::ControllerComputation ( const ControllerComputation & unControllerComputation )
+ControllerComputation::ControllerComputation(const ControllerComputation &unControllerComputation)
 // Algorithme :
 //
 {
@@ -47,8 +45,7 @@ ControllerComputation::ControllerComputation ( const ControllerComputation & unC
 #endif
 } //----- Fin de ControllerComputation (constructeur de copie)
 
-
-ControllerComputation::ControllerComputation ( )
+ControllerComputation::ControllerComputation()
 // Algorithme :
 //
 {
@@ -57,8 +54,7 @@ ControllerComputation::ControllerComputation ( )
 #endif
 } //----- Fin de ControllerComputation
 
-
-ControllerComputation::~ControllerComputation ( )
+ControllerComputation::~ControllerComputation()
 // Algorithme :
 //
 {
@@ -67,8 +63,6 @@ ControllerComputation::~ControllerComputation ( )
 #endif
 } //----- Fin de ~ControllerComputation
 
-
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-

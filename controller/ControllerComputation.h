@@ -7,7 +7,7 @@
 *************************************************************************/
 
 //---------- Interface de la classe <ControllerComputation> (fichier ControllerComputation.h) ----------------
-#if ! defined ( CONTROLLERCOMPUTATION_H )
+#if !defined(CONTROLLERCOMPUTATION_H)
 #define CONTROLLERCOMPUTATION_H
 
 //--------------------------------------------------- Interfaces utilisées
@@ -22,56 +22,52 @@
 //
 //------------------------------------------------------------------------
 
-class ControllerComputation 
+class ControllerComputation
 {
-//----------------------------------------------------------------- PUBLIC
+    //----------------------------------------------------------------- PUBLIC
 
 public:
-//----------------------------------------------------- Méthodes publiques
+    //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste des paramètres );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-
-//------------------------------------------------- Surcharge d'opérateurs
-    ControllerComputation & operator = ( const ControllerComputation & unControllerComputation );
+    //------------------------------------------------- Surcharge d'opérateurs
+    ControllerComputation &operator=(const ControllerComputation &unControllerComputation);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-
-//-------------------------------------------- Constructeurs - destructeur
-    ControllerComputation ( const ControllerComputation & unControllerComputation );
+    //-------------------------------------------- Constructeurs - destructeur
+    ControllerComputation(const ControllerComputation &unControllerComputation);
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    ControllerComputation ( );
+    ControllerComputation();
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~ControllerComputation ( );
+    virtual ~ControllerComputation();
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-//------------------------------------------------------------------ PRIVE
+    //------------------------------------------------------------------ PRIVE
 
 protected:
-//----------------------------------------------------- Méthodes protégées
+    //----------------------------------------------------- Méthodes protégées
 
-//----------------------------------------------------- Attributs protégés
-
+    //----------------------------------------------------- Attributs protégés
 };
 
 //-------------------------------- Autres définitions dépendantes de <ControllerComputation>
 
 #endif // CONTROLLERCOMPUTATION_H
-

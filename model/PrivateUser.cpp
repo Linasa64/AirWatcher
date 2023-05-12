@@ -29,7 +29,8 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-string PrivateUser::GetId() {
+string PrivateUser::GetId()
+{
     return userId;
 }
 
@@ -40,9 +41,8 @@ string PrivateUser::GetId() {
 {
 } //----- Fin de operator = */
 
-
 //-------------------------------------------- Constructeurs - destructeur
-PrivateUser::PrivateUser ( const PrivateUser & unPrivateUser )
+PrivateUser::PrivateUser(const PrivateUser &unPrivateUser)
 // Algorithme :
 //
 {
@@ -51,8 +51,7 @@ PrivateUser::PrivateUser ( const PrivateUser & unPrivateUser )
 #endif
 } //----- Fin de PrivateUser (constructeur de copie)
 
-
-PrivateUser::PrivateUser ( )
+PrivateUser::PrivateUser()
 // Algorithme :
 //
 {
@@ -61,7 +60,7 @@ PrivateUser::PrivateUser ( )
 #endif
 } //----- Fin de PrivateUser
 
-PrivateUser::PrivateUser ( string userId ) : User()
+PrivateUser::PrivateUser(string userId) : User()
 // Algorithme :
 //
 {
@@ -69,11 +68,10 @@ PrivateUser::PrivateUser ( string userId ) : User()
     cout << "Appel au constructeur de <PrivateUser>" << endl;
 #endif
     this->userId = userId;
-    this -> reputationPoints = 0;
+    this->reputationPoints = 0;
 } //----- Fin de PrivateUser
 
-
-PrivateUser::~PrivateUser ( )
+PrivateUser::~PrivateUser()
 // Algorithme :
 //
 {
@@ -82,14 +80,13 @@ PrivateUser::~PrivateUser ( )
 #endif
 } //----- Fin de ~PrivateUser
 
-string PrivateUser::to_string() const {
+string PrivateUser::to_string() const
+{
     stringstream strs;
     strs << "Cleaner ID: " << userId << ", Reputation points: " << reputationPoints << ", Nomber of sensors: " << sensors.size() << endl;
     return strs.str();
 }
 
-
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-

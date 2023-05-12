@@ -28,7 +28,6 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-
 //------------------------------------------------- Surcharge d'opérateurs
 /* ControllerPrivateUser & ControllerPrivateUser::operator = ( const ControllerPrivateUser & unControllerPrivateUser )
 // Algorithme :
@@ -36,9 +35,8 @@ using namespace std;
 {
 } //----- Fin de operator = */
 
-
 //-------------------------------------------- Constructeurs - destructeur
-ControllerPrivateUser::ControllerPrivateUser ( const ControllerPrivateUser & unControllerPrivateUser )
+ControllerPrivateUser::ControllerPrivateUser(const ControllerPrivateUser &unControllerPrivateUser)
 // Algorithme :
 //
 {
@@ -47,8 +45,7 @@ ControllerPrivateUser::ControllerPrivateUser ( const ControllerPrivateUser & unC
 #endif
 } //----- Fin de ControllerPrivateUser (constructeur de copie)
 
-
-ControllerPrivateUser::ControllerPrivateUser ( )
+ControllerPrivateUser::ControllerPrivateUser()
 // Algorithme :
 //
 {
@@ -57,8 +54,7 @@ ControllerPrivateUser::ControllerPrivateUser ( )
 #endif
 } //----- Fin de ControllerPrivateUser
 
-
-ControllerPrivateUser::~ControllerPrivateUser ( )
+ControllerPrivateUser::~ControllerPrivateUser()
 // Algorithme :
 //
 {
@@ -67,8 +63,6 @@ ControllerPrivateUser::~ControllerPrivateUser ( )
 #endif
 } //----- Fin de ~ControllerPrivateUser
 
-
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-

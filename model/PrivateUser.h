@@ -7,11 +7,11 @@
 *************************************************************************/
 
 //---------- Interface de la classe <PrivateUser> (fichier PrivateUser.h) ----------------
-#if ! defined ( PRIVATEUSER_H )
+#if !defined(PRIVATEUSER_H)
 #define PRIVATEUSER_H
 
 //--------------------------------------------------- Interfaces utilisées
-#include<string>
+#include <string>
 #include <list>
 #include "Sensor.h"
 #include "User.h"
@@ -26,45 +26,43 @@
 //------------------------------------------------------------------------
 class PrivateUser : public User
 {
-//----------------------------------------------------------------- PUBLIC
+    //----------------------------------------------------------------- PUBLIC
 
 public:
-//----------------------------------------------------- Méthodes publiques
+    //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste des paramètres );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-
-//------------------------------------------------- Surcharge d'opérateurs
-    PrivateUser & operator = ( const PrivateUser & unPrivateUser );
+    //------------------------------------------------- Surcharge d'opérateurs
+    PrivateUser &operator=(const PrivateUser &unPrivateUser);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-
-//-------------------------------------------- Constructeurs - destructeur
-    PrivateUser ( const PrivateUser & unPrivateUser );
+    //-------------------------------------------- Constructeurs - destructeur
+    PrivateUser(const PrivateUser &unPrivateUser);
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    PrivateUser ( );
+    PrivateUser();
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    PrivateUser ( string pUserId );
+    PrivateUser(string pUserId);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~PrivateUser ( );
+    virtual ~PrivateUser();
     // Mode d'emploi :
     //
     // Contrat :
@@ -74,19 +72,17 @@ public:
 
     string to_string() const;
 
-//------------------------------------------------------------------ PRIVE
+    //------------------------------------------------------------------ PRIVE
 
 protected:
-//----------------------------------------------------- Méthodes protégées
+    //----------------------------------------------------- Méthodes protégées
 
-//----------------------------------------------------- Attributs protégés
+    //----------------------------------------------------- Attributs protégés
     string userId;
     int reputationPoints;
     list<Sensor> sensors;
-
 };
 
 //-------------------------------- Autres définitions dépendantes de <PrivateUser>
 
 #endif // PRIVATEUSER_H
-

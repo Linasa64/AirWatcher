@@ -27,16 +27,16 @@ using namespace std;
 //
 //{
 //} //----- Fin de Méthode
-    string Attributes::GetAttributeId() {return this->attributeId;}
-    string Attributes::GetUnit() {return this->unit;}
-    string Attributes::GetDescription() {return this->description;}
+string Attributes::GetAttributeId() { return this->attributeId; }
+string Attributes::GetUnit() { return this->unit; }
+string Attributes::GetDescription() { return this->description; }
 
 //------------------------------------------------- Surcharge d'opérateurs
-Attributes & Attributes::operator = ( const Attributes & unAttributes )
+Attributes &Attributes::operator=(const Attributes &unAttributes)
 // Algorithme :
 //
 {
-    if ( this != &unAttributes )
+    if (this != &unAttributes)
     {
         attributeId = unAttributes.attributeId;
         unit = unAttributes.unit;
@@ -45,14 +45,13 @@ Attributes & Attributes::operator = ( const Attributes & unAttributes )
     return *this;
 } //----- Fin de operator =
 
-
-ostream & operator << (ostream &out, const Attributes & a)
+ostream &operator<<(ostream &out, const Attributes &a)
 {
     return out << "Attribute ID: " << a.attributeId << ", Unit: " << a.unit << ", Description: " << a.description << endl;
 }
 
 //-------------------------------------------- Constructeurs - destructeur
-Attributes::Attributes ( const Attributes & unAttributes )
+Attributes::Attributes(const Attributes &unAttributes)
 // Algorithme :
 //
 {
@@ -61,8 +60,7 @@ Attributes::Attributes ( const Attributes & unAttributes )
 #endif
 } //----- Fin de Attributes (constructeur de copie)
 
-
-Attributes::Attributes ( )
+Attributes::Attributes()
 // Algorithme :
 //
 {
@@ -71,21 +69,19 @@ Attributes::Attributes ( )
 #endif
 } //----- Fin de Attributes
 
-Attributes::Attributes ( string pAttributeId, string pUnit, string pDescription )
+Attributes::Attributes(string pAttributeId, string pUnit, string pDescription)
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Attributes>" << endl;
 #endif
-    this -> attributeId = pAttributeId;
-    this -> unit = pUnit;
-    this -> description = pDescription;
+    this->attributeId = pAttributeId;
+    this->unit = pUnit;
+    this->description = pDescription;
 } //----- Fin de Attributes
 
-
-
-Attributes::~Attributes ( )
+Attributes::~Attributes()
 // Algorithme :
 //
 {
@@ -94,13 +90,13 @@ Attributes::~Attributes ( )
 #endif
 } //----- Fin de ~Attributes
 
-string Attributes::to_string()const {
+string Attributes::to_string() const
+{
     stringstream strs;
     strs << "Attribute ID: " << attributeId << ", Unit: " << unit << ", Description: " << description;
-    //return strs.str();
+    // return strs.str();
     return "";
 }
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-

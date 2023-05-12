@@ -7,7 +7,7 @@
 *************************************************************************/
 
 //---------- Interface de la classe <Sensor> (fichier Sensor.h) ----------------
-#if ! defined ( SENSOR_H )
+#if !defined(SENSOR_H)
 #define SENSOR_H
 
 //--------------------------------------------------- Interfaces utilisées
@@ -24,70 +24,66 @@
 //
 //------------------------------------------------------------------------
 
-class Sensor 
+class Sensor
 {
-//----------------------------------------------------------------- PUBLIC
+    //----------------------------------------------------------------- PUBLIC
 
 public:
-//----------------------------------------------------- Méthodes publiques
+    //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste des paramètres );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
+    //------------------------------------------------- Surcharge d'opérateurs
+    friend ostream &operator<<(ostream &out, const Sensor &s);
 
-//------------------------------------------------- Surcharge d'opérateurs
-    friend ostream & operator << (ostream &out, const Sensor & s);
-
-    Sensor & operator = ( const Sensor & unSensor );
+    Sensor &operator=(const Sensor &unSensor);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-
-//-------------------------------------------- Constructeurs - destructeur
-    Sensor ( const Sensor & unSensor );
+    //-------------------------------------------- Constructeurs - destructeur
+    Sensor(const Sensor &unSensor);
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    Sensor ( );
+    Sensor();
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    Sensor ( int pId, float pLatitude, float pLongitude);
+    Sensor(int pId, float pLatitude, float pLongitude);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Sensor ( );
+    virtual ~Sensor();
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    string to_string()const;
+    string to_string() const;
 
-//------------------------------------------------------------------ PRIVE
+    //------------------------------------------------------------------ PRIVE
 
 protected:
-//----------------------------------------------------- Méthodes protégées
+    //----------------------------------------------------- Méthodes protégées
 
-//----------------------------------------------------- Attributs protégés
+    //----------------------------------------------------- Attributs protégés
     int id;
     float latitude;
     float longitude;
     list<Measurement> measurements;
-
 };
 
 //-------------------------------- Autres définitions dépendantes de <Sensor>
 
 #endif // SENSOR_H
-

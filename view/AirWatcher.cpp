@@ -28,7 +28,6 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-
 //------------------------------------------------- Surcharge d'opérateurs
 /* AirWatcher & AirWatcher::operator = ( const AirWatcher & unAirWatcher )
 // Algorithme :
@@ -36,9 +35,8 @@ using namespace std;
 {
 } //----- Fin de operator = */
 
-
 //-------------------------------------------- Constructeurs - destructeur
-AirWatcher::AirWatcher ( const AirWatcher & unAirWatcher )
+AirWatcher::AirWatcher(const AirWatcher &unAirWatcher)
 // Algorithme :
 //
 {
@@ -47,8 +45,7 @@ AirWatcher::AirWatcher ( const AirWatcher & unAirWatcher )
 #endif
 } //----- Fin de AirWatcher (constructeur de copie)
 
-
-AirWatcher::AirWatcher ( )
+AirWatcher::AirWatcher()
 // Algorithme :
 //
 {
@@ -57,8 +54,7 @@ AirWatcher::AirWatcher ( )
 #endif
 } //----- Fin de AirWatcher
 
-
-AirWatcher::~AirWatcher ( )
+AirWatcher::~AirWatcher()
 // Algorithme :
 //
 {
@@ -67,8 +63,6 @@ AirWatcher::~AirWatcher ( )
 #endif
 } //----- Fin de ~AirWatcher
 
-
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-

@@ -7,7 +7,7 @@
 *************************************************************************/
 
 //---------- Interface de la classe <GovernmentAgency> (fichier GovernmentAgency.h) ----------------
-#if ! defined ( GOVERNMENTAGENCY_H )
+#if !defined(GOVERNMENTAGENCY_H)
 #define GOVERNMENTAGENCY_H
 
 //--------------------------------------------------- Interfaces utilisées
@@ -23,45 +23,43 @@
 //------------------------------------------------------------------------
 class GovernmentAgency : public User
 {
-//----------------------------------------------------------------- PUBLIC
+    //----------------------------------------------------------------- PUBLIC
 
 public:
-//----------------------------------------------------- Méthodes publiques
+    //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste des paramètres );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-
-//------------------------------------------------- Surcharge d'opérateurs
-    GovernmentAgency & operator = ( const GovernmentAgency & unGovernmentAgency );
+    //------------------------------------------------- Surcharge d'opérateurs
+    GovernmentAgency &operator=(const GovernmentAgency &unGovernmentAgency);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-
-//-------------------------------------------- Constructeurs - destructeur
-    GovernmentAgency ( const GovernmentAgency & unGovernmentAgency );
+    //-------------------------------------------- Constructeurs - destructeur
+    GovernmentAgency(const GovernmentAgency &unGovernmentAgency);
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    GovernmentAgency ( );
+    GovernmentAgency();
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    GovernmentAgency ( string login, string password );
+    GovernmentAgency(string login, string password);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~GovernmentAgency ( );
+    virtual ~GovernmentAgency();
     // Mode d'emploi :
     //
     // Contrat :
@@ -71,16 +69,14 @@ public:
 
     string to_string() const;
 
-//------------------------------------------------------------------ PRIVE
+    //------------------------------------------------------------------ PRIVE
 
 protected:
-//----------------------------------------------------- Méthodes protégées
+    //----------------------------------------------------- Méthodes protégées
 
-//----------------------------------------------------- Attributs protégés
-
+    //----------------------------------------------------- Attributs protégés
 };
 
 //-------------------------------- Autres définitions dépendantes de <GovernmentAgency>
 
 #endif // GOVERNMENTAGENCY_H
-

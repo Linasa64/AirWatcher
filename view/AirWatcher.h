@@ -7,7 +7,7 @@
 *************************************************************************/
 
 //---------- Interface de la classe <AirWatcher> (fichier AirWatcher.h) ----------------
-#if ! defined ( AIRWATCHER_H )
+#if !defined(AIRWATCHER_H)
 #define AIRWATCHER_H
 
 //--------------------------------------------------- Interfaces utilisées
@@ -22,56 +22,52 @@
 //
 //------------------------------------------------------------------------
 
-class AirWatcher 
+class AirWatcher
 {
-//----------------------------------------------------------------- PUBLIC
+    //----------------------------------------------------------------- PUBLIC
 
 public:
-//----------------------------------------------------- Méthodes publiques
+    //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste des paramètres );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-
-//------------------------------------------------- Surcharge d'opérateurs
-    AirWatcher & operator = ( const AirWatcher & unAirWatcher );
+    //------------------------------------------------- Surcharge d'opérateurs
+    AirWatcher &operator=(const AirWatcher &unAirWatcher);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-
-//-------------------------------------------- Constructeurs - destructeur
-    AirWatcher ( const AirWatcher & unAirWatcher );
+    //-------------------------------------------- Constructeurs - destructeur
+    AirWatcher(const AirWatcher &unAirWatcher);
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    AirWatcher ( );
+    AirWatcher();
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~AirWatcher ( );
+    virtual ~AirWatcher();
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-//------------------------------------------------------------------ PRIVE
+    //------------------------------------------------------------------ PRIVE
 
 protected:
-//----------------------------------------------------- Méthodes protégées
+    //----------------------------------------------------- Méthodes protégées
 
-//----------------------------------------------------- Attributs protégés
-
+    //----------------------------------------------------- Attributs protégés
 };
 
 //-------------------------------- Autres définitions dépendantes de <AirWatcher>
 
 #endif // AIRWATCHER_H
-

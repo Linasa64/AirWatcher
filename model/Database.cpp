@@ -28,20 +28,19 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-
 //------------------------------------------------- Surcharge d'opérateurs
 /* Database & Database::operator = ( const Database & unDatabase )
 // Algorithme :
 //
 {
 } //----- Fin de operator = */
-ostream & operator << (ostream &out, const Database & d)
+ostream &operator<<(ostream &out, const Database &d)
 {
     return out << "pas encore implémenté" << endl;
 }
 
 //-------------------------------------------- Constructeurs - destructeur
-Database::Database ( const Database & unDatabase )
+Database::Database(const Database &unDatabase)
 // Algorithme :
 //
 {
@@ -50,8 +49,7 @@ Database::Database ( const Database & unDatabase )
 #endif
 } //----- Fin de Database (constructeur de copie)
 
-
-Database::Database ( )
+Database::Database()
 // Algorithme :
 //
 {
@@ -60,8 +58,7 @@ Database::Database ( )
 #endif
 } //----- Fin de Database
 
-
-Database::~Database ( )
+Database::~Database()
 // Algorithme :
 //
 {
@@ -70,24 +67,23 @@ Database::~Database ( )
 #endif
 } //----- Fin de ~Database
 
-string Database::to_string()const {
-/*         stringstream strs;
-        strs << "Database:" << std::endl;
-        strs << "Sensors:" << std::endl;
-        for (const auto& sensor : sensors) {
-            strs << sensor.to_string() << std::endl;
-        }
-        strs << "Users :" << std::endl;
-            for (const auto& user : users) {
-            strs << user.to_string() << std::endl;
+string Database::to_string() const
+{
+    /*         stringstream strs;
+            strs << "Database:" << std::endl;
             strs << "Sensors:" << std::endl;
-        }
-        return strs.str(); */
-        return "";
-    }
-
+            for (const auto& sensor : sensors) {
+                strs << sensor.to_string() << std::endl;
+            }
+            strs << "Users :" << std::endl;
+                for (const auto& user : users) {
+                strs << user.to_string() << std::endl;
+                strs << "Sensors:" << std::endl;
+            }
+            return strs.str(); */
+    return "";
+}
 
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-

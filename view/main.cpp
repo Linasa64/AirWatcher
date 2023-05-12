@@ -25,10 +25,10 @@
 #include <locale>
 #include <iomanip>
 
-
 using namespace std;
 
-int main() {
+int main()
+{
 
     // TESTS TEMPS time_t
     /* time_t t1, t2, t3;
@@ -38,52 +38,51 @@ int main() {
     cout << "DATE TEST : " << t3 << endl; */
 
     // TESTS2 TEMPS time_t
-/*     
-    float timeStart, timeEnd, timeDiff;
+    /*
+        float timeStart, timeEnd, timeDiff;
 
-    // On stocke le temps initial
-    timeStart = clock();
+        // On stocke le temps initial
+        timeStart = clock();
 
-    // Créer une structure tm qui contient les informations sur la date et l'heure
-    tm datetime = {};
-    datetime.tm_year = 2022 - 1900; // année - 1900
-    datetime.tm_mon = 0; // mois (janvier est 0)
-    datetime.tm_mday = 1; // jour du mois (1-31)
-    datetime.tm_hour = 12; // heure (0-23)
-    datetime.tm_min = 30; // minute (0-59)
-    datetime.tm_sec = 0; // seconde (0-60)
+        // Créer une structure tm qui contient les informations sur la date et l'heure
+        tm datetime = {};
+        datetime.tm_year = 2022 - 1900; // année - 1900
+        datetime.tm_mon = 0; // mois (janvier est 0)
+        datetime.tm_mday = 1; // jour du mois (1-31)
+        datetime.tm_hour = 12; // heure (0-23)
+        datetime.tm_min = 30; // minute (0-59)
+        datetime.tm_sec = 0; // seconde (0-60)
 
-    // Convertir la structure tm en time_t
-    time_t timestamp = mktime(&datetime);
-    time_t now = time(0);
+        // Convertir la structure tm en time_t
+        time_t timestamp = mktime(&datetime);
+        time_t now = time(0);
 
-    // Utiliser le timestamp
-    cout << "Le timestamp est : " << timestamp << endl;
+        // Utiliser le timestamp
+        cout << "Le timestamp est : " << timestamp << endl;
 
-    cout << "Maintenant : " << now << endl;
+        cout << "Maintenant : " << now << endl;
 
-    cout << "hello new version here" << endl;
+        cout << "hello new version here" << endl;
 
-    // On stocke le temps final
-    timeEnd = clock();
+        // On stocke le temps final
+        timeEnd = clock();
 
-    // On fait la différence temps final - temps initial et on met en ms
-    timeDiff = (timeEnd - timeStart)/(CLOCKS_PER_SEC/1000);
-    cout << "Temps exécution : " << timeDiff << "ms" << endl; */
-    
+        // On fait la différence temps final - temps initial et on met en ms
+        timeDiff = (timeEnd - timeStart)/(CLOCKS_PER_SEC/1000);
+        cout << "Temps exécution : " << timeDiff << "ms" << endl; */
 
     // TEST STRUCTURE DE DONNEES CONTENANT DES USER*
-/*     User* user[] =
-    {
-        new Provider("Provider0"),
-        new PrivateUser("User1"),
-        new GovernmentAgency()
-    };
+    /*     User* user[] =
+        {
+            new Provider("Provider0"),
+            new PrivateUser("User1"),
+            new GovernmentAgency()
+        };
 
-    for (int i = 0 ; i < 3 ; i++) {
-        cout << "User " << i << ": " << user[i]->to_string();
-    } */
-    
+        for (int i = 0 ; i < 3 ; i++) {
+            cout << "User " << i << ": " << user[i]->to_string();
+        } */
+
     ControllerData controllerData;
 
     Database d1 = controllerData.retrieveData("./dataset/sensors.csv", "./dataset/measurements.csv", "./dataset/attributes.csv", "./dataset/providers.csv", "./dataset/cleaners.csv", "./dataset/users.csv");

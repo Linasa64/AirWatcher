@@ -7,12 +7,12 @@
 *************************************************************************/
 
 //---------- Interface de la classe <History> (fichier History.h) ----------------
-#if ! defined ( HISTORY_H )
+#if !defined(HISTORY_H)
 #define HISTORY_H
 
 //--------------------------------------------------- Interfaces utilisées
-#include<map>
-#include<list>
+#include <map>
+#include <list>
 using namespace std;
 //------------------------------------------------------------- Constantes
 
@@ -24,56 +24,53 @@ using namespace std;
 //
 //------------------------------------------------------------------------
 
-class History 
+class History
 {
-//----------------------------------------------------------------- PUBLIC
+    //----------------------------------------------------------------- PUBLIC
 
 public:
-//----------------------------------------------------- Méthodes publiques
+    //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste des paramètres );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-
-//------------------------------------------------- Surcharge d'opérateurs
-    History & operator = ( const History & unHistory );
+    //------------------------------------------------- Surcharge d'opérateurs
+    History &operator=(const History &unHistory);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-
-//-------------------------------------------- Constructeurs - destructeur
-    History ( const History & unHistory );
+    //-------------------------------------------- Constructeurs - destructeur
+    History(const History &unHistory);
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    History ( );
+    History();
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~History ( );
+    virtual ~History();
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-//------------------------------------------------------------------ PRIVE
+    //------------------------------------------------------------------ PRIVE
 
 protected:
-//----------------------------------------------------- Méthodes protégées
+    //----------------------------------------------------- Méthodes protégées
 
-//----------------------------------------------------- Attributs protégés
-    map< int, list<float>> queryDuration;
+    //----------------------------------------------------- Attributs protégés
+    map<int, list<float>> queryDuration;
 };
 
 //-------------------------------- Autres définitions dépendantes de <History>
 
 #endif // HISTORY_H
-

@@ -7,13 +7,13 @@
 *************************************************************************/
 
 //---------- Interface de la classe <Attributes> (fichier Attributes.h) ----------------
-#if ! defined ( ATTRIBUTES_H )
+#if !defined(ATTRIBUTES_H)
 #define ATTRIBUTES_H
 
 using namespace std;
 //--------------------------------------------------- Interfaces utilisées
 #include <cstring>
-#include<string>
+#include <string>
 #include <sstream>
 
 //------------------------------------------------------------- Constantes
@@ -26,12 +26,12 @@ using namespace std;
 //
 //------------------------------------------------------------------------
 
-class Attributes 
+class Attributes
 {
-//----------------------------------------------------------------- PUBLIC
+    //----------------------------------------------------------------- PUBLIC
 
 public:
-//----------------------------------------------------- Méthodes publiques
+    //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste des paramètres );
     // Mode d'emploi :
     //
@@ -41,57 +41,53 @@ public:
     string GetUnit();
     string GetDescription();
 
+    //------------------------------------------------- Surcharge d'opérateurs
+    friend ostream &operator<<(ostream &out, const Attributes &a);
 
-//------------------------------------------------- Surcharge d'opérateurs
-    friend ostream & operator << (ostream &out, const Attributes & a);
-
-    Attributes & operator = ( const Attributes & unAttributes );
+    Attributes &operator=(const Attributes &unAttributes);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-
-//-------------------------------------------- Constructeurs - destructeur
-    Attributes ( const Attributes & unAttributes );
+    //-------------------------------------------- Constructeurs - destructeur
+    Attributes(const Attributes &unAttributes);
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    Attributes ( );
+    Attributes();
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    Attributes ( string pAttributeId, string pUnit, string pDescription );
+    Attributes(string pAttributeId, string pUnit, string pDescription);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Attributes ( );
+    virtual ~Attributes();
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    string to_string () const;
+    string to_string() const;
 
-//------------------------------------------------------------------ PRIVE
+    //------------------------------------------------------------------ PRIVE
 
 protected:
-//----------------------------------------------------- Méthodes protégées
+    //----------------------------------------------------- Méthodes protégées
 
-//----------------------------------------------------- Attributs protégés
+    //----------------------------------------------------- Attributs protégés
     string attributeId;
     string unit;
     string description;
-
 };
 
 //-------------------------------- Autres définitions dépendantes de <Attributes>
 
 #endif // ATTRIBUTES_H
-

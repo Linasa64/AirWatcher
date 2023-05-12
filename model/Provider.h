@@ -7,11 +7,11 @@
 *************************************************************************/
 
 //---------- Interface de la classe <Provider> (fichier Provider.h) ----------------
-#if ! defined ( PROVIDER_H )
+#if !defined(PROVIDER_H)
 #define PROVIDER_H
 
 //--------------------------------------------------- Interfaces utilisées
-#include<string>
+#include <string>
 #include <sstream>
 #include "Cleaner.h"
 #include <list>
@@ -27,51 +27,50 @@
 //------------------------------------------------------------------------
 class Provider : public User
 {
-//----------------------------------------------------------------- PUBLIC
+    //----------------------------------------------------------------- PUBLIC
 
 public:
-//----------------------------------------------------- Méthodes publiques
+    //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste des paramètres );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-
-//------------------------------------------------- Surcharge d'opérateurs
-    //Provider & operator = ( const Provider & unProvider );
+    //------------------------------------------------- Surcharge d'opérateurs
+    // Provider & operator = ( const Provider & unProvider );
     // Mode d'emploi :
     //
     // Contrat :
     //
-    friend ostream & operator << (ostream &out, const Provider & p);
+    friend ostream &operator<<(ostream &out, const Provider &p);
 
-    bool operator<(const Provider& other) const;
+    bool operator<(const Provider &other) const;
 
-    bool operator==(const Provider& other) const;
+    bool operator==(const Provider &other) const;
 
     string GetId() const;
 
-//-------------------------------------------- Constructeurs - destructeur
-    Provider ( const Provider & unProvider );
+    //-------------------------------------------- Constructeurs - destructeur
+    Provider(const Provider &unProvider);
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    Provider ( );
+    Provider();
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    Provider ( string pProviderId );
+    Provider(string pProviderId);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Provider ( );
+    virtual ~Provider();
     // Mode d'emploi :
     //
     // Contrat :
@@ -79,23 +78,22 @@ public:
 
     string GetId();
 
-    list<Cleaner*> GetCleaners();
+    list<Cleaner *> GetCleaners();
 
     string to_string() const;
 
-    void AddCleaner( Cleaner * cleaner);
+    void AddCleaner(Cleaner *cleaner);
 
-//------------------------------------------------------------------ PRIVE
+    //------------------------------------------------------------------ PRIVE
 
 protected:
-//----------------------------------------------------- Méthodes protégées
+    //----------------------------------------------------- Méthodes protégées
 
-//----------------------------------------------------- Attributs protégés
+    //----------------------------------------------------- Attributs protégés
     string providerId;
-    list<Cleaner*> cleaners;
+    list<Cleaner *> cleaners;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Provider>
 
 #endif // PROVIDER_H
-

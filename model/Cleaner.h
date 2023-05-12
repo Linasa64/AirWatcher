@@ -7,11 +7,11 @@
 *************************************************************************/
 
 //---------- Interface de la classe <Cleaner> (fichier Cleaner.h) ----------------
-#if ! defined ( CLEANER_H )
+#if !defined(CLEANER_H)
 #define CLEANER_H
 
 //--------------------------------------------------- Interfaces utilisées
-#include<ctime>
+#include <ctime>
 #include <sstream>
 #include <string>
 #include <iostream>
@@ -26,59 +26,58 @@ using namespace std;
 //
 //------------------------------------------------------------------------
 
-class Cleaner 
+class Cleaner
 {
-//----------------------------------------------------------------- PUBLIC
+    //----------------------------------------------------------------- PUBLIC
 
 public:
-//----------------------------------------------------- Méthodes publiques
+    //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste des paramètres );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-
-//------------------------------------------------- Surcharge d'opérateurs
-    Cleaner & operator = ( const Cleaner & unCleaner );
+    //------------------------------------------------- Surcharge d'opérateurs
+    Cleaner &operator=(const Cleaner &unCleaner);
     // Mode d'emploi :
     //
     // Contrat :
     //
-    friend ostream & operator << (ostream &out, const Cleaner & c);
+    friend ostream &operator<<(ostream &out, const Cleaner &c);
 
-//-------------------------------------------- Constructeurs - destructeur
-    Cleaner ( const Cleaner & unCleaner );
+    //-------------------------------------------- Constructeurs - destructeur
+    Cleaner(const Cleaner &unCleaner);
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    Cleaner ( );
+    Cleaner();
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    Cleaner ( string cleanerId, float latitude, float longitude, time_t timestampStart, time_t timestampStop );
+    Cleaner(string cleanerId, float latitude, float longitude, time_t timestampStart, time_t timestampStop);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Cleaner ( );
+    virtual ~Cleaner();
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    string to_string()const;
-//------------------------------------------------------------------ PRIVE
+    string to_string() const;
+    //------------------------------------------------------------------ PRIVE
 
 protected:
-//----------------------------------------------------- Méthodes protégées
+    //----------------------------------------------------- Méthodes protégées
 
-//----------------------------------------------------- Attributs protégés
+    //----------------------------------------------------- Attributs protégés
     string cleanerId;
     float latitude;
     float longitude;
@@ -89,4 +88,3 @@ protected:
 //-------------------------------- Autres définitions dépendantes de <Cleaner>
 
 #endif // CLEANER_H
-

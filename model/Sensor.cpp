@@ -29,7 +29,6 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-
 //------------------------------------------------- Surcharge d'opérateurs
 /* Sensor & Sensor::operator = ( const Sensor & unSensor )
 // Algorithme :
@@ -37,14 +36,13 @@ using namespace std;
 {
 } //----- Fin de operator = */
 
-ostream & operator << (ostream &out, const Sensor & s)
+ostream &operator<<(ostream &out, const Sensor &s)
 {
-    return  out << "Sensor ID: " << s.id << ", Latitude: " << s.latitude << ", Longitude: " << s.longitude << endl;
+    return out << "Sensor ID: " << s.id << ", Latitude: " << s.latitude << ", Longitude: " << s.longitude << endl;
 }
 
-
 //-------------------------------------------- Constructeurs - destructeur
-Sensor::Sensor ( const Sensor & unSensor )
+Sensor::Sensor(const Sensor &unSensor)
 // Algorithme :
 //
 {
@@ -53,8 +51,7 @@ Sensor::Sensor ( const Sensor & unSensor )
 #endif
 } //----- Fin de Sensor (constructeur de copie)
 
-
-Sensor::Sensor ( )
+Sensor::Sensor()
 // Algorithme :
 //
 {
@@ -63,7 +60,7 @@ Sensor::Sensor ( )
 #endif
 } //----- Fin de Sensor
 
-Sensor::Sensor ( int id, float latitude, float longitude )
+Sensor::Sensor(int id, float latitude, float longitude)
 // Algorithme :
 //
 {
@@ -75,8 +72,7 @@ Sensor::Sensor ( int id, float latitude, float longitude )
     this->longitude = longitude;
 } //----- Fin de Sensor
 
-
-Sensor::~Sensor ( )
+Sensor::~Sensor()
 // Algorithme :
 //
 {
@@ -85,14 +81,13 @@ Sensor::~Sensor ( )
 #endif
 } //----- Fin de ~Sensor
 
-string Sensor::to_string() const {
+string Sensor::to_string() const
+{
     stringstream strs;
     strs << "Sensor ID: " << id << ", Latitude: " << latitude << ", Longitude: " << longitude << endl;
     return strs.str();
 }
 
-
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-

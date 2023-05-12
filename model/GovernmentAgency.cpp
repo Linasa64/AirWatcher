@@ -29,11 +29,10 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-string GovernmentAgency::GetId() 
+string GovernmentAgency::GetId()
 {
     return "Government";
 }
-
 
 //------------------------------------------------- Surcharge d'opérateurs
 /* GovernmentAgency & GovernmentAgency::operator = ( const GovernmentAgency & unGovernmentAgency )
@@ -42,9 +41,8 @@ string GovernmentAgency::GetId()
 {
 } //----- Fin de operator = */
 
-
 //-------------------------------------------- Constructeurs - destructeur
-GovernmentAgency::GovernmentAgency ( const GovernmentAgency & unGovernmentAgency )
+GovernmentAgency::GovernmentAgency(const GovernmentAgency &unGovernmentAgency)
 // Algorithme :
 //
 {
@@ -53,8 +51,7 @@ GovernmentAgency::GovernmentAgency ( const GovernmentAgency & unGovernmentAgency
 #endif
 } //----- Fin de GovernmentAgency (constructeur de copie)
 
-
-GovernmentAgency::GovernmentAgency ( )
+GovernmentAgency::GovernmentAgency()
 // Algorithme :
 //
 {
@@ -63,7 +60,7 @@ GovernmentAgency::GovernmentAgency ( )
 #endif
 } //----- Fin de GovernmentAgency
 
-GovernmentAgency::GovernmentAgency (string pLogin, string pPassword ) : User(pLogin, pPassword)
+GovernmentAgency::GovernmentAgency(string pLogin, string pPassword) : User(pLogin, pPassword)
 // Algorithme :
 //
 {
@@ -72,8 +69,7 @@ GovernmentAgency::GovernmentAgency (string pLogin, string pPassword ) : User(pLo
 #endif
 } //----- Fin de GovernmentAgency
 
-
-GovernmentAgency::~GovernmentAgency ( )
+GovernmentAgency::~GovernmentAgency()
 // Algorithme :
 //
 {
@@ -82,7 +78,8 @@ GovernmentAgency::~GovernmentAgency ( )
 #endif
 } //----- Fin de ~GovernmentAgency
 
-string GovernmentAgency::to_string() const {
+string GovernmentAgency::to_string() const
+{
     stringstream strs;
     strs << "GovernmentAgency" << endl;
     return strs.str();
@@ -91,4 +88,3 @@ string GovernmentAgency::to_string() const {
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-

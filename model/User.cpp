@@ -28,18 +28,18 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-
 //------------------------------------------------- Surcharge d'opérateurs
 /* User & User::operator = ( const User & unUser )
 // Algorithme :
 //
 {
 } //----- Fin de operator = */
-ostream & operator << (ostream &out, const User & u) {
+ostream &operator<<(ostream &out, const User &u)
+{
     return out;
 }
 //-------------------------------------------- Constructeurs - destructeur
-User::User ( const User & unUser )
+User::User(const User &unUser)
 // Algorithme :
 //
 {
@@ -48,8 +48,7 @@ User::User ( const User & unUser )
 #endif
 } //----- Fin de User (constructeur de copie)
 
-
-User::User ( )
+User::User()
 // Algorithme :
 //
 {
@@ -58,7 +57,7 @@ User::User ( )
 #endif
 } //----- Fin de User
 
-User::User ( string pLogin, string pPassword )
+User::User(string pLogin, string pPassword)
 // Algorithme :
 //
 {
@@ -66,12 +65,11 @@ User::User ( string pLogin, string pPassword )
     cout << "Appel au constructeur de <User>" << endl;
 #endif
 
-    this -> login = pLogin;
-    this -> password = pPassword;
+    this->login = pLogin;
+    this->password = pPassword;
 } //----- Fin de User
 
-
-User::~User ( )
+User::~User()
 // Algorithme :
 //
 {
@@ -79,7 +77,8 @@ User::~User ( )
     cout << "Appel au destructeur de <User>" << endl;
 #endif
 } //----- Fin de ~User
-string User::to_string() const {  
+string User::to_string() const
+{
     stringstream strs;
     strs << "User login: " << login << ", password: " << password << endl;
     return strs.str();
@@ -88,4 +87,3 @@ string User::to_string() const {
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-
