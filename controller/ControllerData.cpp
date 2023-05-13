@@ -19,6 +19,7 @@
 #include "../model/Cleaner.h"
 #include "../model/Provider.h"
 #include "../model/User.h"
+#include "../model/PrivateUser.h"
 #include <fstream>
 #include <iomanip>
 using namespace std;
@@ -115,6 +116,15 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
     {
         cout << "Could not open the file\n";
     }
+    fileCleaners.close();
+
+    cout << "===========Tests sur les Cleaner===========" << endl;
+    cout << "TAILLE MAP " << cleanersMap.size() << endl;
+    for (const auto &kv : cleanersMap)
+    {
+        string key = kv.first; // clé
+        cout << kv.first << " / " << *cleanersMap[key];
+    }
 
     // =================================PROVIDERS================================= //
     map<string, Provider *> providersMap;
@@ -150,6 +160,7 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
             }
             else
             {
+                // cleanersMap.erase(row[1]);
                 cout << "The provider " << providersMap[row[0]]->GetId() << " owns a cleaner (" << row[1] << ") that is not provided in the cleaners.csv document.\n";
             }
         }
@@ -158,37 +169,262 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
     {
         cout << "Could not open the file\n";
     }
+    fileProviders.close();
 
+    cout << "===========Tests sur les Provider===========" << endl;
+    cout << "TAILLE MAP " << providersMap.size() << endl;
+    for (const auto &kv : providersMap)
+    {
+        string key = kv.first; // clé
+        cout << kv.first << " / " << *providersMap[key];
+    }
+
+    // =================================ATTRIBUTES================================= //
+    map<string, Attributes *> attributesMap;
+
+    fstream fileAttributes(path_attributes, ios::in);
+    if (fileAttributes.is_open())
+    {
+        string line, word;
+        vector<string> row;
+
+        getline(fileAttributes, line); // on ignore la première ligne
+        while (getline(fileAttributes, line))
+        {
+            row.clear();
+
+            string delimiter = ";";
+
+            size_t pos = 0;
+            while ((pos = line.find(delimiter)) != string::npos)
+            {
+                word = line.substr(0, pos);
+                row.push_back(word);
+                line.erase(0, pos + delimiter.length());
+            }
+
+            attributesMap[row[0]] = (new Attributes(row[0], row[1], row[2]));
+        }
+    }
+    else
+    {
+        cout << "Could not open the file\n";
+    }
+    fileAttributes.close();
+
+    /*     cout << "===========Affichage liste Attributes===========" << endl;
+        for (const auto &kv : attributesMap)
+        {
+            string key = kv.first; // clé
+            cout << kv.first << " / " << attributesMap[key]->to_string();
+        } */
+
+    // =================================MEASUREMENTS================================= //
+    list<Measurement *> measurementsList;
+    fstream fileMeasurements(path_measurements, ios::in);
+    if (fileMeasurements.is_open())
+    {
+        string line, word;
+        vector<string> row;
+
+        while (getline(fileMeasurements, line))
+        {
+            row.clear();
+
+            string delimiter = ";";
+
+            size_t pos = 0;
+            while ((pos = line.find(delimiter)) != string::npos)
+            {
+                word = line.substr(0, pos);
+                row.push_back(word);
+                line.erase(0, pos + delimiter.length());
+            }
+
+            // On vérifie bien que le Attributes renseigné existe
+            if (attributesMap[row[2]] != nullptr)
+            {
+                measurementsList.push_back(new Measurement(convertDateStingToTimestamp(row[0]), row[1], attributesMap[row[2]], stof(row[3])));
+            }
+            else
+            {
+                // attributesMap.erase(row[2]);
+                cout << "The measurement from " << row[0] << " for " << row[1] << " with a value of " << row[3] << " refers to an attribute (" << row[2] << ") that is not provided in the attributes.csv document.\n";
+            }
+        }
+    }
+    else
+    {
+        cout << "Could not open the file\n";
+    }
+    fileMeasurements.close();
+
+    cout << "===========Affichage liste Measurements (10 premiers)===========" << endl;
+    cout << "TAILLE LISTE : " << measurementsList.size() << endl;
+    int i = 0;
+    for (Measurement *measurement : measurementsList)
+    {
+        cout << *measurement;
+        if (++i == 10)
+            break;
+    }
+
+    // =================================SENSORS================================= //
+    map<string, Sensor *> sensorsMap;
+    fstream fileSensors(path_sensors, ios::in);
+    if (fileSensors.is_open())
+    {
+        string line, word;
+        vector<string> row;
+
+        while (getline(fileSensors, line))
+        {
+            row.clear();
+
+            string delimiter = ";";
+
+            size_t pos = 0;
+            while ((pos = line.find(delimiter)) != string::npos)
+            {
+                word = line.substr(0, pos);
+                row.push_back(word);
+                line.erase(0, pos + delimiter.length());
+            }
+
+            sensorsMap[row[0]] = new Sensor(row[0], stof(row[1]), stof(row[2]));
+        }
+    }
+    else
+    {
+        cout << "Could not open the file\n";
+    }
+    fileSensors.close();
+
+    // On ajoute les Measurement aux Sensor
+    int j = 0;
+    for (Measurement *measurement : measurementsList)
+    {
+        // cout << ++j << endl;
+        //  On vérifie bien que le sensor renseigné existe
+        if (sensorsMap[measurement->getAssociatedSensorId()] != nullptr)
+        {
+            sensorsMap[measurement->getAssociatedSensorId()]->AddMeasurement(measurement);
+        }
+        else
+        {
+            // sensorsMap.erase(measurement->getAssociatedSensorId());
+            cout << "The measurement " << *measurement << " refers to a sensor (" << measurement->getAssociatedSensorId() << ") that is not provided in the sensors.csv document.\n";
+        }
+    }
+
+    cout << "===========Affichage liste Sensor===========" << endl;
+    cout << "TAILLE MAP " << sensorsMap.size() << endl;
+    for (const auto &kv : sensorsMap)
+    {
+        string key = kv.first; // clé
+        cout << kv.first << " / " << sensorsMap[key]->to_string();
+    }
+    cout << "TEST 10 PREMIERES MESURES DE Sensor0 : " << endl;
+    sensorsMap["Sensor0"]->displayMeasurements();
+
+    // =================================PRIVATE USERS================================= //
+    map<string, PrivateUser *> privateUsersMap;
+    fstream filePrivateUsers(path_users, ios::in);
+    if (filePrivateUsers.is_open())
+    {
+        string line, word;
+        vector<string> row;
+
+        while (getline(filePrivateUsers, line))
+        {
+            row.clear();
+
+            string delimiter = ";";
+
+            size_t pos = 0;
+            while ((pos = line.find(delimiter)) != string::npos)
+            {
+                word = line.substr(0, pos);
+                row.push_back(word);
+                line.erase(0, pos + delimiter.length());
+            }
+
+            // Si le private user n'existe pas encore, on le créée et l'ajoute à la map
+            if (privateUsersMap[row[0]] == nullptr)
+            {
+                privateUsersMap[row[0]] = new PrivateUser(row[0]);
+            }
+            // On vérifie bien que le cleaner renseigné existe
+            if (sensorsMap[row[1]] != nullptr)
+            {
+                privateUsersMap[row[0]]->AddSensor(sensorsMap[row[1]]);
+            }
+            else
+            {
+                // sensorsMap.erase(row[1]);
+                cout << "The private user " << privateUsersMap[row[0]]->GetId() << " owns a sensor (" << row[1] << ") that is not provided in the sensors.csv document.\n";
+            }
+        }
+    }
+    else
+    {
+        cout << "Could not open the file\n";
+    }
+    filePrivateUsers.close();
+
+    cout << "===========Affichage liste PrivateUser===========" << endl;
+    cout << "TAILLE MAP " << privateUsersMap.size() << endl;
+    for (const auto &kv : privateUsersMap)
+    {
+        string key = kv.first; // clé
+        cout << kv.first << " / " << *privateUsersMap[key];
+    }
+
+    // =================================USERS================================= //
     map<string, User *> users;
-    users.insert(providersMap.begin(), providersMap.end());
+    users.insert(providersMap.begin(), providersMap.end());       // On ajoute tous les Provider
+    users.insert(privateUsersMap.begin(), privateUsersMap.end()); // On ajoute tous les PrivateUser
 
-    cout << "===========Affichage de la liste totale des users===========" << endl;
+    cout << "===========Affichage liste User===========" << endl;
+    cout << "TAILLE MAP : " << users.size() << endl;
     for (const auto &kv : users)
     {
         string key = kv.first; // clé
         cout << kv.first << " / " << users[key]->to_string();
     }
-    // TESTS
-    cout << "===========Tests sur les maps===========" << endl;
-    cout << "TEST11 : " << *cleanersMap["Cleaner0"];
-    cout << "TEST12 : " << *cleanersMap["Cleaner1"];
+    /*     cout << "TEST 41 : " << users["Provider0"]->to_string();
+        Provider *precup = (Provider *)users["Provider0"];
+        cout << "TEST 42 : " << *precup; */
 
-    cout << "TEST21 : " << *providersMap["Provider0"];
-    cout << "TEST22 : " << *providersMap["Provider1"];
+    // =================================DESTRUCTEURS================================= //
+    // DESTRUCTEUR SENSORS
+    for (const auto &kv : sensorsMap)
+    {
+        string key = kv.first; // clé
+        // cout << "SUPPRESSION DE " << kv.first << " / " << sensorsMap[key]->to_string();
 
-    cout << "TEST 31 : " << users["Provider0"]->to_string();
-    Provider *precup = (Provider *)users["Provider0"];
-    cout << "TEST 32 : " << *precup;
+        delete kv.second;
+    }
 
-    // FUTUR DESTRUCTEUR DE DATABASE
-    /*     for (const auto& kv : users) {
-            string key = kv.first;   // clé
-            cout << "SUPPRESSION DE " << kv.first << " / " << users[key]->to_string();
+    // DESTRUCTEUR ATTRIBUTES
+    for (const auto &kv : attributesMap)
+    {
+        string key = kv.first; // clé
+        // cout << "SUPPRESSION DE " << kv.first << " / " << attributesMap[key]->to_string();
 
-            delete kv.second;
-        } */
+        delete kv.second;
+    }
 
-    return d1;
+    // DESTRUCTEUR USERS (FUTUR DESTRUCTEUR DE DATABASE)
+    for (const auto &kv : users)
+    {
+        string key = kv.first; // clé
+        // cout << "SUPPRESSION DE " << kv.first << " / " << users[key]->to_string();
+
+        delete kv.second;
+    }
+
+    return d1; // TODO: mettre toutes les listes/map dans une database et la renvoyer ici
 }
 
 //------------------------------------------------------------------ PRIVE

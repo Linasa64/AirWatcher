@@ -31,7 +31,7 @@ using namespace std;
 
 string PrivateUser::GetId()
 {
-    return userId;
+    return privateUserId;
 }
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -40,7 +40,16 @@ string PrivateUser::GetId()
 //
 {
 } //----- Fin de operator = */
-
+ostream &operator<<(ostream &out, const PrivateUser &p)
+{
+    out << "PrivateUser ID: " << p.privateUserId << ", Number of Sensors: " << p.sensors.size() << endl
+        << "   Sensors :" << endl;
+    for (Sensor *sensor : p.sensors)
+    {
+        out << "\t" << *sensor;
+    }
+    return out;
+}
 //-------------------------------------------- Constructeurs - destructeur
 PrivateUser::PrivateUser(const PrivateUser &unPrivateUser)
 // Algorithme :
@@ -60,14 +69,14 @@ PrivateUser::PrivateUser()
 #endif
 } //----- Fin de PrivateUser
 
-PrivateUser::PrivateUser(string userId) : User()
+PrivateUser::PrivateUser(string privateUserId) : User()
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de <PrivateUser>" << endl;
 #endif
-    this->userId = userId;
+    this->privateUserId = privateUserId;
     this->reputationPoints = 0;
 } //----- Fin de PrivateUser
 
@@ -83,10 +92,19 @@ PrivateUser::~PrivateUser()
 string PrivateUser::to_string() const
 {
     stringstream strs;
-    strs << "Cleaner ID: " << userId << ", Reputation points: " << reputationPoints << ", Nomber of sensors: " << sensors.size() << endl;
+    strs << "PrivateUser ID: " << privateUserId << ", Reputation points: " << reputationPoints << ", Number of sensors: " << sensors.size() << endl
+         << "   Sensors :" << endl;
+    for (Sensor *sensor : sensors)
+    {
+        strs << "\t" << *sensor;
+    }
     return strs.str();
 }
 
+void PrivateUser::AddSensor(Sensor *sensor)
+{
+    sensors.push_back(sensor);
+}
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées

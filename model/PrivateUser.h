@@ -42,7 +42,7 @@ public:
     //
     // Contrat :
     //
-
+    friend ostream &operator<<(ostream &out, const PrivateUser &p);
     //-------------------------------------------- Constructeurs - destructeur
     PrivateUser(const PrivateUser &unPrivateUser);
     // Mode d'emploi (constructeur de copie) :
@@ -56,7 +56,7 @@ public:
     // Contrat :
     //
 
-    PrivateUser(string pUserId);
+    PrivateUser(string privateUserId);
     // Mode d'emploi :
     //
     // Contrat :
@@ -72,15 +72,17 @@ public:
 
     string to_string() const;
 
+    void AddSensor(Sensor *sensor);
+
     //------------------------------------------------------------------ PRIVE
 
 protected:
     //----------------------------------------------------- Méthodes protégées
 
     //----------------------------------------------------- Attributs protégés
-    string userId;
+    string privateUserId;
     int reputationPoints;
-    list<Sensor> sensors;
+    list<Sensor *> sensors;
 };
 
 //-------------------------------- Autres définitions dépendantes de <PrivateUser>

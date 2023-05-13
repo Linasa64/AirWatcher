@@ -38,7 +38,7 @@ using namespace std;
 
 ostream &operator<<(ostream &out, const Sensor &s)
 {
-    return out << "Sensor ID: " << s.id << ", Latitude: " << s.latitude << ", Longitude: " << s.longitude << endl;
+    return out << "Sensor ID: " << s.sensorId << ", Latitude: " << s.latitude << ", Longitude: " << s.longitude << endl;
 }
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -60,14 +60,14 @@ Sensor::Sensor()
 #endif
 } //----- Fin de Sensor
 
-Sensor::Sensor(int id, float latitude, float longitude)
+Sensor::Sensor(string sensorId, float latitude, float longitude)
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Sensor>" << endl;
 #endif
-    this->id = id;
+    this->sensorId = sensorId;
     this->latitude = latitude;
     this->longitude = longitude;
 } //----- Fin de Sensor
@@ -79,13 +79,34 @@ Sensor::~Sensor()
 #ifdef MAP
     cout << "Appel au destructeur de <Sensor>" << endl;
 #endif
+    for (Measurement *measurement : measurements)
+    {
+        delete measurement;
+    }
+    measurements.clear();
 } //----- Fin de ~Sensor
 
 string Sensor::to_string() const
 {
     stringstream strs;
-    strs << "Sensor ID: " << id << ", Latitude: " << latitude << ", Longitude: " << longitude << endl;
+    strs << "Sensor ID: " << sensorId << ", Latitude: " << latitude << ", Longitude: " << longitude << endl;
     return strs.str();
+}
+
+void Sensor::AddMeasurement(Measurement *measurement)
+{
+    measurements.push_back(measurement);
+}
+
+void Sensor::displayMeasurements()
+{
+    int i = 0;
+    for (Measurement *measurement : measurements)
+    {
+        cout << *measurement;
+        if (++i == 10)
+            break;
+    }
 }
 
 //------------------------------------------------------------------ PRIVE

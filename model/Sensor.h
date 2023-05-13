@@ -58,7 +58,7 @@ public:
     // Contrat :
     //
 
-    Sensor(int pId, float pLatitude, float pLongitude);
+    Sensor(string sensorId, float latitude, float longitude);
     // Mode d'emploi :
     //
     // Contrat :
@@ -72,16 +72,20 @@ public:
 
     string to_string() const;
 
+    void AddMeasurement(Measurement *measurement);
+
+    void displayMeasurements();
+
     //------------------------------------------------------------------ PRIVE
 
 protected:
     //----------------------------------------------------- Méthodes protégées
 
     //----------------------------------------------------- Attributs protégés
-    int id;
+    string sensorId;
     float latitude;
     float longitude;
-    list<Measurement> measurements;
+    list<Measurement *> measurements;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Sensor>

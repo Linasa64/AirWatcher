@@ -59,7 +59,7 @@ public:
     // Contrat :
     //
 
-    Measurement(time_t timestamp, double value, Attributes &attributes);
+    Measurement(time_t timestamp, string associatedSensorId, Attributes *attributes, double value);
     // Mode d'emploi :
     //
     // Contrat :
@@ -73,6 +73,8 @@ public:
 
     string to_string() const;
 
+    string getAssociatedSensorId();
+
     //------------------------------------------------------------------ PRIVE
 
 protected:
@@ -81,7 +83,8 @@ protected:
     //----------------------------------------------------- Attributs protégés
     time_t timestamp;
     double value;
-    Attributes attributes;
+    Attributes *attributes;
+    string associatedSensorId;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Measurement>

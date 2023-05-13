@@ -37,9 +37,9 @@ using namespace std;
 } //----- Fin de operator = */
 ostream &operator<<(ostream &out, const Measurement &m)
 {
-    return out << "Timestamp: " << m.timestamp << ", Value: " << m.value << ", Attributes: " << endl
-               << "{" << endl
-               << m.attributes << "}" << endl;
+    return out << "Timestamp: " << m.timestamp << ", Value: " << m.value << ", Associated sensor ID : " << m.associatedSensorId
+               << ", Attributes: "
+               << "{" << *m.attributes << "}" << endl;
 }
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -61,7 +61,7 @@ Measurement::Measurement()
 #endif
 } //----- Fin de Measurement
 
-Measurement::Measurement(time_t timestamp, double value, Attributes &attributes)
+Measurement::Measurement(time_t timestamp, string associatedSensorId, Attributes *attributes, double value)
 // Algorithme :
 //
 {
@@ -70,8 +70,8 @@ Measurement::Measurement(time_t timestamp, double value, Attributes &attributes)
 #endif
     this->timestamp = timestamp;
     this->value = value;
-    cout << "ici, on a : " << attributes << endl;
     this->attributes = attributes;
+    this->associatedSensorId = associatedSensorId;
 } //----- Fin de Measurement
 
 Measurement::~Measurement()
@@ -88,6 +88,11 @@ string Measurement::to_string() const
     stringstream strs;
     strs << "Timestamp: " << timestamp << ", Value: " << value << endl;
     return strs.str();
+}
+
+string Measurement::getAssociatedSensorId()
+{
+    return associatedSensorId;
 }
 
 //------------------------------------------------------------------ PRIVE

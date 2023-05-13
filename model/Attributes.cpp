@@ -47,7 +47,7 @@ Attributes &Attributes::operator=(const Attributes &unAttributes)
 
 ostream &operator<<(ostream &out, const Attributes &a)
 {
-    return out << "Attribute ID: " << a.attributeId << ", Unit: " << a.unit << ", Description: " << a.description << endl;
+    return out << "Attribute ID: " << a.attributeId << ", Unit: " << a.unit << ", Description: " << a.description;
 }
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -93,9 +93,8 @@ Attributes::~Attributes()
 string Attributes::to_string() const
 {
     stringstream strs;
-    strs << "Attribute ID: " << attributeId << ", Unit: " << unit << ", Description: " << description;
-    // return strs.str();
-    return "";
+    strs << "Attribute ID: " << attributeId << ", Unit: " << unit << ", Description: " << description << endl;
+    return strs.str();
 }
 //------------------------------------------------------------------ PRIVE
 

@@ -42,7 +42,7 @@ string Provider::GetId()
 ostream &operator<<(ostream &out, const Provider &p)
 {
     out << "Provider ID: " << p.providerId << ", Number of Cleaners: " << p.cleaners.size() << endl
-        << "Cleaners :" << endl;
+        << "   Cleaners :" << endl;
     for (Cleaner *cleaner : p.cleaners)
     {
         out << "\t" << *cleaner;
@@ -109,15 +109,15 @@ Provider::~Provider()
     for (Cleaner *cleaner : cleaners)
     {
         delete cleaner;
-        // Faire quelque chose avec chaque élément de la liste
     }
+    cleaners.clear();
 } //----- Fin de ~Provider
 
 string Provider::to_string() const
 {
     stringstream strs;
     strs << "Provider ID: " << providerId << ", Number of Cleaners: " << cleaners.size() << endl
-         << "Cleaners :" << endl;
+         << "   Cleaners :" << endl;
     for (Cleaner *cleaner : cleaners)
     {
         strs << "\t" << *cleaner;
