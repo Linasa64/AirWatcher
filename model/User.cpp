@@ -38,6 +38,14 @@ ostream &operator<<(ostream &out, const User &u)
 {
     return out;
 }
+
+
+User & User::operator=(const User &unUser){
+    this->login = unUser.login;
+    this->password = unUser.password;
+    return *this;
+}
+
 //-------------------------------------------- Constructeurs - destructeur
 User::User(const User &unUser)
 // Algorithme :
@@ -82,6 +90,16 @@ string User::to_string() const
     stringstream strs;
     strs << "User login: " << login << ", password: " << password << endl;
     return strs.str();
+}
+
+string User::GetLogin() const
+{
+    return login;
+}
+
+string User::GetPassword() const
+{
+    return password;
 }
 
 //------------------------------------------------------------------ PRIVE

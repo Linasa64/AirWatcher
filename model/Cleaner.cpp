@@ -30,6 +30,31 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
+string Cleaner::getCleanerId() const
+{
+    return cleanerId;
+}
+
+float Cleaner::getLatitude() const
+{
+    return latitude;
+}
+
+float Cleaner::getLongitude() const
+{
+    return longitude;
+}
+
+time_t Cleaner::getTimestampStart() const
+{
+    return timestampStart;
+}
+
+time_t Cleaner::getTimestampStop() const
+{
+    return timestampStop;
+}
+
 //------------------------------------------------- Surcharge d'opérateurs
 /* Cleaner & Cleaner::operator = ( const Cleaner & unCleaner )
 // Algorithme :

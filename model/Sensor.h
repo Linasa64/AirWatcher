@@ -14,8 +14,10 @@
 #include <list>
 #include <string>
 #include "Measurement.h"
+#include <cmath>
+using namespace std;
 //------------------------------------------------------------- Constantes
-
+const float EARTH_RADIUS = 6371.0;
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
@@ -36,10 +38,22 @@ public:
     // Contrat :
     //
 
+    string GetSensorId() const;
+
+    float GetLatitude() const;
+
+    float GetLongitude() const;
+
+    list<Measurement *> GetMeasurements() const;
+
+    bool isWithinDistance(float centerLat, float centerLong, float radius);
+
     //------------------------------------------------- Surcharge d'opérateurs
     friend ostream &operator<<(ostream &out, const Sensor &s);
 
-    Sensor &operator=(const Sensor &unSensor);
+    bool operator<(const Sensor &other) const;
+
+    //Sensor &operator=(const Sensor &unSensor);
     // Mode d'emploi :
     //
     // Contrat :
@@ -89,5 +103,7 @@ protected:
 };
 
 //-------------------------------- Autres définitions dépendantes de <Sensor>
+
+float degToRad(float degrees);
 
 #endif // SENSOR_H

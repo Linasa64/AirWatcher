@@ -68,7 +68,7 @@ protected:
     //----------------------------------------------------- Méthodes protégées
 
     //----------------------------------------------------- Attributs protégés
-    map<int, list<float>> queryDuration;
+    map<int, list<float> > queryDuration;
 };
 
 //-------------------------------- Autres définitions dépendantes de <History>

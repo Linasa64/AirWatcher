@@ -68,7 +68,11 @@ public:
     // Contrat :
     //
 
-    string GetId();
+    string GetId() const;
+
+    int GetReputationPoints() const;
+
+    list <Sensor *> GetSensors() const;
 
     string to_string() const;
 

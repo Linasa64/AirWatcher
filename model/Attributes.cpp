@@ -27,9 +27,9 @@ using namespace std;
 //
 //{
 //} //----- Fin de Méthode
-string Attributes::GetAttributeId() { return this->attributeId; }
-string Attributes::GetUnit() { return this->unit; }
-string Attributes::GetDescription() { return this->description; }
+string Attributes::GetAttributeId() const { return this->attributeId; }
+string Attributes::GetUnit() const { return this->unit; }
+string Attributes::GetDescription() const { return this->description; }
 
 //------------------------------------------------- Surcharge d'opérateurs
 Attributes &Attributes::operator=(const Attributes &unAttributes)

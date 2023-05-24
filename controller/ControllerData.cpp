@@ -84,7 +84,7 @@ time_t ControllerData::convertDateStingToTimestamp(string date, const string &fo
 Database ControllerData::retrieveData(string path_sensors, string path_measurements, string path_attributes, string path_providers, string path_cleaners, string path_users)
 {
 
-    Database d1 = Database();
+    Database database = Database();
 
     // =================================CLEANERS================================= //
     map<string, Cleaner *> cleanersMap;
@@ -118,13 +118,13 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
     }
     fileCleaners.close();
 
-    cout << "===========Tests sur les Cleaner===========" << endl;
+/*     cout << "===========Tests sur les Cleaner===========" << endl;
     cout << "TAILLE MAP " << cleanersMap.size() << endl;
     for (const auto &kv : cleanersMap)
     {
         string key = kv.first; // clé
         cout << kv.first << " / " << *cleanersMap[key];
-    }
+    } */
 
     // =================================PROVIDERS================================= //
     map<string, Provider *> providersMap;
@@ -171,13 +171,13 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
     }
     fileProviders.close();
 
-    cout << "===========Tests sur les Provider===========" << endl;
+/*     cout << "===========Tests sur les Provider===========" << endl;
     cout << "TAILLE MAP " << providersMap.size() << endl;
     for (const auto &kv : providersMap)
     {
         string key = kv.first; // clé
         cout << kv.first << " / " << *providersMap[key];
-    }
+    } */
 
     // =================================ATTRIBUTES================================= //
     map<string, Attributes *> attributesMap;
@@ -259,7 +259,7 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
     }
     fileMeasurements.close();
 
-    cout << "===========Affichage liste Measurements (10 premiers)===========" << endl;
+/*     cout << "===========Affichage liste Measurements (10 premiers)===========" << endl;
     cout << "TAILLE LISTE : " << measurementsList.size() << endl;
     int i = 0;
     for (Measurement *measurement : measurementsList)
@@ -267,7 +267,7 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
         cout << *measurement;
         if (++i == 10)
             break;
-    }
+    } */
 
     // =================================SENSORS================================= //
     map<string, Sensor *> sensorsMap;
@@ -317,7 +317,7 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
         }
     }
 
-    cout << "===========Affichage liste Sensor===========" << endl;
+/*     cout << "===========Affichage liste Sensor===========" << endl;
     cout << "TAILLE MAP " << sensorsMap.size() << endl;
     for (const auto &kv : sensorsMap)
     {
@@ -325,7 +325,7 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
         cout << kv.first << " / " << sensorsMap[key]->to_string();
     }
     cout << "TEST 10 PREMIERES MESURES DE Sensor0 : " << endl;
-    sensorsMap["Sensor0"]->displayMeasurements();
+    sensorsMap["Sensor0"]->displayMeasurements(); */
 
     // =================================PRIVATE USERS================================= //
     map<string, PrivateUser *> privateUsersMap;
@@ -372,31 +372,35 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
     }
     filePrivateUsers.close();
 
-    cout << "===========Affichage liste PrivateUser===========" << endl;
+/*     cout << "===========Affichage liste PrivateUser===========" << endl;
     cout << "TAILLE MAP " << privateUsersMap.size() << endl;
     for (const auto &kv : privateUsersMap)
     {
         string key = kv.first; // clé
         cout << kv.first << " / " << *privateUsersMap[key];
-    }
+    } */
 
     // =================================USERS================================= //
     map<string, User *> users;
     users.insert(providersMap.begin(), providersMap.end());       // On ajoute tous les Provider
     users.insert(privateUsersMap.begin(), privateUsersMap.end()); // On ajoute tous les PrivateUser
 
-    cout << "===========Affichage liste User===========" << endl;
+/*     cout << "===========Affichage liste User===========" << endl;
     cout << "TAILLE MAP : " << users.size() << endl;
     for (const auto &kv : users)
     {
         string key = kv.first; // clé
         cout << kv.first << " / " << users[key]->to_string();
-    }
+    } */
     /*     cout << "TEST 41 : " << users["Provider0"]->to_string();
         Provider *precup = (Provider *)users["Provider0"];
         cout << "TEST 42 : " << *precup; */
 
-    // =================================DESTRUCTEURS================================= //
+    database.SetAttributes(attributesMap);
+    database.SetSensors(sensorsMap);
+    database.SetUsers(users);
+
+/*     // =================================DESTRUCTEURS================================= //
     // DESTRUCTEUR SENSORS
     for (const auto &kv : sensorsMap)
     {
@@ -415,16 +419,16 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
         delete kv.second;
     }
 
-    // DESTRUCTEUR USERS (FUTUR DESTRUCTEUR DE DATABASE)
+    // DESTRUCTEUR USERS
     for (const auto &kv : users)
     {
         string key = kv.first; // clé
         // cout << "SUPPRESSION DE " << kv.first << " / " << users[key]->to_string();
 
         delete kv.second;
-    }
+    } */
 
-    return d1; // TODO: mettre toutes les listes/map dans une database et la renvoyer ici
+    return database; // TODO: mettre toutes les listes/map dans une database et la renvoyer ici
 }
 
 //------------------------------------------------------------------ PRIVE

@@ -32,11 +32,15 @@ public:
     //----------------------------------------------------- Méthodes publiques
     // Mode d'emploi :
     // Permet de renvoyer l'ID d'un User sous forme de string
-    virtual string GetId() = 0;
+    virtual string GetId() const = 0;
 
     virtual string to_string() const = 0;
 
     friend ostream &operator<<(ostream &out, const User &u);
+
+    string GetLogin() const;
+
+    string GetPassword() const;
 
     //------------------------------------------------- Surcharge d'opérateurs
     User &operator=(const User &unUser);

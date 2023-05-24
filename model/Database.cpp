@@ -28,6 +28,32 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
+void Database::SetUsers(map<string, User *> users)
+{
+    this->users = users;
+}
+
+void Database::SetSensors(map<string, Sensor *> sensors)
+{
+    this->sensors = sensors;
+}
+
+void Database::SetAttributes(map<string, Attributes *> attributes)
+{
+    this->attributes = attributes;
+}
+
+map<string, Sensor*> Database::GetSensors() const
+{
+    return sensors;
+}
+
+map<string, User *> Database::GetUsers() const
+{
+    return users;
+}
+
+
 //------------------------------------------------- Surcharge d'opérateurs
 /* Database & Database::operator = ( const Database & unDatabase )
 // Algorithme :
@@ -65,22 +91,62 @@ Database::~Database()
 #ifdef MAP
     cout << "Appel au destructeur de <Database>" << endl;
 #endif
+    // =================================DESTRUCTEURS================================= //
+    // DESTRUCTEUR SENSORS
+    for (const auto &kv : sensors)
+    {
+        string key = kv.first; // clé
+        // cout << "SUPPRESSION DE " << kv.first << " / " << sensorsMap[key]->to_string();
+
+        delete kv.second;
+    }
+
+    // DESTRUCTEUR ATTRIBUTES
+    for (const auto &kv : attributes)
+    {
+        string key = kv.first; // clé
+        // cout << "SUPPRESSION DE " << kv.first << " / " << attributesMap[key]->to_string();
+
+        delete kv.second;
+    }
+
+    // DESTRUCTEUR USERS
+    for (const auto &kv : users)
+    {
+        string key = kv.first; // clé
+        // cout << "SUPPRESSION DE " << kv.first << " / " << users[key]->to_string();
+
+        delete kv.second;
+    }
 } //----- Fin de ~Database
 
-string Database::to_string() const
+string Database::to_string()
 {
-    /*         stringstream strs;
-            strs << "Database:" << std::endl;
-            strs << "Sensors:" << std::endl;
-            for (const auto& sensor : sensors) {
-                strs << sensor.to_string() << std::endl;
-            }
-            strs << "Users :" << std::endl;
-                for (const auto& user : users) {
-                strs << user.to_string() << std::endl;
-                strs << "Sensors:" << std::endl;
-            }
-            return strs.str(); */
+    cout << "===========Affichage liste Sensor===========" << endl;
+    cout << "TAILLE MAP " << sensors.size() << endl;
+    for (const auto &kv : sensors)
+    {
+        string key = kv.first; // clé
+        cout << kv.first << " / " << sensors[key]->to_string();
+    }
+    cout << "TEST 10 PREMIERES MESURES DE Sensor0 : " << endl;
+    sensors["Sensor0"]->displayMeasurements();
+
+    cout << "===========Affichage liste Attributes===========" << endl;
+    for (const auto &kv : attributes)
+    {
+        string key = kv.first; // clé
+        cout << kv.first << " / " << attributes[key]->to_string();
+    }
+
+    cout << "===========Affichage liste User===========" << endl;
+    cout << "TAILLE MAP : " << users.size() << endl;
+    for (const auto &kv : users)
+    {
+        string key = kv.first; // clé
+        cout << kv.first << " / " << users[key]->to_string();
+    }
+
     return "";
 }
 

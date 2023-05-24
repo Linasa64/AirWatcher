@@ -29,7 +29,7 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-string GovernmentAgency::GetId()
+string GovernmentAgency::GetId() const
 {
     return "Government";
 }

@@ -32,7 +32,8 @@ public:
     //
     // Contrat :
     //
-
+    string GetId() const;
+    
     //------------------------------------------------- Surcharge d'opérateurs
     GovernmentAgency &operator=(const GovernmentAgency &unGovernmentAgency);
     // Mode d'emploi :
@@ -64,8 +65,6 @@ public:
     //
     // Contrat :
     //
-
-    string GetId();
 
     string to_string() const;
 

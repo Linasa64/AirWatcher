@@ -29,9 +29,19 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-string PrivateUser::GetId()
+string PrivateUser::GetId() const
 {
     return privateUserId;
+}
+
+int PrivateUser::GetReputationPoints() const
+{
+    return reputationPoints;
+}
+
+list<Sensor *> PrivateUser::GetSensors() const
+{
+    return sensors;
 }
 
 //------------------------------------------------- Surcharge d'opérateurs

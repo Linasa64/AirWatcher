@@ -38,6 +38,16 @@ public:
     // Contrat :
     //
 
+    string getCleanerId() const;
+    
+    float getLatitude() const;
+
+    float getLongitude() const;
+
+    time_t getTimestampStart() const;
+
+    time_t getTimestampStop() const;
+
     //------------------------------------------------- Surcharge d'opérateurs
     Cleaner &operator=(const Cleaner &unCleaner);
     // Mode d'emploi :

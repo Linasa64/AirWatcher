@@ -13,11 +13,11 @@
 //-------------------------------------------------------- Include système
 #include <iostream>
 #include <sstream>
+#include <iomanip>
 using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Measurement.h"
-
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
@@ -28,6 +28,57 @@ using namespace std;
 //
 //{
 //} //----- Fin de Méthode
+
+string Measurement::getAssociatedSensorId() const
+{
+    return associatedSensorId;
+}
+
+time_t Measurement::getTimestamp() const
+{
+    return timestamp;
+}
+
+double Measurement::getValue() const
+{
+    return value;
+}
+
+Attributes *Measurement::getAttributes() const
+{
+    return attributes;
+}
+
+bool Measurement::isWithinTimeRange(const string &startTime, const string &endTime) const
+{
+    // Assuming timestamp format is "%Y-%m-%d %H:%M:%S"
+    if (startTime.empty() && endTime.empty())
+    {
+        return true; // No time range specified, include all measurements
+    }
+
+    if (!startTime.empty())
+    {
+        time_t startTimestamp = convertDateStringToTimestamp(startTime);
+
+        if (timestamp < startTimestamp)
+        {
+            return false; // Measurement timestamp is earlier than start time
+        }
+    }
+
+    if (!endTime.empty())
+    {
+        time_t endTimestamp = convertDateStringToTimestamp(endTime);
+
+        if (timestamp > endTimestamp)
+        {
+            return false; // Measurement timestamp is later than end time
+        }
+    }
+
+    return true;
+}
 
 //------------------------------------------------- Surcharge d'opérateurs
 /* Measurement & Measurement::operator = ( const Measurement & unMeasurement )
@@ -90,9 +141,12 @@ string Measurement::to_string() const
     return strs.str();
 }
 
-string Measurement::getAssociatedSensorId()
+time_t convertDateStringToTimestamp(const string date, const string &format)
 {
-    return associatedSensorId;
+    tm t = {0};
+    std::istringstream ss(date);
+    ss >> get_time(&t, format.c_str());
+    return mktime(&t);
 }
 
 //------------------------------------------------------------------ PRIVE

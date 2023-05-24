@@ -14,7 +14,8 @@
 #include "Attributes.h"
 #include <ctime>
 #include <string>
-
+#include <iomanip>
+using namespace std;
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -24,7 +25,7 @@
 //
 //
 //------------------------------------------------------------------------
-
+time_t convertDateStringToTimestamp(const string date, const string &format = "%Y-%m-%d %H:%M:%S");
 class Measurement
 {
     //----------------------------------------------------------------- PUBLIC
@@ -36,6 +37,18 @@ public:
     //
     // Contrat :
     //
+
+    string getAssociatedSensorId() const;
+
+    time_t getTimestamp() const;
+
+    double getValue()const;
+
+    Attributes *getAttributes() const;
+
+    bool isWithinTimeRange(const string &startTime, const string &endTime) const;
+
+
 
     //------------------------------------------------- Surcharge d'opérateurs
 
@@ -73,7 +86,6 @@ public:
 
     string to_string() const;
 
-    string getAssociatedSensorId();
 
     //------------------------------------------------------------------ PRIVE
 

@@ -12,7 +12,7 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include <sstream>
-#include <set>
+#include <map>
 
 #include "User.h"
 #include "Sensor.h"
@@ -31,14 +31,22 @@ class Database
     //----------------------------------------------------------------- PUBLIC
 
 public:
-    set<User *> users;
-    set<Sensor> sensors;
     //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste des paramètres );
     // Mode d'emploi :
     //
     // Contrat :
     //
+
+    void SetUsers(map<string, User *> users);
+
+    void SetSensors(map<string, Sensor *> sensors);
+
+    void SetAttributes(map<string, Attributes *> attributes);
+
+    map<string, User*> GetUsers() const;
+
+    map<string, Sensor*> GetSensors() const;
 
     //------------------------------------------------- Surcharge d'opérateurs
     Database &operator=(const Database &unDatabase);
@@ -67,7 +75,7 @@ public:
     // Contrat :
     //
 
-    string to_string() const;
+    string to_string();
 
     //------------------------------------------------------------------ PRIVE
 
@@ -75,6 +83,9 @@ protected:
     //----------------------------------------------------- Méthodes protégées
 
     //----------------------------------------------------- Attributs protégés
+    map<string, User *> users;
+    map<string, Sensor *> sensors;
+    map<string, Attributes *> attributes;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Database>
