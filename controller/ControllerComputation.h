@@ -16,7 +16,6 @@
 #include <cmath>
 #include <vector>
 #include <map>
-#include <experimental/optional>
 #include <algorithm>
 #include <array>
 #include <functional>
