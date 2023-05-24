@@ -18,14 +18,18 @@ CFLAGS = -g #-Wall
 CONTROLLER_DIRS ?= ./controller
 MODEL_DIRS ?= ./model
 VIEW_DIRS ?= ./view
+TESTS_DIRS ?= ./tests
 
 # Find cpp files in subdirectories
-SOURCES := $(shell find . -name '*.cpp')
+SOURCES := $(shell find . -name '*.cpp' -not -path "./tests/*")
 
 # Find headers
 CONTROLLER_H := $(shell find $(CONTROLLER_DIRS) -name *.h)
 MODEL_H := $(shell find $(MODEL_DIRS) -name *.h)
 VIEW_H := $(shell find $(VIEW_DIRS) -name *.h)
+
+# Find test classes in the subdirectory tests
+TESTS := $(shell find tests -name '*.cpp')
 
 # *****************************************************
 # Targets needed to bring the executable up to date:
@@ -91,3 +95,21 @@ clean:
 	rm -rf *.o
 
 
+# ****************************************************
+# Running tests
+
+# make tests to run test
+tests : runTestCaseExample runTestAirWatcher
+	echo "Tests terminés."
+
+runTestCaseExample : $(TESTS_DIRS)/TestCaseExample
+	$(TESTS_DIRS)/TestCaseExample
+
+runTestAirWatcher : $(TESTS_DIRS)/TestAirWatcher
+	$(TESTS_DIRS)/TestAirWatcher
+
+TestCaseExample : $(TESTS_DIRS)/TestCaseExample.cpp
+	$(CC) -o $(TESTS_DIRS)/TestCaseExample $(TESTS_DIRS)/TestCaseExample.cpp
+
+TestAirWatcher : $(TESTS_DIRS)/TestAirWatcher.cpp
+	$(CC) -o $(TESTS_DIRS)/TestAirWatcher$(TESTS_DIRS)/TestAirWatcher.cpp
