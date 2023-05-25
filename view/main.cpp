@@ -17,6 +17,7 @@
 #include <string>
 #include <time.h>
 #include "../controller/ControllerData.h"
+#include "../controller/ControllerComputation.h"
 #include "../model/Database.h"
 #include <vector>
 #include <set>
@@ -84,10 +85,31 @@ int main()
         } */
 
     ControllerData controllerData;
+    ControllerComputation controllerComputation;
 
     Database d = controllerData.retrieveData("./dataset/sensors.csv", "./dataset/measurements.csv", "./dataset/attributes.csv", "./dataset/providers.csv", "./dataset/cleaners.csv", "./dataset/users.csv");
 
-    cout << d.to_string();
+    //cout << d.to_string();
+
+    // =================================TESTS================================= //
+
+    // ================INDICES ATMO================ //
+    // Avec durée
+    float testATMO1 = controllerComputation.calculateMeanAirQualityATMO(d, 10, 44, -1, "2019-01-01 12:00:00", "2019-01-02 12:00:00");
+    cout << "Indice ATMO 1 : " << testATMO1 << endl;
+
+    // Avec instant
+    float testATMO2 = controllerComputation.calculateMeanAirQualityATMO(d, 10, 44, -1, "2019-01-01 12:00:00");
+    cout << "Indice ATMO 2 : " << testATMO2 << endl;
+
+    // ================INDICES AQI================ //
+    // Avec durée
+    float testAQI1 = controllerComputation.calculateMeanAirQualityAQI(d, 10, 44, -1, "2019-01-01 12:00:00", "2019-01-02 12:00:00");
+    cout << "Indice AQI 1 : " << testAQI1 << endl;
+
+    // Avec instant
+    float testAQI2 = controllerComputation.calculateMeanAirQualityAQI(d, 10, 44, -1, "2019-01-01 12:00:00");
+    cout << "Indice AQI 2 : " << testAQI2 << endl;
 
     return 0;
 }

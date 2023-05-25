@@ -42,9 +42,13 @@ public:
 
     time_t getTimestamp() const;
 
-    double getValue()const;
+    float getValue()const;
 
     Attributes *getAttributes() const;
+
+    float GetATMOIndex() const;
+
+    float GetAQIIndex() const;
 
     bool isWithinTimeRange(const string &startTime, const string &endTime) const;
 
@@ -94,7 +98,7 @@ protected:
 
     //----------------------------------------------------- Attributs protégés
     time_t timestamp;
-    double value;
+    float value;
     Attributes *attributes;
     string associatedSensorId;
 };

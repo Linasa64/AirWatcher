@@ -63,8 +63,11 @@ ControllerComputation::~ControllerComputation()
 #endif
 } //----- Fin de ~ControllerComputation
 
-float ControllerComputation::calculateMeanAirQuality(const Database &database, float radius, float centerLat, float centerLong, const std::string &startTime, const std::string &endTime)
+float ControllerComputation::calculateMeanAirQualityATMO(const Database &database, float radius, float centerLat, float centerLong, const std::string &startTime, const std::string &optionalEndTime)
 {
+    string endTime = optionalEndTime; // get rid of the const (necessary for a default value of the string)
+    if (endTime == "") endTime = startTime; // if the endTime was not declared, it takes the same value as startTime
+
     map<string, Sensor *> sensors = database.GetSensors();
     float airQuality = 0;
     int count = 0;
@@ -76,8 +79,44 @@ float ControllerComputation::calculateMeanAirQuality(const Database &database, f
             {
                 if (measurement->isWithinTimeRange(startTime, endTime))
                 {
-                    airQuality += measurement->getValue();
-                    count++;
+                    if (measurement->GetATMOIndex() > 0) { // Verifying that the ATMO Index is valid (getATMOIndex returns -1 in error cases)
+                        airQuality += measurement->GetATMOIndex();
+                        count++;
+                    } // If the ATMO Index was not valid we don't count the measurement
+                }
+            }
+        }
+    }
+    if (count == 0)
+    {
+        return 0.0; 
+    }
+    else
+    {
+        return airQuality / static_cast<float>(count);
+    }
+}
+
+float ControllerComputation::calculateMeanAirQualityAQI(const Database &database, float radius, float centerLat, float centerLong, const std::string &startTime, const std::string &optionalEndTime)
+{
+    string endTime = optionalEndTime; // get rid of the const (necessary for a default value of the string)
+    if (endTime == "") endTime = startTime; // if the endTime was not declared, it takes the same value as startTime
+
+    map<string, Sensor *> sensors = database.GetSensors();
+    float airQuality = 0;
+    int count = 0;
+    for (auto sensor : sensors)
+    {
+        if (sensor.second->isWithinDistance(centerLat, centerLong, radius))
+        {
+            for (auto measurement : sensor.second->GetMeasurements())
+            {
+                if (measurement->isWithinTimeRange(startTime, endTime))
+                {
+                    if (measurement->GetAQIIndex() > 0) { // Verifying that the ATMO Index is valid (getATMOIndex returns -1 in error cases)
+                        airQuality += measurement->GetAQIIndex();
+                        count++;
+                    } // If the ATMO Index was not valid we don't count the measurement
                 }
             }
         }

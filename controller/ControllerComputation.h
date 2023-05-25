@@ -41,7 +41,9 @@ public:
     // Contrat :
     //
 
-    float calculateMeanAirQuality(const Database &sensorMeasurements, float radius, float centerLat, float centerLong, const string &startTime = "", const string &endTime = "");
+    float calculateMeanAirQualityATMO(const Database &sensorMeasurements, float radius, float centerLat, float centerLong, const string &startTime, const string &optionalEndTime = "");
+
+    float calculateMeanAirQualityAQI(const Database &sensorMeasurements, float radius, float centerLat, float centerLong, const string &startTime, const string &optionalEndTime = "");
 
     std::vector<std::pair<Sensor, float>> calculateSimilarityScores(const Database& database, const Sensor& selectedSensor, const std::string& startTime, const std::string& endTime);
     
