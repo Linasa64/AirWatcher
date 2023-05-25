@@ -18,9 +18,9 @@ using namespace std;
 #include "ControllerComputation.h"
 
 //------------------------------------------------------------- Constantes
-//const float ControllerComputation::EARTH_RADIUS = 6371.0;
+// const float ControllerComputation::EARTH_RADIUS = 6371.0;
 //----------------------------------------------------------------- PUBLIC
-
+History& ControllerComputation::GetHistory() { return history; }
 //----------------------------------------------------- Méthodes publiques
 // type ControllerComputation::Méthode ( liste des paramètres )
 // Algorithme :
@@ -65,8 +65,14 @@ ControllerComputation::~ControllerComputation()
 
 float ControllerComputation::calculateMeanAirQualityATMO(const Database &database, float radius, float centerLat, float centerLong, const std::string &startTime, const std::string &optionalEndTime)
 {
+    float timeStart, timeEnd, timeDiff;
+
+    // We store the initial time
+    timeStart = clock();
+
     string endTime = optionalEndTime; // get rid of the const (necessary for a default value of the string)
-    if (endTime == "") endTime = startTime; // if the endTime was not declared, it takes the same value as startTime
+    if (endTime == "")
+        endTime = startTime; // if the endTime was not declared, it takes the same value as startTime
 
     map<string, Sensor *> sensors = database.GetSensors();
     float airQuality = 0;
@@ -79,7 +85,8 @@ float ControllerComputation::calculateMeanAirQualityATMO(const Database &databas
             {
                 if (measurement->isWithinTimeRange(startTime, endTime))
                 {
-                    if (measurement->GetATMOIndex() > 0) { // Verifying that the ATMO Index is valid (getATMOIndex returns -1 in error cases)
+                    if (measurement->GetATMOIndex() > 0)
+                    { // Verifying that the ATMO Index is valid (getATMOIndex returns -1 in error cases)
                         airQuality += measurement->GetATMOIndex();
                         count++;
                     } // If the ATMO Index was not valid we don't count the measurement
@@ -89,18 +96,38 @@ float ControllerComputation::calculateMeanAirQualityATMO(const Database &databas
     }
     if (count == 0)
     {
-        return 0.0; 
+        // We store the final time
+        timeEnd = clock();
+
+        // We compute the difference final time - initial time and we convert it into ms
+        timeDiff = (timeEnd - timeStart) / (CLOCKS_PER_SEC / 1000);
+        cout << "Temps exécution : " << timeDiff << "ms" << endl;
+        history.Push_Back(1, timeDiff);
+        return 0.0;
     }
     else
     {
+        // We store the final time
+        timeEnd = clock();
+
+        // On fait la différence temps final - temps initial et on met en ms
+        timeDiff = (timeEnd - timeStart) / (CLOCKS_PER_SEC / 1000);
+        cout << "Temps exécution : " << timeDiff << "ms" << endl;
+        history.Push_Back(1, timeDiff);
         return airQuality / static_cast<float>(count);
     }
 }
 
 float ControllerComputation::calculateMeanAirQualityAQI(const Database &database, float radius, float centerLat, float centerLong, const std::string &startTime, const std::string &optionalEndTime)
 {
+    float timeStart, timeEnd, timeDiff;
+
+    // We store the initial time
+    timeStart = clock();
+
     string endTime = optionalEndTime; // get rid of the const (necessary for a default value of the string)
-    if (endTime == "") endTime = startTime; // if the endTime was not declared, it takes the same value as startTime
+    if (endTime == "")
+        endTime = startTime; // if the endTime was not declared, it takes the same value as startTime
 
     map<string, Sensor *> sensors = database.GetSensors();
     float airQuality = 0;
@@ -113,7 +140,8 @@ float ControllerComputation::calculateMeanAirQualityAQI(const Database &database
             {
                 if (measurement->isWithinTimeRange(startTime, endTime))
                 {
-                    if (measurement->GetAQIIndex() > 0) { // Verifying that the ATMO Index is valid (getATMOIndex returns -1 in error cases)
+                    if (measurement->GetAQIIndex() > 0)
+                    { // Verifying that the ATMO Index is valid (getATMOIndex returns -1 in error cases)
                         airQuality += measurement->GetAQIIndex();
                         count++;
                     } // If the ATMO Index was not valid we don't count the measurement
@@ -123,15 +151,29 @@ float ControllerComputation::calculateMeanAirQualityAQI(const Database &database
     }
     if (count == 0)
     {
-        return 0.0; 
+        // We store the final time
+        timeEnd = clock();
+
+        // We compute the difference final time - initial time and we convert it into ms
+        timeDiff = (timeEnd - timeStart) / (CLOCKS_PER_SEC / 1000);
+        cout << "Temps exécution : " << timeDiff << "ms" << endl;
+        history.Push_Back(1, timeDiff);
+        return 0.0;
     }
     else
     {
+        // We store the final time
+        timeEnd = clock();
+
+        // We compute the difference final time - initial time and we convert it into ms
+        timeDiff = (timeEnd - timeStart) / (CLOCKS_PER_SEC / 1000);
+        cout << "Temps exécution : " << timeDiff << "ms" << endl;
+        history.Push_Back(1, timeDiff);
         return airQuality / static_cast<float>(count);
     }
 }
 
-/*std::vector<Sensor> ControllerComputation::calculateSimilarityScores(const Database &database, Sensor selectedSensor, const std::string& startTime, const std::string& endTime) 
+/*std::vector<Sensor> ControllerComputation::calculateSimilarityScores(const Database &database, Sensor selectedSensor, const std::string& startTime, const std::string& endTime)
 {
     set<Sensor> sensors = database.GetSensors();
     std::vector<Sensor> similarityScores;
@@ -156,7 +198,7 @@ float ControllerComputation::calculateMeanAirQualityAQI(const Database &database
     return similarityScores;
 }*/
 
-std::vector<std::pair<Sensor, float>> ControllerComputation::calculateSimilarityScores(const Database& database, const Sensor& selectedSensor, const std::string& startTime, const std::string& endTime)
+std::vector<std::pair<Sensor, float>> ControllerComputation::calculateSimilarityScores(const Database &database, const Sensor &selectedSensor, const std::string &startTime, const std::string &endTime)
 {
     std::map<string, Sensor *> sensors = database.GetSensors();
     std::map<Sensor, float> similarityScores;
@@ -166,14 +208,14 @@ std::vector<std::pair<Sensor, float>> ControllerComputation::calculateSimilarity
         if (sensor.second->GetSensorId() != selectedSensor.GetSensorId())
         {
             float costFunctionScore = 0.0;
-            const std::list<Measurement*>& sensorMeasurements = sensor.second->GetMeasurements();
-            const std::list<Measurement*>& selectedSensorMeasurements = selectedSensor.GetMeasurements();
+            const std::list<Measurement *> &sensorMeasurements = sensor.second->GetMeasurements();
+            const std::list<Measurement *> &selectedSensorMeasurements = selectedSensor.GetMeasurements();
 
-            for (const Measurement* measurement : sensorMeasurements)
+            for (const Measurement *measurement : sensorMeasurements)
             {
                 if (measurement->isWithinTimeRange(startTime, endTime))
                 {
-                    const Measurement* selectedMeasurement = findMeasurement(selectedSensorMeasurements, measurement->getTimestamp());
+                    const Measurement *selectedMeasurement = findMeasurement(selectedSensorMeasurements, measurement->getTimestamp());
                     if (selectedMeasurement != nullptr)
                     {
                         costFunctionScore += std::abs(measurement->getValue() - selectedMeasurement->getValue());
@@ -186,16 +228,15 @@ std::vector<std::pair<Sensor, float>> ControllerComputation::calculateSimilarity
 
     std::vector<std::pair<Sensor, float>> sortedScores(similarityScores.begin(), similarityScores.end());
 
-    std::sort(sortedScores.begin(), sortedScores.end(), [](const auto& a, const auto& b) {
-        return a.second < b.second;
-    });
+    std::sort(sortedScores.begin(), sortedScores.end(), [](const auto &a, const auto &b)
+              { return a.second < b.second; });
 
     return sortedScores;
 }
 
-const Measurement* ControllerComputation::findMeasurement(const std::list<Measurement*>& measurements, const time_t& timestamp) const
+const Measurement *ControllerComputation::findMeasurement(const std::list<Measurement *> &measurements, const time_t &timestamp) const
 {
-    for (const Measurement* measurement : measurements)
+    for (const Measurement *measurement : measurements)
     {
         if (measurement->getTimestamp() == timestamp)
         {
@@ -205,11 +246,10 @@ const Measurement* ControllerComputation::findMeasurement(const std::list<Measur
     return nullptr;
 }
 
-
-float ControllerComputation::calculatePreciseAirQuality(const Database& database, float centerLat, float centerLong, const std::string& startTime, const std::string& endTime)
+float ControllerComputation::calculatePreciseAirQuality(const Database &database, float centerLat, float centerLong, const std::string &startTime, const std::string &endTime)
 {
     bool sensorFound = false;
-    const std::map<string, Sensor *>& sensors = database.GetSensors();
+    const std::map<string, Sensor *> &sensors = database.GetSensors();
 
     for (auto sensor : sensors)
     {
@@ -223,13 +263,14 @@ float ControllerComputation::calculatePreciseAirQuality(const Database& database
 
     if (!sensorFound)
     {
-        std::vector<Sensor*> nearestSensors = kNearestSensors(sensors, centerLat, centerLong, startTime, endTime, 10);
+        std::vector<Sensor *> nearestSensors = kNearestSensors(sensors, centerLat, centerLong, startTime, endTime, 10);
         float weightedSum = 0.0;
         float totalWeight = 0.0;
-        for(Sensor * sensor : nearestSensors){
-            for (Measurement* measurement : sensor->GetMeasurements())
+        for (Sensor *sensor : nearestSensors)
+        {
+            for (Measurement *measurement : sensor->GetMeasurements())
             {
-                float distance = calculateDistance(sensor->GetLatitude(),sensor->GetLongitude(), centerLat, centerLong);
+                float distance = calculateDistance(sensor->GetLatitude(), sensor->GetLongitude(), centerLat, centerLong);
                 float weight = 1.0 / distance;
                 weightedSum += weight * measurement->getValue();
                 totalWeight += weight;
@@ -246,28 +287,27 @@ float ControllerComputation::calculatePreciseAirQuality(const Database& database
     return -1.0;
 }
 
-std::vector<Sensor*> ControllerComputation::kNearestSensors(const std::map<string, Sensor *>& sensors, float centerLat, float centerLong, const std::string& startTime, const std::string& endTime, int k)
+std::vector<Sensor *> ControllerComputation::kNearestSensors(const std::map<string, Sensor *> &sensors, float centerLat, float centerLong, const std::string &startTime, const std::string &endTime, int k)
 {
-    std::vector<std::pair<Sensor*, float> > sensordistances;
+    std::vector<std::pair<Sensor *, float>> sensordistances;
 
     for (auto sensor : sensors)
     {
-        for (Measurement* measurement : sensor.second->GetMeasurements())
+        for (Measurement *measurement : sensor.second->GetMeasurements())
         {
             if (measurement->isWithinTimeRange(startTime, endTime))
             {
                 float distance = calculateDistance(sensor.second->GetLatitude(), sensor.second->GetLongitude(), centerLat, centerLong);
-                sensordistances.push_back({ const_cast<Sensor*>(sensor.second), distance });
+                sensordistances.push_back({const_cast<Sensor *>(sensor.second), distance});
             }
         }
     }
 
-    std::sort(sensordistances.begin(), sensordistances.end(), [](const auto& a, const auto& b) {
-        return a.second < b.second;
-    });
+    std::sort(sensordistances.begin(), sensordistances.end(), [](const auto &a, const auto &b)
+              { return a.second < b.second; });
 
-    std::vector<Sensor*> kNearestSensors;
-    int numSensors = std::min(k, static_cast<int>( sensordistances.size()));
+    std::vector<Sensor *> kNearestSensors;
+    int numSensors = std::min(k, static_cast<int>(sensordistances.size()));
 
     for (int i = 0; i < numSensors; ++i)
     {
@@ -283,8 +323,8 @@ float ControllerComputation::calculateDistance(float lat1, float long1, float la
     float dLong = degToRad(long2 - long1);
 
     float a = std::sin(dLat / 2) * std::sin(dLat / 2) +
-        std::cos(degToRad(lat1)) * std::cos(degToRad(lat2)) *
-        std::sin(dLong / 2) * std::sin(dLong / 2);
+              std::cos(degToRad(lat1)) * std::cos(degToRad(lat2)) *
+                  std::sin(dLong / 2) * std::sin(dLong / 2);
 
     float c = 2 * std::atan2(std::sqrt(a), std::sqrt(1 - a));
     float distance = EARTH_RADIUS * c;
@@ -292,12 +332,12 @@ float ControllerComputation::calculateDistance(float lat1, float long1, float la
     return distance;
 }
 
-float ControllerComputation::calculateMean(const std::list<Measurement*>& measurements, const std::string& startTime, const std::string& endTime)
+float ControllerComputation::calculateMean(const std::list<Measurement *> &measurements, const std::string &startTime, const std::string &endTime)
 {
     int count = 0;
     float sum = 0.0;
 
-    for (Measurement* measurement : measurements)
+    for (Measurement *measurement : measurements)
     {
         if (measurement->isWithinTimeRange(startTime, endTime))
         {
@@ -315,17 +355,16 @@ float ControllerComputation::calculateMean(const std::list<Measurement*>& measur
     return -1.0;
 }
 
-
-std::pair<std::vector<Sensor>, std::vector<std::vector<float>>> ControllerComputation::detectDefectSensorsAndOutliers(const Database& database, const string& startTime, const string& endTime)
+std::pair<std::vector<Sensor>, std::vector<std::vector<float>>> ControllerComputation::detectDefectSensorsAndOutliers(const Database &database, const string &startTime, const string &endTime)
 {
-    const std::map<string, Sensor*>& sensors = database.GetSensors();
+    const std::map<string, Sensor *> &sensors = database.GetSensors();
     std::vector<Sensor> defectSensors;
     std::vector<std::vector<float>> outliers;
     std::vector<float> allMeasurements;
 
     for (auto sensor : sensors)
     {
-        for (Measurement* measurement : sensor.second->GetMeasurements())
+        for (Measurement *measurement : sensor.second->GetMeasurements())
         {
             if (!(startTime.empty()) && !(endTime.empty()))
             {
@@ -349,17 +388,16 @@ std::pair<std::vector<Sensor>, std::vector<std::vector<float>>> ControllerComput
         const float lowerThreshold = calculatePercentile(allMeasurements, 5);
         const float upperThreshold = calculatePercentile(allMeasurements, 95);
 
-
         for (auto sensor : sensors)
         {
             std::vector<float> filteredValues;
             std::vector<float> sensorOutliers;
             bool sensorDefect = false;
-            for (Measurement* measurement : sensor.second->GetMeasurements())
+            for (Measurement *measurement : sensor.second->GetMeasurements())
             {
                 if (!(startTime.empty()) && !(endTime.empty()))
                 {
-                    if(measurement->isWithinTimeRange(startTime, endTime))
+                    if (measurement->isWithinTimeRange(startTime, endTime))
                     {
                         float value = measurement->getValue();
 
@@ -369,14 +407,14 @@ std::pair<std::vector<Sensor>, std::vector<std::vector<float>>> ControllerComput
                             sensorDefect = true;
                         }
                     }
-                } 
+                }
             }
             if (sensorDefect)
             {
                 defectSensors.push_back(*sensor.second);
                 outliers.push_back(sensorOutliers);
             }
-        }   
+        }
     }
     return std::make_pair(defectSensors, outliers);
 }
@@ -436,7 +474,7 @@ std::pair<std::vector<Sensor>, std::vector<std::vector<float>>> ControllerComput
 }
 */
 
-void ControllerComputation::calculateMeanAndStdDev(const std::vector<float>& values, float& mean, float& stdDev)
+void ControllerComputation::calculateMeanAndStdDev(const std::vector<float> &values, float &mean, float &stdDev)
 {
     if (values.empty())
     {
@@ -464,7 +502,7 @@ void ControllerComputation::calculateMeanAndStdDev(const std::vector<float>& val
     stdDev = std::sqrt(variance / count);
 }
 
-float ControllerComputation::calculatePercentile(const std::vector<float>& values, int percentile)
+float ControllerComputation::calculatePercentile(const std::vector<float> &values, int percentile)
 {
     if (values.empty())
     {
@@ -489,4 +527,3 @@ float ControllerComputation::calculatePercentile(const std::vector<float>& value
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-

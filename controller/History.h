@@ -35,6 +35,9 @@ public:
     //
     // Contrat :
     //
+    map<int, list<float> > GetQueryDurationsHistory();
+
+    void Push_Back(int key, float duration);
 
     //------------------------------------------------- Surcharge d'opérateurs
     History &operator=(const History &unHistory);
@@ -62,13 +65,15 @@ public:
     // Contrat :
     //
 
+    string to_string();
+
     //------------------------------------------------------------------ PRIVE
 
 protected:
     //----------------------------------------------------- Méthodes protégées
 
     //----------------------------------------------------- Attributs protégés
-    map<int, list<float> > queryDuration;
+    map<int, list<float>> queryDurationsHistory;
 };
 
 //-------------------------------- Autres définitions dépendantes de <History>

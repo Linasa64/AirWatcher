@@ -30,6 +30,10 @@ using namespace std;
 
 int main()
 {
+    ControllerData controllerData;
+    ControllerComputation controllerComputation;
+
+    Database d = controllerData.retrieveData("./dataset/sensors.csv", "./dataset/measurements.csv", "./dataset/attributes.csv", "./dataset/providers.csv", "./dataset/cleaners.csv", "./dataset/users.csv");
 
     // TESTS TEMPS time_t
     /* time_t t1, t2, t3;
@@ -84,12 +88,7 @@ int main()
             cout << "User " << i << ": " << user[i]->to_string();
         } */
 
-    ControllerData controllerData;
-    ControllerComputation controllerComputation;
-
-    Database d = controllerData.retrieveData("./dataset/sensors.csv", "./dataset/measurements.csv", "./dataset/attributes.csv", "./dataset/providers.csv", "./dataset/cleaners.csv", "./dataset/users.csv");
-
-    //cout << d.to_string();
+    // cout << d.to_string();
 
     // =================================TESTS================================= //
 
@@ -110,6 +109,8 @@ int main()
     // Avec instant
     float testAQI2 = controllerComputation.calculateMeanAirQualityAQI(d, 10, 44, -1, "2019-01-01 12:00:00");
     cout << "Indice AQI 2 : " << testAQI2 << endl;
+
+    cout << controllerComputation.GetHistory().to_string();
 
     return 0;
 }

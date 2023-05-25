@@ -19,7 +19,9 @@
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
+map<int, list<float>> History::GetQueryDurationsHistory() { return queryDurationsHistory; }
 
+void History::Push_Back(int key, float duration) { queryDurationsHistory[key].push_back(duration); }
 //----------------------------------------------------- Méthodes publiques
 // type History::Méthode ( liste des paramètres )
 // Algorithme :
@@ -61,6 +63,22 @@ History::~History()
     cout << "Appel au destructeur de <History>" << endl;
 #endif
 } //----- Fin de ~History
+
+string History::to_string()
+{
+    cout << "===========Affichage map History===========" << endl;
+    cout << "TAILLE MAP " << queryDurationsHistory.size() << endl;
+    for (const auto &kv : queryDurationsHistory)
+    {
+        int key = kv.first; // clé
+        cout << "Liste pour l'algorithme " << key << " : " << endl;
+        for (const auto &duration : queryDurationsHistory[key])
+        {
+            cout << "\t- " << kv.first << " / " << duration << endl;
+        }
+    }
+    return "";
+}
 
 //------------------------------------------------------------------ PRIVE
 

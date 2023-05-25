@@ -12,13 +12,16 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include "../model/Database.h"
+#include "History.h"
 #include <string>
 #include <cmath>
 #include <vector>
+#include <list>
 #include <map>
 #include <algorithm>
 #include <array>
 #include <functional>
+#include <ctime>
 //------------------------------------------------------------- Constantes
 //const float EARTH_RADIUS = 6371.0;
 //------------------------------------------------------------------ Types
@@ -40,6 +43,7 @@ public:
     //
     // Contrat :
     //
+    History& GetHistory();
 
     float calculateMeanAirQualityATMO(const Database &sensorMeasurements, float radius, float centerLat, float centerLong, const string &startTime, const string &optionalEndTime = "");
 
@@ -101,6 +105,8 @@ protected:
     //bool isWithinDistance(float measurementLat, float measurementLong, float centerLat, float centerLong, float radius);
     //time_t convertDateStingToTimestamp(const string &dateString);
     //float degToRad(float degrees);
+    History history;
+
     const Measurement* findMeasurement(const std::list<Measurement*>& measurements, const time_t& timestamp) const;
     //----------------------------------------------------- Attributs protégés
 };
