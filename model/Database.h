@@ -47,6 +47,8 @@ public:
     map<string, User*> GetUsers() const;
 
     map<string, Sensor*> GetSensors() const;
+    
+    Sensor* GetSensor(string id) const;
 
     //------------------------------------------------- Surcharge d'opérateurs
     Database &operator=(const Database &unDatabase);

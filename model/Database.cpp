@@ -48,6 +48,11 @@ map<string, Sensor*> Database::GetSensors() const
     return sensors;
 }
 
+Sensor* Database::GetSensor(string id) const
+{
+    return sensors.at(id);
+}
+
 map<string, User *> Database::GetUsers() const
 {
     return users;

@@ -49,7 +49,7 @@ public:
 
     float calculateMeanAirQualityAQI(const Database &sensorMeasurements, float radius, float centerLat, float centerLong, const string &startTime, const string &optionalEndTime = "");
 
-    std::vector<std::pair<Sensor, float>> calculateSimilarityScores(const Database& database, const Sensor& selectedSensor, const std::string& startTime, const std::string& endTime);
+    std::vector<std::pair<Sensor*, float>> calculateSimilarityScores(const Database& database, const Sensor& selectedSensor, const std::string& startTime, const std::string& endTime);
     
     float calculatePreciseAirQuality(const Database& database, float centerLat, float centerLong, const std::string& startTime, const std::string& endTime);
 

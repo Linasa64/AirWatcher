@@ -198,10 +198,10 @@ float ControllerComputation::calculateMeanAirQualityAQI(const Database &database
     return similarityScores;
 }*/
 
-std::vector<std::pair<Sensor, float>> ControllerComputation::calculateSimilarityScores(const Database &database, const Sensor &selectedSensor, const std::string &startTime, const std::string &endTime)
+std::vector<std::pair<Sensor*, float>> ControllerComputation::calculateSimilarityScores(const Database &database, const Sensor &selectedSensor, const std::string &startTime, const std::string &endTime)
 {
     std::map<string, Sensor *> sensors = database.GetSensors();
-    std::map<Sensor, float> similarityScores;
+    std::vector<std::pair<Sensor*, float>> similarityScores;
 
     for (auto sensor : sensors)
     {
@@ -218,20 +218,16 @@ std::vector<std::pair<Sensor, float>> ControllerComputation::calculateSimilarity
                     const Measurement *selectedMeasurement = findMeasurement(selectedSensorMeasurements, measurement->getTimestamp());
                     if (selectedMeasurement != nullptr)
                     {
-                        costFunctionScore += std::abs(measurement->getValue() - selectedMeasurement->getValue());
+                        costFunctionScore += std::abs(selectedMeasurement->getValue() - measurement->getValue());
                     }
                 }
             }
-            similarityScores[*sensor.second] = costFunctionScore;
+            similarityScores.push_back(std::make_pair(sensor.second, costFunctionScore));
         }
     }
-
-    std::vector<std::pair<Sensor, float>> sortedScores(similarityScores.begin(), similarityScores.end());
-
-    std::sort(sortedScores.begin(), sortedScores.end(), [](const auto &a, const auto &b)
+    std::sort(similarityScores.begin(), similarityScores.end(), [](const auto &a, const auto &b)
               { return a.second < b.second; });
-
-    return sortedScores;
+    return similarityScores;
 }
 
 const Measurement *ControllerComputation::findMeasurement(const std::list<Measurement *> &measurements, const time_t &timestamp) const
