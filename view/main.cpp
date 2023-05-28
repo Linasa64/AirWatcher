@@ -115,11 +115,20 @@ int main()
     //calculateSimilarityScores(const Database &database, const Sensor &selectedSensor, const std::string &startTime, const std::string &endTime);
     Sensor * s = d.GetSensor("Sensor1");
     std::vector<std::pair<Sensor*, float>> classement = controllerComputation.calculateSimilarityScores(d, *s, "2019-01-01 12:00:00", "2019-01-02 12:00:00");
+    cout << " ====================TESTS SCORES SIMILARITÈ CAPTEURS==================== " << endl;
     cout << "Classement : " << endl;
     for(auto it = classement.begin(); it != classement.end(); ++it)
     {
         cout << it->first->to_string() << " : " << it->second << endl;
     }
+
+    // ================TESTS PRECISE QUALITY================ //
+    // Avec durée
+    cout << " ====================TESTS QUALITÈ PRÈCISE==================== " << endl;
+    float testPreciseQualityATMO = controllerComputation.calculatePreciseAirQualityATMO(d, 44, -1, "2019-01-01 12:00:00", "2019-01-02 12:00:00");
+    float testPreciseQualityAQI = controllerComputation.calculatePreciseAirQualityAQI(d, 44, -1, "2019-01-01 12:00:00", "2019-01-02 12:00:00");
+    cout << "Qualité précise ATMO : " << testPreciseQualityATMO << endl;
+    cout << "Qualité précise AQI : " << testPreciseQualityAQI << endl;
     
     // ====================TESTS==================== //
     cout << controllerComputation.GetHistory().to_string();

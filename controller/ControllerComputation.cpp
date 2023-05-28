@@ -242,7 +242,7 @@ const Measurement *ControllerComputation::findMeasurement(const std::list<Measur
     return nullptr;
 }
 
-float ControllerComputation::calculatePreciseAirQuality(const Database &database, float centerLat, float centerLong, const std::string &startTime, const std::string &endTime)
+float ControllerComputation::calculatePreciseAirQualityATMO(const Database &database, float centerLat, float centerLong, const std::string &startTime, const std::string &endTime)
 {
     bool sensorFound = false;
     const std::map<string, Sensor *> &sensors = database.GetSensors();
@@ -252,7 +252,7 @@ float ControllerComputation::calculatePreciseAirQuality(const Database &database
         if (sensor.second->GetLatitude() == centerLat && sensor.second->GetLongitude() == centerLong)
         {
             sensorFound = true;
-            float meanValue = calculateMean(sensor.second->GetMeasurements(), startTime, endTime);
+            float meanValue = calculateMeanATMO(sensor.second->GetMeasurements(), startTime, endTime);
             return meanValue;
         }
     }
@@ -268,7 +268,7 @@ float ControllerComputation::calculatePreciseAirQuality(const Database &database
             {
                 float distance = calculateDistance(sensor->GetLatitude(), sensor->GetLongitude(), centerLat, centerLong);
                 float weight = 1.0 / distance;
-                weightedSum += weight * measurement->getValue();
+                weightedSum += weight * measurement->GetATMOIndex();
                 totalWeight += weight;
             }
         }
@@ -282,6 +282,48 @@ float ControllerComputation::calculatePreciseAirQuality(const Database &database
 
     return -1.0;
 }
+
+float ControllerComputation::calculatePreciseAirQualityAQI(const Database &database, float centerLat, float centerLong, const std::string &startTime, const std::string &endTime)
+{
+    bool sensorFound = false;
+    const std::map<string, Sensor *> &sensors = database.GetSensors();
+
+    for (auto sensor : sensors)
+    {
+        if (sensor.second->GetLatitude() == centerLat && sensor.second->GetLongitude() == centerLong)
+        {
+            sensorFound = true;
+            float meanValue = calculateMeanAQI(sensor.second->GetMeasurements(), startTime, endTime);
+            return meanValue;
+        }
+    }
+
+    if (!sensorFound)
+    {
+        std::vector<Sensor *> nearestSensors = kNearestSensors(sensors, centerLat, centerLong, startTime, endTime, 10);
+        float weightedSum = 0.0;
+        float totalWeight = 0.0;
+        for (Sensor *sensor : nearestSensors)
+        {
+            for (Measurement *measurement : sensor->GetMeasurements())
+            {
+                float distance = calculateDistance(sensor->GetLatitude(), sensor->GetLongitude(), centerLat, centerLong);
+                float weight = 1.0 / distance;
+                weightedSum += weight * measurement->GetAQIIndex();
+                totalWeight += weight;
+            }
+        }
+
+        if (totalWeight != 0.0)
+        {
+            float weightedAverage = weightedSum / totalWeight;
+            return weightedAverage;
+        }
+    }
+
+    return -1.0;
+}
+
 
 std::vector<Sensor *> ControllerComputation::kNearestSensors(const std::map<string, Sensor *> &sensors, float centerLat, float centerLong, const std::string &startTime, const std::string &endTime, int k)
 {
@@ -328,7 +370,7 @@ float ControllerComputation::calculateDistance(float lat1, float long1, float la
     return distance;
 }
 
-float ControllerComputation::calculateMean(const std::list<Measurement *> &measurements, const std::string &startTime, const std::string &endTime)
+float ControllerComputation::calculateMeanATMO(const std::list<Measurement *> &measurements, const std::string &startTime, const std::string &endTime)
 {
     int count = 0;
     float sum = 0.0;
@@ -337,7 +379,30 @@ float ControllerComputation::calculateMean(const std::list<Measurement *> &measu
     {
         if (measurement->isWithinTimeRange(startTime, endTime))
         {
-            sum += measurement->getValue();
+            sum += measurement->GetATMOIndex();
+            count++;
+        }
+    }
+
+    if (count > 0)
+    {
+        float meanValue = sum / count;
+        return meanValue;
+    }
+
+    return -1.0;
+}
+
+float ControllerComputation::calculateMeanAQI(const std::list<Measurement *> &measurements, const std::string &startTime, const std::string &endTime)
+{
+    int count = 0;
+    float sum = 0.0;
+
+    for (Measurement *measurement : measurements)
+    {
+        if (measurement->isWithinTimeRange(startTime, endTime))
+        {
+            sum += measurement->GetAQIIndex();
             count++;
         }
     }

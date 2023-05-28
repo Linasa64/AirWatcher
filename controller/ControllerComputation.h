@@ -51,13 +51,17 @@ public:
 
     std::vector<std::pair<Sensor*, float>> calculateSimilarityScores(const Database& database, const Sensor& selectedSensor, const std::string& startTime, const std::string& endTime);
     
-    float calculatePreciseAirQuality(const Database& database, float centerLat, float centerLong, const std::string& startTime, const std::string& endTime);
+    float calculatePreciseAirQualityATMO(const Database& database, float centerLat, float centerLong, const std::string& startTime, const std::string& endTime);
+
+    float calculatePreciseAirQualityAQI(const Database& database, float centerLat, float centerLong, const std::string& startTime, const std::string& endTime);
 
     std::vector<Sensor*> kNearestSensors(const std::map<string, Sensor*>& sensors, float centerLat, float centerLong, const std::string& startTime, const std::string& endTime, int k);
 
     float calculateDistance(float lat1, float long1, float lat2, float long2);
 
-    float calculateMean(const std::list<Measurement*>& measurements, const std::string& startTime, const std::string& endTime);
+    float calculateMeanATMO(const std::list<Measurement*>& measurements, const std::string& startTime, const std::string& endTime);
+    
+    float calculateMeanAQI(const std::list<Measurement*>& measurements, const std::string& startTime, const std::string& endTime);
 
     std::pair<std::vector<Sensor>, std::vector<std::vector<float>>> detectDefectSensorsAndOutliers(const Database& database, const string& startTime, const string& endTime);
 
