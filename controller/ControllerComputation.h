@@ -23,6 +23,7 @@
 #include <functional>
 #include <ctime>
 #include <shared_mutex>
+#include "IsolationForest.h"
 //------------------------------------------------------------- Constantes
 //const float EARTH_RADIUS = 6371.0;
 //------------------------------------------------------------------ Types
@@ -76,6 +77,7 @@ public:
 
     //float calculatePercentileFromDatabase(const Database& database, int percentile, const std::string& startTime, const std::string& endTime);
 
+    std::pair<std::vector<std::shared_ptr<Sensor>>, std::vector<std::vector<float>>> detectDefectSensorsAndOutliersWithIsolationForest(const Database& database, const std::string& startTime, const std::string& endTime);
 
     //------------------------------------------------- Surcharge d'opérateurs
     ControllerComputation &operator=(const ControllerComputation &unControllerComputation);

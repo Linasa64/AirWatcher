@@ -657,6 +657,72 @@ float ControllerComputation::calculatePercentileFromDatabase(const Database& dat
 }*/
 
 
+// Petite partie fun sur la detection de données erronées avec du Random Forest
+/*std::pair<std::vector<std::shared_ptr<Sensor>>, std::vector<std::vector<float>>> ControllerComputation::detectDefectSensorsAndOutliersWithIsolationForest(const Database& database, const std::string& startTime, const std::string& endTime)
+{
+    const std::map<std::string, Sensor*>& sensors = database.GetSensors();
+    std::vector<std::shared_ptr<Sensor>> defectSensors;
+    std::vector<std::vector<float>> outliers;
+
+    std::vector<float> allMeasurements;
+
+    for (const auto& sensorPair : sensors)
+    {
+        const Sensor* sensor = sensorPair.second;
+        for (const Measurement* measurement : sensor->GetMeasurements())
+        {
+            if (startTime.empty() || endTime.empty() || measurement->isWithinTimeRange(startTime, endTime))
+            {
+                allMeasurements.push_back(measurement->getValue());
+            }
+        }
+    }
+
+    if (!allMeasurements.empty())
+    {
+        // Use Isolation Forest algorithm for outlier detection
+        IsolationForest isolationForest(numTrees, maxDepth);
+        isolationForest.fit(allMeasurements);
+        std::vector<float> anomalyScores = isolationForest.getAnomalyScores(allMeasurements);
+
+        const float anomalyThreshold = ... ; // set an appropriate threshold value 
+
+        int index = 0;
+        for (const auto& sensorPair : sensors)
+        {
+            const Sensor* sensor = sensorPair.second;
+            std::vector<float> sensorOutliers;
+            bool sensorDefect = false;
+
+            for (const Measurement* measurement : sensor->GetMeasurements())
+            {
+                if (startTime.empty() || endTime.empty() || measurement->isWithinTimeRange(startTime, endTime))
+                {
+                    float value = measurement->getValue();
+
+                    if (anomalyScores[index] > anomalyThreshold)
+                    {
+                        sensorOutliers.push_back(value);
+                        sensorDefect = true;
+                    }
+
+                    index++;
+                }
+            }
+
+            if (sensorDefect)
+            {
+                defectSensors.push_back(sensorPair.second);
+                outliers.push_back(sensorOutliers);
+            }
+        }
+    }
+
+    return std::make_pair(defectSensors, outliers);
+}*/
+
+
+
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
