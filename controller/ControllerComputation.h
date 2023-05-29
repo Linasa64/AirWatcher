@@ -22,6 +22,7 @@
 #include <array>
 #include <functional>
 #include <ctime>
+#include <shared_mutex>
 //------------------------------------------------------------- Constantes
 //const float EARTH_RADIUS = 6371.0;
 //------------------------------------------------------------------ Types
@@ -63,13 +64,17 @@ public:
     
     float calculateMeanAQI(const std::list<Measurement*>& measurements, const std::string& startTime, const std::string& endTime);
 
-    std::pair<std::vector<Sensor>, std::vector<std::vector<float>>> detectDefectSensorsAndOutliers(const Database& database, const string& startTime, const string& endTime);
+    std::pair<std::vector<Sensor*>, std::vector<std::vector<float>>> detectDefectSensorsAndOutliers(const Database& database, const string& startTime, const string& endTime);
+
+    //std::pair<std::vector<std::shared_ptr<Sensor>>, std::vector<std::vector<float>>> detectDefectSensorsAndOutliers2(const Database &database, const std::string &startTime, const std::string &endTime);
 
     void calculateMeanAndStdDev(const std::vector<float>& values, float& mean, float& stdDev);
 
     std::vector<float> filterMeasurementsByTime(const std::vector<float>& measurements, const std::string& startTime, const std::string& endTime);
 
     float calculatePercentile(const std::vector<float>& values, int percentile);
+
+    //float calculatePercentileFromDatabase(const Database& database, int percentile, const std::string& startTime, const std::string& endTime);
 
 
     //------------------------------------------------- Surcharge d'opérateurs

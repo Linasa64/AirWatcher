@@ -416,14 +416,15 @@ float ControllerComputation::calculateMeanAQI(const std::list<Measurement *> &me
     return -1.0;
 }
 
-std::pair<std::vector<Sensor>, std::vector<std::vector<float>>> ControllerComputation::detectDefectSensorsAndOutliers(const Database &database, const string &startTime, const string &endTime)
+//version 2 -> ne pas effacer, l'autre version est encore en tests
+std::pair<std::vector<Sensor*>, std::vector<std::vector<float>>> ControllerComputation::detectDefectSensorsAndOutliers(const Database &database, const string &startTime, const string &endTime)
 {
     const std::map<string, Sensor *> &sensors = database.GetSensors();
-    std::vector<Sensor> defectSensors;
+    std::vector<Sensor*> defectSensors;
     std::vector<std::vector<float>> outliers;
     std::vector<float> allMeasurements;
 
-    for (auto sensor : sensors)
+    for (auto &sensor : sensors)
     {
         for (Measurement *measurement : sensor.second->GetMeasurements())
         {
@@ -436,7 +437,7 @@ std::pair<std::vector<Sensor>, std::vector<std::vector<float>>> ControllerComput
             }
             else
             {
-                allMeasurements.push_back(measurement->getValue());
+                //allMeasurements.push_back(measurement->getValue());
             }
         }
     }
@@ -446,10 +447,10 @@ std::pair<std::vector<Sensor>, std::vector<std::vector<float>>> ControllerComput
         float mean, stdDev;
         calculateMeanAndStdDev(allMeasurements, mean, stdDev);
 
-        const float lowerThreshold = calculatePercentile(allMeasurements, 5);
-        const float upperThreshold = calculatePercentile(allMeasurements, 95);
+        const float lowerThreshold = calculatePercentile(allMeasurements, 1);
+        const float upperThreshold = calculatePercentile(allMeasurements, 99);
 
-        for (auto sensor : sensors)
+        for (auto &sensor : sensors)
         {
             std::vector<float> filteredValues;
             std::vector<float> sensorOutliers;
@@ -472,13 +473,53 @@ std::pair<std::vector<Sensor>, std::vector<std::vector<float>>> ControllerComput
             }
             if (sensorDefect)
             {
-                defectSensors.push_back(*sensor.second);
+                defectSensors.push_back(sensor.second);
                 outliers.push_back(sensorOutliers);
             }
         }
     }
     return std::make_pair(defectSensors, outliers);
 }
+/*
+//Pas encore fonctionnel mais pas necessaire pour le projet 
+std::pair<std::vector<std::shared_ptr<Sensor>>, std::vector<std::vector<float>>> ControllerComputation::detectDefectSensorsAndOutliers2(const Database &database, const std::string &startTime, const std::string &endTime)
+{
+    const std::map<std::string, std::shared_ptr<Sensor>>& sensors = database.GetSensors();
+    std::vector<std::shared_ptr<Sensor>> defectSensors;
+    std::vector<std::vector<float>> outliers;
+
+    const float lowerThreshold = calculatePercentileFromDatabase(database, 2, startTime, endTime);
+    const float upperThreshold = calculatePercentileFromDatabase(database, 98, startTime, endTime);
+
+    for (const auto &sensorPair : sensors)
+    {
+        const std::shared_ptr<Sensor>& sensor = sensorPair.second;
+        std::vector<float> outlierValues;
+        bool sensorDefect = false;
+
+        for (Measurement *measurement : sensor->GetMeasurements())
+        {
+            if (startTime.empty() || endTime.empty() || measurement->isWithinTimeRange(startTime, endTime))
+            {
+                float value = measurement->getValue();
+                if (value < lowerThreshold || value > upperThreshold)
+                {
+                    outlierValues.push_back(value);
+                    sensorDefect = true;
+                }
+            }
+        }
+
+        if (sensorDefect)
+        {
+            defectSensors.push_back(sensor);
+            outliers.push_back(outlierValues);
+        }
+    }
+
+    return std::make_pair(defectSensors, outliers);
+}*/
+
 
 /*
 std::pair<std::vector<Sensor>, std::vector<std::vector<float>>> ControllerComputation::detectDefectSensorsAndOutliers(const Database& database, const std::optional<std::string>& startTime, const std::optional<std::string>& endTime)
@@ -585,6 +626,37 @@ float ControllerComputation::calculatePercentile(const std::vector<float> &value
         return sortedValues[index] + fractionalPart * (sortedValues[index + 1] - sortedValues[index]) / 100;
     }
 }
+
+/*
+float ControllerComputation::calculatePercentileFromDatabase(const Database& database, int percentile, const std::string& startTime, const std::string& endTime)
+{
+    std::vector<float> allMeasurements;
+
+    for (const auto& sensorPair : database.GetSensors())
+    {
+        const Sensor* sensor = sensorPair.second;
+        for (const Measurement* measurement : sensor->GetMeasurements())
+        {
+            if (startTime.empty() || endTime.empty() || measurement->isWithinTimeRange(startTime, endTime))
+            {
+                allMeasurements.push_back(measurement->getValue());
+            }
+        }
+    }
+
+    if (allMeasurements.empty())
+    {
+        return 0.0f; 
+    }
+
+    std::sort(allMeasurements.begin(), allMeasurements.end());
+
+    int index = (percentile * (allMeasurements.size() - 1)) / 100;
+
+    return allMeasurements[index];
+}*/
+
+
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées

@@ -129,6 +129,25 @@ int main()
     float testPreciseQualityAQI = controllerComputation.calculatePreciseAirQualityAQI(d, 44, -1, "2019-01-01 12:00:00", "2019-01-02 12:00:00");
     cout << "Qualité précise ATMO : " << testPreciseQualityATMO << endl;
     cout << "Qualité précise AQI : " << testPreciseQualityAQI << endl;
+
+    // ================TESTS DEFECT SENSORS================ //
+    // Avec durée
+    cout << " ====================TESTS CAPTEURS DÉFECTUEUX==================== " << endl;
+    std::pair<std::vector<Sensor*>, std::vector<std::vector<float>>> testDefectSensors2 = controllerComputation.detectDefectSensorsAndOutliers(d, "2019-01-01 12:00:00", "2019-01-02 12:00:00");
+    cout << "Capteurs défectueux : " << endl;
+    for(auto it = testDefectSensors2.first.begin(); it != testDefectSensors2.first.end(); ++it)
+    {
+        cout << (*it)->to_string() << endl;
+    }
+    cout << "Valeurs aberrantes : " << endl;
+    for(auto it = testDefectSensors2.second.begin(); it != testDefectSensors2.second.end(); ++it)
+    {
+        for(auto it2 = it->begin(); it2 != it->end(); ++it2)
+        {
+            cout << *it2 << " ";
+        }
+        cout << endl;
+    }
     
     // ====================TESTS==================== //
     cout << controllerComputation.GetHistory().to_string();
