@@ -52,9 +52,9 @@ public:
 
     std::vector<std::pair<Sensor*, float>> calculateSimilarityScores(const Database& database, const Sensor& selectedSensor, const std::string& startTime, const std::string& endTime);
     
-    float calculatePreciseAirQualityATMO(const Database& database, float centerLat, float centerLong, const std::string& startTime, const std::string& endTime);
+    float calculatePreciseAirQualityATMO(const Database& database, float centerLat, float centerLong, const std::string& startTime, const string &optionalEndTime = "");
 
-    float calculatePreciseAirQualityAQI(const Database& database, float centerLat, float centerLong, const std::string& startTime, const std::string& endTime);
+    float calculatePreciseAirQualityAQI(const Database& database, float centerLat, float centerLong, const std::string& startTime, const string &optionalEndTime = "");
 
     std::vector<Sensor*> kNearestSensors(const std::map<string, Sensor*>& sensors, float centerLat, float centerLong, const std::string& startTime, const std::string& endTime, int k);
 

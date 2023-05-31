@@ -122,7 +122,9 @@
     "variant": "cpp",
     "shared_mutex": "cpp",
     "stop_token": "cpp",
-    "thread": "cpp"
+    "thread": "cpp",
+    "regex": "cpp",
+    "future": "cpp"
   },
   "C_Cpp.errorSquiggles": "enabled",
   "makefile.launchConfigurations": [

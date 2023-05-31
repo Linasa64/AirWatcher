@@ -29,25 +29,13 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-string Measurement::getAssociatedSensorId() const
-{
-    return associatedSensorId;
-}
+string Measurement::getAssociatedSensorId() const { return associatedSensorId; }
 
-time_t Measurement::getTimestamp() const
-{
-    return timestamp;
-}
+time_t Measurement::getTimestamp() const { return timestamp; }
 
-float Measurement::getValue() const
-{
-    return value;
-}
+float Measurement::getValue() const { return value; }
 
-Attributes *Measurement::getAttributes() const
-{
-    return attributes;
-}
+Attributes *Measurement::getAttributes() const { return attributes; }
 
 float Measurement::GetATMOIndex() const
 {

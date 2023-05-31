@@ -29,10 +29,7 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-string GovernmentAgency::GetId() const
-{
-    return "Government";
-}
+string GovernmentAgency::GetId() const { return "Government"; }
 
 //------------------------------------------------- Surcharge d'opérateurs
 /* GovernmentAgency & GovernmentAgency::operator = ( const GovernmentAgency & unGovernmentAgency )

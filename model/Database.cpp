@@ -127,32 +127,33 @@ Database::~Database()
 
 string Database::to_string()
 {
-    cout << "===========Affichage liste Sensor===========" << endl;
-    cout << "TAILLE MAP " << sensors.size() << endl;
+    stringstream strs;
+    strs << "===========Affichage liste Sensor===========" << endl;
+    strs << "TAILLE MAP " << sensors.size() << endl;
     for (const auto &kv : sensors)
     {
         string key = kv.first; // clé
-        cout << kv.first << " / " << sensors[key]->to_string();
+        strs << kv.first << " / " << sensors[key]->to_string();
     }
-    cout << "TEST 10 PREMIERES MESURES DE Sensor0 : " << endl;
+    strs << "TEST 10 PREMIERES MESURES DE Sensor0 : " << endl;
     sensors["Sensor0"]->displayMeasurements();
 
-    cout << "===========Affichage liste Attributes===========" << endl;
+    strs << "===========Affichage liste Attributes===========" << endl;
     for (const auto &kv : attributes)
     {
         string key = kv.first; // clé
-        cout << kv.first << " / " << attributes[key]->to_string();
+        strs << kv.first << " / " << attributes[key]->to_string();
     }
 
-    cout << "===========Affichage liste User===========" << endl;
-    cout << "TAILLE MAP : " << users.size() << endl;
+    strs << "===========Affichage liste User===========" << endl;
+    strs << "TAILLE MAP : " << users.size() << endl;
     for (const auto &kv : users)
     {
         string key = kv.first; // clé
-        cout << kv.first << " / " << users[key]->to_string();
+        strs << kv.first << " / " << users[key]->to_string();
     }
 
-    return "";
+    return strs.str();
 }
 
 //------------------------------------------------------------------ PRIVE

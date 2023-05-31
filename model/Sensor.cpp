@@ -160,10 +160,7 @@ void Sensor::displayMeasurements()
     }
 }
 
-float degToRad(float degrees) 
-{
-    return degrees * M_PI / 180.0;
-}
+float degToRad(float degrees) { return degrees * M_PI / 180.0; }
 
 
 //------------------------------------------------------------------ PRIVE

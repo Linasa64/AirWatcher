@@ -34,10 +34,11 @@ using namespace std;
 //
 {
 } //----- Fin de operator = */
-ostream &operator<<(ostream &out, const User &u)
-{
-    return out;
-}
+string User::GetLogin() const { return login; }
+
+string User::GetPassword() const { return password; }
+
+ostream &operator<<(ostream &out, const User &u) { return out; }
 
 
 User & User::operator=(const User &unUser){
@@ -90,16 +91,6 @@ string User::to_string() const
     stringstream strs;
     strs << "User login: " << login << ", password: " << password << endl;
     return strs.str();
-}
-
-string User::GetLogin() const
-{
-    return login;
-}
-
-string User::GetPassword() const
-{
-    return password;
 }
 
 //------------------------------------------------------------------ PRIVE

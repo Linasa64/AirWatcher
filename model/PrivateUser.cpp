@@ -29,20 +29,11 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-string PrivateUser::GetId() const
-{
-    return privateUserId;
-}
+string PrivateUser::GetId() const { return privateUserId; }
 
-int PrivateUser::GetReputationPoints() const
-{
-    return reputationPoints;
-}
+int PrivateUser::GetReputationPoints() const { return reputationPoints; }
 
-list<Sensor *> PrivateUser::GetSensors() const
-{
-    return sensors;
-}
+list<Sensor *> PrivateUser::GetSensors() const { return sensors; }
 
 //------------------------------------------------- Surcharge d'opérateurs
 /* PrivateUser & PrivateUser::operator = ( const PrivateUser & unPrivateUser )
@@ -111,10 +102,7 @@ string PrivateUser::to_string() const
     return strs.str();
 }
 
-void PrivateUser::AddSensor(Sensor *sensor)
-{
-    sensors.push_back(sensor);
-}
+void PrivateUser::AddSensor(Sensor *sensor) { sensors.push_back(sensor); }
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
