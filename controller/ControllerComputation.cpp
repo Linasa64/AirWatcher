@@ -516,7 +516,7 @@ pair<vector<Sensor *>, vector<vector<float>>> ControllerComputation::detectDefec
                     {
                         float value = measurement->getValue();
 
-                        if (value < lowerThreshold || value > upperThreshold)
+                        if ((value < lowerThreshold || value > upperThreshold) && (value < mean - 4 * stdDev || value > mean + 4 * stdDev))
                         {
                             sensorOutliers.push_back(value);
                             sensorDefect = true;

@@ -28,7 +28,7 @@
 
 using namespace std;
 
-int main()
+int main2()
 {
     ControllerData controllerData;
     ControllerComputation controllerComputation;
