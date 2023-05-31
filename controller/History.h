@@ -13,6 +13,7 @@
 //--------------------------------------------------- Interfaces utilisées
 #include <map>
 #include <list>
+#include <sstream>
 using namespace std;
 //------------------------------------------------------------- Constantes
 
@@ -38,6 +39,9 @@ public:
     map<int, list<float> > GetQueryDurationsHistory();
 
     void Push_Back(int key, float duration);
+
+     float computeMean(int algoId);
+
 
     //------------------------------------------------- Surcharge d'opérateurs
     History &operator=(const History &unHistory);

@@ -101,7 +101,7 @@ float ControllerComputation::calculateMeanAirQualityATMO(const Database &databas
 
         // We compute the difference final time - initial time and we convert it into ms
         timeDiff = (timeEnd - timeStart) / (CLOCKS_PER_SEC / 1000);
-        cout << "Temps exécution : " << timeDiff << "ms" << endl;
+        cout << "Temps exécution mean ATMO : " << timeDiff << "ms" << endl;
         history.Push_Back(1, timeDiff);
         return 0.0;
     }
@@ -112,7 +112,7 @@ float ControllerComputation::calculateMeanAirQualityATMO(const Database &databas
 
         // We compute the difference final time - initial time and we convert it into ms
         timeDiff = (timeEnd - timeStart) / (CLOCKS_PER_SEC / 1000);
-        cout << "Temps exécution : " << timeDiff << "ms" << endl;
+        cout << "Temps exécution mean ATMO : " << timeDiff << "ms" << endl;
         history.Push_Back(1, timeDiff);
         return airQuality / static_cast<float>(count);
     }
@@ -156,7 +156,7 @@ float ControllerComputation::calculateMeanAirQualityAQI(const Database &database
 
         // We compute the difference final time - initial time and we convert it into ms
         timeDiff = (timeEnd - timeStart) / (CLOCKS_PER_SEC / 1000);
-        cout << "Temps exécution : " << timeDiff << "ms" << endl;
+        cout << "Temps exécution mean AQI : " << timeDiff << "ms" << endl;
         history.Push_Back(1, timeDiff);
         return 0.0;
     }
@@ -167,7 +167,7 @@ float ControllerComputation::calculateMeanAirQualityAQI(const Database &database
 
         // We compute the difference final time - initial time and we convert it into ms
         timeDiff = (timeEnd - timeStart) / (CLOCKS_PER_SEC / 1000);
-        cout << "Temps exécution : " << timeDiff << "ms" << endl;
+        cout << "Temps exécution : mean AQI " << timeDiff << "ms" << endl;
         history.Push_Back(1, timeDiff);
         return airQuality / static_cast<float>(count);
     }
@@ -198,8 +198,17 @@ float ControllerComputation::calculateMeanAirQualityAQI(const Database &database
     return similarityScores;
 }*/
 
-vector<pair<Sensor *, float>> ControllerComputation::calculateSimilarityScores(const Database &database, const Sensor &selectedSensor, const string &startTime, const string &endTime)
+vector<pair<Sensor *, float>> ControllerComputation::calculateSimilarityScores(const Database &database, const Sensor &selectedSensor, const string &startTime, const string &optionalEndTime)
 {
+    float timeStart, timeEnd, timeDiff;
+
+    // We store the initial time
+    timeStart = clock();
+
+    string endTime = optionalEndTime; // get rid of the const (necessary for a default value of the string)
+    if (endTime == "")
+        endTime = startTime; // if the endTime was not declared, it takes the same value as startTime
+
     map<string, Sensor *> sensors = database.GetSensors();
     vector<pair<Sensor *, float>> similarityScores;
 
@@ -227,6 +236,15 @@ vector<pair<Sensor *, float>> ControllerComputation::calculateSimilarityScores(c
     }
     sort(similarityScores.begin(), similarityScores.end(), [](const auto &a, const auto &b)
          { return a.second < b.second; });
+
+    // We store the final time
+    timeEnd = clock();
+
+    // We compute the difference final time - initial time and we convert it into ms
+    timeDiff = (timeEnd - timeStart) / (CLOCKS_PER_SEC / 1000);
+    cout << "Temps exécution precise similarities : " << timeDiff << "ms" << endl;
+    history.Push_Back(3, timeDiff);
+
     return similarityScores;
 }
 
@@ -678,6 +696,8 @@ float ControllerComputation::calculatePercentile(const vector<float> &values, in
         return sortedValues[index] + fractionalPart * (sortedValues[index + 1] - sortedValues[index]) / 100;
     }
 }
+
+float ControllerComputation::computeAlgoPerformanceMean(int idAlgo) { return history.computeMean(idAlgo); }
 
 /*
 float ControllerComputation::calculatePercentileFromDatabase(const Database& database, int percentile, const string& startTime, const string& endTime)

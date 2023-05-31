@@ -50,31 +50,31 @@ public:
 
     float calculateMeanAirQualityAQI(const Database &sensorMeasurements, float radius, float centerLat, float centerLong, const string &startTime, const string &optionalEndTime = "");
 
-    std::vector<std::pair<Sensor*, float>> calculateSimilarityScores(const Database& database, const Sensor& selectedSensor, const std::string& startTime, const std::string& endTime);
+    vector<pair<Sensor*, float>> calculateSimilarityScores(const Database& database, const Sensor& selectedSensor, const string& startTime, const string &optionalEndTime = "");
     
-    float calculatePreciseAirQualityATMO(const Database& database, float centerLat, float centerLong, const std::string& startTime, const string &optionalEndTime = "");
+    float calculatePreciseAirQualityATMO(const Database& database, float centerLat, float centerLong, const string& startTime, const string &optionalEndTime = "");
 
-    float calculatePreciseAirQualityAQI(const Database& database, float centerLat, float centerLong, const std::string& startTime, const string &optionalEndTime = "");
+    float calculatePreciseAirQualityAQI(const Database& database, float centerLat, float centerLong, const string& startTime, const string &optionalEndTime = "");
 
-    std::vector<Sensor*> kNearestSensors(const std::map<string, Sensor*>& sensors, float centerLat, float centerLong, const std::string& startTime, const std::string& endTime, int k);
+    vector<Sensor*> kNearestSensors(const map<string, Sensor*>& sensors, float centerLat, float centerLong, const string& startTime, const string& endTime, int k);
 
     float calculateDistance(float lat1, float long1, float lat2, float long2);
 
-    float calculateMeanATMO(const std::list<Measurement*>& measurements, const std::string& startTime, const std::string& endTime);
+    float calculateMeanATMO(const list<Measurement*>& measurements, const string& startTime, const string& endTime);
     
-    float calculateMeanAQI(const std::list<Measurement*>& measurements, const std::string& startTime, const std::string& endTime);
+    float calculateMeanAQI(const list<Measurement*>& measurements, const string& startTime, const string& endTime);
 
-    std::pair<std::vector<Sensor*>, std::vector<std::vector<float>>> detectDefectSensorsAndOutliers(const Database& database, const string& startTime, const string& endTime);
+    pair<vector<Sensor*>, vector<vector<float>>> detectDefectSensorsAndOutliers(const Database& database, const string& startTime, const string& endTime);
 
-    //std::pair<std::vector<std::shared_ptr<Sensor>>, std::vector<std::vector<float>>> detectDefectSensorsAndOutliers2(const Database &database, const std::string &startTime, const std::string &endTime);
+    //pair<vector<shared_ptr<Sensor>>, vector<vector<float>>> detectDefectSensorsAndOutliers2(const Database &database, const string &startTime, const string &endTime);
 
-    void calculateMeanAndStdDev(const std::vector<float>& values, float& mean, float& stdDev);
+    void calculateMeanAndStdDev(const vector<float>& values, float& mean, float& stdDev);
 
-    std::vector<float> filterMeasurementsByTime(const std::vector<float>& measurements, const std::string& startTime, const std::string& endTime);
+    float calculatePercentile(const vector<float>& values, int percentile);
 
-    float calculatePercentile(const std::vector<float>& values, int percentile);
+    float computeAlgoPerformanceMean(int idAlgo);
 
-    //float calculatePercentileFromDatabase(const Database& database, int percentile, const std::string& startTime, const std::string& endTime);
+    //float calculatePercentileFromDatabase(const Database& database, int percentile, const string& startTime, const string& endTime);
 
 
     //------------------------------------------------- Surcharge d'opérateurs
@@ -116,7 +116,7 @@ protected:
     //float degToRad(float degrees);
     History history;
 
-    const Measurement* findMeasurement(const std::list<Measurement*>& measurements, const time_t& timestamp) const;
+    const Measurement* findMeasurement(const list<Measurement*>& measurements, const time_t& timestamp) const;
     //----------------------------------------------------- Attributs protégés
 };
 

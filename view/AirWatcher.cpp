@@ -199,7 +199,7 @@ fin:
     cout << "Indice ATMO 1 : " << testATMO1 << endl;
 
     // Avec instant
-    float testATMO2 = controllerComputation.calculateMeanAirQualityATMO(d, 10, 44, -1, "2019-01-01 12:00:00");
+    float testATMO2 = controllerComputation.calculateMeanAirQualityATMO(d, 0.1, 44.2, -1.2, "2019-01-01 12:00:00");
     cout << "Indice ATMO 2 : " << testATMO2 << endl;
 
     // ================INDICES AQI================ //
@@ -213,9 +213,9 @@ fin:
 
     // ================TEST SIMILARITY SCORES================ //
     // Avec durée
-    // calculateSimilarityScores(const Database &database, const Sensor &selectedSensor, const std::string &startTime, const std::string &endTime);
+    // calculateSimilarityScores(const Database &database, const Sensor &selectedSensor, const string &startTime, const string &endTime);
     Sensor *s = d.GetSensor("Sensor1");
-    std::vector<std::pair<Sensor *, float>> classement = controllerComputation.calculateSimilarityScores(d, *s, "2019-01-01 12:00:00", "2019-01-02 12:00:00");
+    vector<pair<Sensor *, float>> classement = controllerComputation.calculateSimilarityScores(d, *s, "2019-01-01 12:00:00", "2019-01-02 12:00:00");
     cout << " ====================TESTS SCORES SIMILARITÈ CAPTEURS==================== " << endl;
     cout << "Classement : " << endl;
     for (auto it = classement.begin(); it != classement.end(); ++it)
@@ -226,15 +226,15 @@ fin:
     // ================TESTS PRECISE QUALITY================ //
     // Avec durée
     cout << " ====================TESTS QUALITÈ PRÈCISE==================== " << endl;
-    float testPreciseQualityATMO = controllerComputation.calculatePreciseAirQualityATMO(d, 44, -1, "2019-01-01 12:00:00", "2019-01-02 12:00:00");
-    float testPreciseQualityAQI = controllerComputation.calculatePreciseAirQualityAQI(d, 44, -1, "2019-01-01 12:00:00", "2019-01-02 12:00:00");
+    float testPreciseQualityATMO = controllerComputation.calculatePreciseAirQualityATMO(d, 44, -1, "2019-01-01 12:00:00");
+    float testPreciseQualityAQI = controllerComputation.calculatePreciseAirQualityAQI(d, 44, -1, "2019-01-01 12:00:00");
     cout << "Qualité précise ATMO : " << testPreciseQualityATMO << endl;
     cout << "Qualité précise AQI : " << testPreciseQualityAQI << endl;
 
     // ================TESTS DEFECT SENSORS================ //
     // Avec durée
     cout << " ====================TESTS CAPTEURS DÉFECTUEUX==================== " << endl;
-    std::pair<std::vector<Sensor *>, std::vector<std::vector<float>>> testDefectSensors2 = controllerComputation.detectDefectSensorsAndOutliers(d, "2019-01-01 12:00:00", "2019-01-02 12:00:00");
+    pair<vector<Sensor *>, vector<vector<float>>> testDefectSensors2 = controllerComputation.detectDefectSensorsAndOutliers(d, "2019-01-01 12:00:00", "2019-01-02 12:00:00");
     cout << "Capteurs défectueux : " << endl;
     for (auto it = testDefectSensors2.first.begin(); it != testDefectSensors2.first.end(); ++it)
     {
@@ -251,7 +251,13 @@ fin:
     }
 
     // ====================TESTS==================== //
-    cout << controllerComputation.GetHistory().to_string();
+    cout << controllerComputation.GetHistory().to_string() << endl;
+    cout << "Moyenne algo 1 : " << controllerComputation.computeAlgoPerformanceMean(1) << endl;
+    cout << "Moyenne algo 2 : " << controllerComputation.computeAlgoPerformanceMean(2) << endl;
+    cout << "Moyenne algo 3 : " << controllerComputation.computeAlgoPerformanceMean(3) << endl;
+    cout << "Moyenne algo 4 : " << controllerComputation.computeAlgoPerformanceMean(4) << endl;
+
+    cout << "Test distance : " << controllerComputation.calculateDistance(45.77849365407452, 4.871326879873561, 45.778733098569106, 4.91003651992487) << endl;
 
     return 0;
 }
