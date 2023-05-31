@@ -58,6 +58,9 @@ map<string, User *> Database::GetUsers() const
     return users;
 }
 
+map<string, Attributes *> Database::GetAttributes() const {
+    return attributes;
+}
 
 //------------------------------------------------- Surcharge d'opérateurs
 /* Database & Database::operator = ( const Database & unDatabase )

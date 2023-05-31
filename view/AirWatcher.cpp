@@ -259,5 +259,12 @@ fin:
 
     cout << "Test distance : " << controllerComputation.calculateDistance(45.77849365407452, 4.871326879873561, 45.778733098569106, 4.91003651992487) << endl;
 
+    ControllerData controllerData2;
+
+    Database d2 = controllerData2.retrieveData("./dataset/sensors.csv", "./dataset/measurements.csv", "./dataset/attributes.csv", "./dataset/providers.csv", "./dataset/cleaners.csv", "./dataset/users.csv");
+
+    string res = d2.GetAttributes()["O3"]->to_string();
+    cout << res << endl;
+
     return 0;
 }

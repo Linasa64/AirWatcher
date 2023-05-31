@@ -47,6 +47,8 @@ public:
     map<string, User*> GetUsers() const;
 
     map<string, Sensor*> GetSensors() const;
+
+    map<string, Attributes *> GetAttributes() const;
     
     Sensor* GetSensor(string id) const;
 
