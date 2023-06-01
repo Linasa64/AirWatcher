@@ -85,10 +85,10 @@ int main2()
         };
 
         for (int i = 0 ; i < 3 ; i++) {
-            cout << "User " << i << ": " << user[i]->to_string();
+            cout << "User " << i << ": " << user[i]->ToString();
         } */
 
-    // cout << d.to_string();
+    // cout << d.ToString();
 
     // =================================TESTS================================= //
 
@@ -119,7 +119,7 @@ int main2()
     cout << "Classement : " << endl;
     for(auto it = classement.begin(); it != classement.end(); ++it)
     {
-        cout << it->first->to_string() << " : " << it->second << endl;
+        cout << it->first->ToString() << " : " << it->second << endl;
     }
 
     // ================TESTS PRECISE QUALITY================ //
@@ -137,7 +137,7 @@ int main2()
     cout << "Capteurs défectueux : " << endl;
     for(auto it = testDefectSensors2.first.begin(); it != testDefectSensors2.first.end(); ++it)
     {
-        cout << (*it)->to_string() << endl;
+        cout << (*it)->ToString() << endl;
     }
     cout << "Valeurs aberrantes : " << endl;
     for(auto it = testDefectSensors2.second.begin(); it != testDefectSensors2.second.end(); ++it)
@@ -150,7 +150,7 @@ int main2()
     }
     
     // ====================TESTS==================== //
-    cout << controllerComputation.GetHistory().to_string();
+    cout << controllerComputation.GetHistory().ToString();
 
     return 0;
 }
