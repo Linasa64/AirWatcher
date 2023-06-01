@@ -1,9 +1,9 @@
 /*************************************************************************
                            ControllerComputation  -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : 10/05/2023
+    copyright            : (C) 2023 par Dominique, Lina, Mark, Raphaël et Rémy
+    e-mail               : @insa-lyon.fr
 *************************************************************************/
 
 //---------- Interface de la classe <ControllerComputation> (fichier ControllerComputation.h) ----------------
