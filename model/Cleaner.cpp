@@ -94,7 +94,7 @@ Cleaner::~Cleaner()
 #endif
 } //----- Fin de ~Cleaner
 
-string Cleaner::to_string() const
+string Cleaner::ToString() const
 {
     stringstream strs;
     strs << "Cleaner ID: " << cleanerId << ", Latitude: " << latitude << ", Longitude: " << longitude

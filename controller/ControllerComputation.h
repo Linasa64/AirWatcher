@@ -64,7 +64,7 @@ public:
     
     float calculateMeanAQI(const list<Measurement*>& measurements, const string& startTime, const string& endTime);
 
-    pair<vector<Sensor*>, vector<vector<float>>> detectDefectSensorsAndOutliers(const Database& database, const string& startTime, const string& endTime);
+    pair<vector<Sensor*>, vector<vector<float>>> detectDefectSensorsAndOutliers(const Database& database, const string& startTime, const string& optionalEndTime = "");
 
     //pair<vector<shared_ptr<Sensor>>, vector<vector<float>>> detectDefectSensorsAndOutliers2(const Database &database, const string &startTime, const string &endTime);
 

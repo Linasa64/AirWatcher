@@ -113,7 +113,7 @@ Provider::~Provider()
     cleaners.clear();
 } //----- Fin de ~Provider
 
-string Provider::to_string() const
+string Provider::ToString() const
 {
     stringstream strs;
     strs << "Provider ID: " << providerId << ", Number of Cleaners: " << cleaners.size() << endl

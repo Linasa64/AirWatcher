@@ -75,7 +75,7 @@ GovernmentAgency::~GovernmentAgency()
 #endif
 } //----- Fin de ~GovernmentAgency
 
-string GovernmentAgency::to_string() const
+string GovernmentAgency::ToString() const
 {
     stringstream strs;
     strs << "GovernmentAgency" << endl;

@@ -34,7 +34,7 @@ public:
     // Permet de renvoyer l'ID d'un User sous forme de string
     virtual string GetId() const = 0;
 
-    virtual string to_string() const = 0;
+    virtual string ToString() const = 0;
 
     friend ostream &operator<<(ostream &out, const User &u);
 

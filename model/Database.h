@@ -79,7 +79,7 @@ public:
     // Contrat :
     //
 
-    string to_string();
+    string ToString();
 
     //------------------------------------------------------------------ PRIVE
 

@@ -88,7 +88,7 @@ public:
     // Contrat :
     //
 
-    string to_string() const;
+    string ToString() const;
 
 
     //------------------------------------------------------------------ PRIVE

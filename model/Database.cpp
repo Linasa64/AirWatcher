@@ -104,7 +104,7 @@ Database::~Database()
     for (const auto &kv : sensors)
     {
         string key = kv.first; // clé
-        // cout << "SUPPRESSION DE " << kv.first << " / " << sensorsMap[key]->to_string();
+        // cout << "SUPPRESSION DE " << kv.first << " / " << sensorsMap[key]->ToString();
 
         delete kv.second;
     }
@@ -113,7 +113,7 @@ Database::~Database()
     for (const auto &kv : attributes)
     {
         string key = kv.first; // clé
-        // cout << "SUPPRESSION DE " << kv.first << " / " << attributesMap[key]->to_string();
+        // cout << "SUPPRESSION DE " << kv.first << " / " << attributesMap[key]->ToString();
 
         delete kv.second;
     }
@@ -122,13 +122,13 @@ Database::~Database()
     for (const auto &kv : users)
     {
         string key = kv.first; // clé
-        // cout << "SUPPRESSION DE " << kv.first << " / " << users[key]->to_string();
+        // cout << "SUPPRESSION DE " << kv.first << " / " << users[key]->ToString();
 
         delete kv.second;
     }
 } //----- Fin de ~Database
 
-string Database::to_string()
+string Database::ToString()
 {
     stringstream strs;
     strs << "===========Affichage liste Sensor===========" << endl;
@@ -136,7 +136,7 @@ string Database::to_string()
     for (const auto &kv : sensors)
     {
         string key = kv.first; // clé
-        strs << kv.first << " / " << sensors[key]->to_string();
+        strs << kv.first << " / " << sensors[key]->ToString();
     }
     strs << "TEST 10 PREMIERES MESURES DE Sensor0 : " << endl;
     sensors["Sensor0"]->displayMeasurements();
@@ -145,7 +145,7 @@ string Database::to_string()
     for (const auto &kv : attributes)
     {
         string key = kv.first; // clé
-        strs << kv.first << " / " << attributes[key]->to_string();
+        strs << kv.first << " / " << attributes[key]->ToString();
     }
 
     strs << "===========Affichage liste User===========" << endl;
@@ -153,7 +153,7 @@ string Database::to_string()
     for (const auto &kv : users)
     {
         string key = kv.first; // clé
-        strs << kv.first << " / " << users[key]->to_string();
+        strs << kv.first << " / " << users[key]->ToString();
     }
 
     return strs.str();

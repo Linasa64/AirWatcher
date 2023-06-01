@@ -74,7 +74,7 @@ public:
 
     list <Sensor *> GetSensors() const;
 
-    string to_string() const;
+    string ToString() const;
 
     void AddSensor(Sensor *sensor);
 

@@ -29,13 +29,14 @@ float History::computeMean(int algoId)
     float sum = 0;
     int size = queryDurationsHistory[algoId].size();
 
-    if(size == 0) return -1.0;
+    if (size == 0)
+        return -1.0;
 
     for (const auto &duration : queryDurationsHistory[algoId])
     {
         sum += duration;
     }
-    return (sum/size);
+    return (sum / size);
 }
 //----------------------------------------------------- Méthodes publiques
 // type History::Méthode ( liste des paramètres )
@@ -79,18 +80,51 @@ History::~History()
 #endif
 } //----- Fin de ~History
 
-string History::to_string()
+string History::AlgoToString(int idAlgo)
 {
     stringstream strs;
-    strs << "===========Affichage map History===========" << endl;
-    strs << "TAILLE MAP " << queryDurationsHistory.size() << endl;
+    if (queryDurationsHistory[idAlgo].size() == 0)
+    {
+        strs << "Aucune requête valide utilisant l'algorithme " << idAlgo << " n'a été effecutée.\n" << endl;
+        return strs.str();
+    }
+    strs << "Historique des performances de l'algorithme " << idAlgo << " :" << endl;
+    for (const auto &duration : queryDurationsHistory[idAlgo])
+    {
+        strs << "   • " << duration << " ms" << endl;
+    }
+    strs << "   -> Moyenne : " << computeMean(idAlgo) << " ms" << endl
+         << endl;
+    return strs.str();
+}
+
+string History::ToString()
+{
+    stringstream strs;
+    if (queryDurationsHistory.empty())
+    {
+        strs << "Aucune requête valide n'a encore été effecutée.\n" << endl;
+        return strs.str();
+    }
+    /*strs << "===========Affichage map History===========" << endl;
+    strs << "TAILLE MAP " << queryDurationsHistory.size() << endl;*/
     for (const auto &kv : queryDurationsHistory)
     {
         int key = kv.first; // clé
-        strs << "Liste pour l'algorithme " << key << " : " << endl;
-        for (const auto &duration : queryDurationsHistory[key])
+        if (queryDurationsHistory[key].size() == 0)
         {
-            strs << "\t- " << kv.first << " / " << duration << endl;
+            strs << "Aucune requête valide utilisant l'algorithme " << key << " n'a été effecutée.\n" << endl;
+            return strs.str();
+        }
+        else
+        {
+            strs << "Historique des performances de l'algorithme " << key << " : " << endl;
+            for (const auto &duration : queryDurationsHistory[key])
+            {
+                strs << "   • " << kv.first << " / " << duration << " ms" << endl;
+            }
+            strs << "   -> Moyenne : " << computeMean(key) << " ms" << endl
+                 << endl;
         }
     }
     return strs.str();

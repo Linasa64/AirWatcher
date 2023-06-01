@@ -208,7 +208,7 @@ Measurement::~Measurement()
 #endif
 } //----- Fin de ~Measurement
 
-string Measurement::to_string() const
+string Measurement::ToString() const
 {
     stringstream strs;
     strs << "Timestamp: " << timestamp << ", Value: " << value << endl;

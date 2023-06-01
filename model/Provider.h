@@ -80,7 +80,7 @@ public:
 
     list<Cleaner *> GetCleaners();
 
-    string to_string() const;
+    string ToString() const;
 
     void AddCleaner(Cleaner *cleaner);
 

@@ -84,7 +84,7 @@ public:
     // Contrat :
     //
 
-    string to_string() const;
+    string ToString() const;
 
     void AddMeasurement(Measurement *measurement);
 

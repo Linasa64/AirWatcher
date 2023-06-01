@@ -131,7 +131,7 @@ Sensor::~Sensor()
     measurements.clear();
 } //----- Fin de ~Sensor
 
-string Sensor::to_string() const
+string Sensor::ToString() const
 {
     stringstream strs;
     strs << "Sensor ID: " << sensorId << ", Latitude: " << latitude << ", Longitude: " << longitude << endl;

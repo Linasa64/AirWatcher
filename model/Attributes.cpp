@@ -90,7 +90,7 @@ Attributes::~Attributes()
 #endif
 } //----- Fin de ~Attributes
 
-string Attributes::to_string() const
+string Attributes::ToString() const
 {
     stringstream strs;
     strs << "Attribute ID: " << attributeId << ", Unit: " << unit << ", Description: " << description << endl;

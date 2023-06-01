@@ -89,6 +89,7 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
     // =================================CLEANERS================================= //
     map<string, Cleaner *> cleanersMap;
 
+    cout << "[1/6] Extraction des données de 'cleaners.csv' en cours..." << endl;
     fstream fileCleaners(path_cleaners, ios::in);
     if (fileCleaners.is_open())
     {
@@ -117,6 +118,7 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
         cout << "Could not open the file\n";
     }
     fileCleaners.close();
+    cout << "[1/6] Extraction des données de 'cleaners.csv' terminée !" << endl;
 
 /*     cout << "===========Tests sur les Cleaner===========" << endl;
     cout << "TAILLE MAP " << cleanersMap.size() << endl;
@@ -128,6 +130,8 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
 
     // =================================PROVIDERS================================= //
     map<string, Provider *> providersMap;
+
+    cout << "[2/6] Extraction des données de 'providers.csv' en cours..." << endl;
     fstream fileProviders(path_providers, ios::in);
     if (fileProviders.is_open())
     {
@@ -170,7 +174,7 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
         cout << "Could not open the file\n";
     }
     fileProviders.close();
-
+    cout << "[2/6] Extraction des données de 'providers.csv' terminée !" << endl;
 /*     cout << "===========Tests sur les Provider===========" << endl;
     cout << "TAILLE MAP " << providersMap.size() << endl;
     for (const auto &kv : providersMap)
@@ -182,6 +186,7 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
     // =================================ATTRIBUTES================================= //
     map<string, Attributes *> attributesMap;
 
+    cout << "[3/6] Extraction des données de 'attributes.csv' en cours..." << endl;
     fstream fileAttributes(path_attributes, ios::in);
     if (fileAttributes.is_open())
     {
@@ -211,16 +216,19 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
         cout << "Could not open the file\n";
     }
     fileAttributes.close();
+    cout << "[3/6] Extraction des données de 'attributes.csv' terminée !" << endl;
 
     /*     cout << "===========Affichage liste Attributes===========" << endl;
         for (const auto &kv : attributesMap)
         {
             string key = kv.first; // clé
-            cout << kv.first << " / " << attributesMap[key]->to_string();
+            cout << kv.first << " / " << attributesMap[key]->ToString();
         } */
 
     // =================================MEASUREMENTS================================= //
     list<Measurement *> measurementsList;
+
+    cout << "[4/6] Extraction des données de 'measurements.csv' en cours..." << endl;
     fstream fileMeasurements(path_measurements, ios::in);
     if (fileMeasurements.is_open())
     {
@@ -258,7 +266,7 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
         cout << "Could not open the file\n";
     }
     fileMeasurements.close();
-
+    cout << "[4/6] Extraction des données de 'measurements.csv' terminée !" << endl;
 /*     cout << "===========Affichage liste Measurements (10 premiers)===========" << endl;
     cout << "TAILLE LISTE : " << measurementsList.size() << endl;
     int i = 0;
@@ -271,6 +279,8 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
 
     // =================================SENSORS================================= //
     map<string, Sensor *> sensorsMap;
+
+    cout << "[5/6] Extraction des données de 'sensors.csv' en cours..." << endl;
     fstream fileSensors(path_sensors, ios::in);
     if (fileSensors.is_open())
     {
@@ -316,19 +326,22 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
             cout << "The measurement " << *measurement << " refers to a sensor (" << measurement->getAssociatedSensorId() << ") that is not provided in the sensors.csv document.\n";
         }
     }
+    cout << "[5/6] Extraction des données de 'sensors.csv' terminée !" << endl;
 
 /*     cout << "===========Affichage liste Sensor===========" << endl;
     cout << "TAILLE MAP " << sensorsMap.size() << endl;
     for (const auto &kv : sensorsMap)
     {
         string key = kv.first; // clé
-        cout << kv.first << " / " << sensorsMap[key]->to_string();
+        cout << kv.first << " / " << sensorsMap[key]->ToString();
     }
     cout << "TEST 10 PREMIERES MESURES DE Sensor0 : " << endl;
     sensorsMap["Sensor0"]->displayMeasurements(); */
 
     // =================================PRIVATE USERS================================= //
     map<string, PrivateUser *> privateUsersMap;
+
+    cout << "[6/6] Extraction des données de 'users.csv' en cours..." << endl;
     fstream filePrivateUsers(path_users, ios::in);
     if (filePrivateUsers.is_open())
     {
@@ -371,6 +384,7 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
         cout << "Could not open the file\n";
     }
     filePrivateUsers.close();
+    cout << "[6/6] Extraction des données de 'users.csv' terminée !" << endl;
 
 /*     cout << "===========Affichage liste PrivateUser===========" << endl;
     cout << "TAILLE MAP " << privateUsersMap.size() << endl;
@@ -390,9 +404,9 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
     for (const auto &kv : users)
     {
         string key = kv.first; // clé
-        cout << kv.first << " / " << users[key]->to_string();
+        cout << kv.first << " / " << users[key]->ToString();
     } */
-    /*     cout << "TEST 41 : " << users["Provider0"]->to_string();
+    /*     cout << "TEST 41 : " << users["Provider0"]->ToString();
         Provider *precup = (Provider *)users["Provider0"];
         cout << "TEST 42 : " << *precup; */
 
@@ -405,7 +419,7 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
     for (const auto &kv : sensorsMap)
     {
         string key = kv.first; // clé
-        // cout << "SUPPRESSION DE " << kv.first << " / " << sensorsMap[key]->to_string();
+        // cout << "SUPPRESSION DE " << kv.first << " / " << sensorsMap[key]->ToString();
 
         delete kv.second;
     }
@@ -414,7 +428,7 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
     for (const auto &kv : attributesMap)
     {
         string key = kv.first; // clé
-        // cout << "SUPPRESSION DE " << kv.first << " / " << attributesMap[key]->to_string();
+        // cout << "SUPPRESSION DE " << kv.first << " / " << attributesMap[key]->ToString();
 
         delete kv.second;
     }
@@ -423,7 +437,7 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
     for (const auto &kv : users)
     {
         string key = kv.first; // clé
-        // cout << "SUPPRESSION DE " << kv.first << " / " << users[key]->to_string();
+        // cout << "SUPPRESSION DE " << kv.first << " / " << users[key]->ToString();
 
         delete kv.second;
     } */

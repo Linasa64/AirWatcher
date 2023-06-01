@@ -90,7 +90,7 @@ PrivateUser::~PrivateUser()
 #endif
 } //----- Fin de ~PrivateUser
 
-string PrivateUser::to_string() const
+string PrivateUser::ToString() const
 {
     stringstream strs;
     strs << "PrivateUser ID: " << privateUserId << ", Reputation points: " << reputationPoints << ", Number of sensors: " << sensors.size() << endl

@@ -69,7 +69,9 @@ public:
     // Contrat :
     //
 
-    string to_string();
+    string AlgoToString(int idAlgo);
+
+    string ToString();
 
     //------------------------------------------------------------------ PRIVE
 

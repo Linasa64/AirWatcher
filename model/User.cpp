@@ -86,7 +86,7 @@ User::~User()
     cout << "Appel au destructeur de <User>" << endl;
 #endif
 } //----- Fin de ~User
-string User::to_string() const
+string User::ToString() const
 {
     stringstream strs;
     strs << "User login: " << login << ", password: " << password << endl;
