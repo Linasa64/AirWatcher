@@ -101,7 +101,7 @@ float ControllerComputation::calculateMeanAirQualityATMO(const Database &databas
 
         // We compute the difference final time - initial time and we convert it into ms
         timeDiff = (timeEnd - timeStart) / (CLOCKS_PER_SEC / 1000);
-        cout << "Temps exécution mean ATMO : " << timeDiff << "ms" << endl;
+        // cout << "Temps exécution mean ATMO : " << timeDiff << "ms" << endl;
         history.Push_Back(1, timeDiff);
         return 0.0;
     }
@@ -112,7 +112,7 @@ float ControllerComputation::calculateMeanAirQualityATMO(const Database &databas
 
         // We compute the difference final time - initial time and we convert it into ms
         timeDiff = (timeEnd - timeStart) / (CLOCKS_PER_SEC / 1000);
-        cout << "Temps exécution mean ATMO : " << timeDiff << "ms" << endl;
+        // cout << "Temps exécution mean ATMO : " << timeDiff << "ms" << endl;
         history.Push_Back(1, timeDiff);
         return airQuality / static_cast<float>(count);
     }
@@ -156,7 +156,7 @@ float ControllerComputation::calculateMeanAirQualityAQI(const Database &database
 
         // We compute the difference final time - initial time and we convert it into ms
         timeDiff = (timeEnd - timeStart) / (CLOCKS_PER_SEC / 1000);
-        cout << "Temps exécution mean AQI : " << timeDiff << "ms" << endl;
+        // cout << "Temps exécution mean AQI : " << timeDiff << "ms" << endl;
         history.Push_Back(1, timeDiff);
         return 0.0;
     }
@@ -167,7 +167,7 @@ float ControllerComputation::calculateMeanAirQualityAQI(const Database &database
 
         // We compute the difference final time - initial time and we convert it into ms
         timeDiff = (timeEnd - timeStart) / (CLOCKS_PER_SEC / 1000);
-        cout << "Temps exécution : mean AQI " << timeDiff << "ms" << endl;
+        // cout << "Temps exécution : mean AQI " << timeDiff << "ms" << endl;
         history.Push_Back(1, timeDiff);
         return airQuality / static_cast<float>(count);
     }
@@ -242,7 +242,7 @@ vector<pair<Sensor *, float>> ControllerComputation::calculateSimilarityScores(c
 
     // We compute the difference final time - initial time and we convert it into ms
     timeDiff = (timeEnd - timeStart) / (CLOCKS_PER_SEC / 1000);
-    cout << "Temps exécution precise similarities : " << timeDiff << "ms" << endl;
+    // cout << "Temps exécution precise similarities : " << timeDiff << "ms" << endl;
     history.Push_Back(3, timeDiff);
 
     return similarityScores;
@@ -286,7 +286,7 @@ float ControllerComputation::calculatePreciseAirQualityATMO(const Database &data
 
             // We compute the difference final time - initial time and we convert it into ms
             timeDiff = (timeEnd - timeStart) / (CLOCKS_PER_SEC / 1000);
-            cout << "Temps exécution precise air quality atmo : " << timeDiff << "ms" << endl;
+            // cout << "Temps exécution precise air quality atmo : " << timeDiff << "ms" << endl;
             history.Push_Back(2, timeDiff);
 
             return meanValue;
@@ -318,7 +318,7 @@ float ControllerComputation::calculatePreciseAirQualityATMO(const Database &data
 
             // We compute the difference final time - initial time and we convert it into ms
             timeDiff = (timeEnd - timeStart) / (CLOCKS_PER_SEC / 1000);
-            cout << "Temps exécution precise air quality atmo : " << timeDiff << "ms" << endl;
+            // cout << "Temps exécution precise air quality atmo : " << timeDiff << "ms" << endl;
             history.Push_Back(2, timeDiff);
 
             return weightedAverage;
@@ -354,7 +354,7 @@ float ControllerComputation::calculatePreciseAirQualityAQI(const Database &datab
 
             // We compute the difference final time - initial time and we convert it into ms
             timeDiff = (timeEnd - timeStart) / (CLOCKS_PER_SEC / 1000);
-            cout << "Temps exécution precise air quality aqi : " << timeDiff << "ms" << endl;
+            // cout << "Temps exécution precise air quality aqi : " << timeDiff << "ms" << endl;
             history.Push_Back(2, timeDiff);
 
             return meanValue;
@@ -386,7 +386,7 @@ float ControllerComputation::calculatePreciseAirQualityAQI(const Database &datab
 
             // We compute the difference final time - initial time and we convert it into ms
             timeDiff = (timeEnd - timeStart) / (CLOCKS_PER_SEC / 1000);
-            cout << "Temps exécution precise air quality aqi : " << timeDiff << "ms" << endl;
+            // cout << "Temps exécution precise air quality aqi : " << timeDiff << "ms" << endl;
             history.Push_Back(2, timeDiff);
 
             return weightedAverage;
@@ -490,6 +490,12 @@ float ControllerComputation::calculateMeanAQI(const list<Measurement *> &measure
 // version 2 -> ne pas effacer, l'autre version est encore en tests
 pair<vector<Sensor *>, vector<vector<float>>> ControllerComputation::detectDefectSensorsAndOutliers(const Database &database, const string &startTime, const string &endTime)
 {
+
+    float timeStart, timeEnd, timeDiff;
+
+    // We store the initial time
+    timeStart = clock();
+
     const map<string, Sensor *> &sensors = database.GetSensors();
     vector<Sensor *> defectSensors;
     vector<vector<float>> outliers;
@@ -549,6 +555,13 @@ pair<vector<Sensor *>, vector<vector<float>>> ControllerComputation::detectDefec
             }
         }
     }
+    // We store the final time
+    timeEnd = clock();
+
+    // We compute the difference final time - initial time and we convert it into ms
+    timeDiff = (timeEnd - timeStart) / (CLOCKS_PER_SEC / 1000);
+    cout << "Temps exécution defect sensors : " << timeDiff << "ms" << endl;
+    history.Push_Back(4, timeDiff);
     return make_pair(defectSensors, outliers);
 }
 /*

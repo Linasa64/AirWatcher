@@ -44,7 +44,15 @@ using namespace std;
 int main()
 {
     string choixS;
-    int choix;
+    int choix, choix2;
+    string tempsDebut;
+    string tempsFin;
+    char input[100];
+
+    ControllerData controllerData;
+    ControllerComputation controllerComputation;
+
+    Database d = controllerData.retrieveData("./dataset/sensors.csv", "./dataset/measurements.csv", "./dataset/attributes.csv", "./dataset/providers.csv", "./dataset/cleaners.csv", "./dataset/users.csv");
 
     cout << "--------------------------------------------------------" << endl;
     cout << "Bienvenue sur AirWatcher !" << endl
@@ -87,9 +95,9 @@ int main()
         {
             cout << "--------------------------Menu (Gov)--------------------------\n"
                  << endl;
-            cout << "\t1: Action1" << endl;
-            cout << "\t2: Action2" << endl;
-            cout << "\t3: Action3" << endl;
+            cout << "\t1: Consulter le niveau de qualité de l'air en un point" << endl;
+            cout << "\t2: Consulter le niveau moyen de qualité de l'air dans un rayon" << endl;
+            cout << "\t3: Consulter la performance des algorithmes de calcul" << endl;
             cout << "\t0: Se déconnecter\n"
                  << endl;
             cin >> choixS;
@@ -100,6 +108,42 @@ int main()
             switch (choix)
             {
             case 1:
+                cout << "------------Consultation de la qualité de l'air en un point------------\n";
+                float latitude, longitude;
+                cout << "\nLatitude : ";
+                cin >> latitude;
+                cout << "\nLongitude : ";
+                cin >> longitude;
+                cout << "\nTemps de début au format yyyy-MM-dd hh-mm-ss (exemple : '2019-01-01 12:00:00') : ";
+                getline(cin >> ws, tempsDebut);
+                cout << "Voulez-vous préciser un temps de fin ?\n"
+                     << endl;
+                cout << "\t1: Oui" << endl;
+                cout << "\t0: Non" << endl;
+
+                cin >> choixS;
+                cout << endl;
+
+                choix = atoi(choixS.c_str());
+
+                switch (choix)
+                {
+                case 1:
+                    cout << "\nTemps de fin au format yyyy-MM-dd hh-mm-ss (exemple : '2019-01-01 12:00:00') : ";
+                    getline(cin >> ws, tempsFin);
+                    cout << "------------Résultats------------\n"
+                         << endl;
+                    cout << "Indice ATMO : " << controllerComputation.calculatePreciseAirQualityATMO(d, latitude, longitude, tempsDebut, tempsFin) << endl;
+                    cout << "Indice AQI : " << controllerComputation.calculatePreciseAirQualityAQI(d, latitude, longitude, tempsDebut, tempsFin) << endl
+                         << endl;
+                    break;
+                default:
+                    cout << "------------Résultats------------\n"
+                         << endl;
+                    cout << "Indice ATMO : " << controllerComputation.calculatePreciseAirQualityATMO(d, latitude, longitude, tempsDebut) << endl;
+                    cout << "Indice AQI : " << controllerComputation.calculatePreciseAirQualityAQI(d, latitude, longitude, tempsDebut) << endl
+                         << endl;
+                }
                 break;
             case 2:
                 break;
@@ -120,9 +164,7 @@ int main()
         {
             cout << "--------------------------Menu (Utilisateur privé)--------------------------\n"
                  << endl;
-            cout << "\t1: Action1" << endl;
-            cout << "\t2: Action2" << endl;
-            cout << "\t3: Action3" << endl;
+            cout << "\t1: Consulter le niveau de qualité de l'air en un point" << endl;
             cout << "\t0: Se déconnecter\n"
                  << endl;
             cin >> choixS;
@@ -133,10 +175,42 @@ int main()
             switch (choix)
             {
             case 1:
-                break;
-            case 2:
-                break;
-            case 3:
+                cout << "------------Consultation de la qualité de l'air en un point------------\n";
+                float latitude, longitude;
+                cout << "\nLatitude : ";
+                cin >> latitude;
+                cout << "\nLongitude : ";
+                cin >> longitude;
+                cout << "\nTemps de début au format yyyy-MM-dd hh-mm-ss (exemple : '2019-01-01 12:00:00') : ";
+                getline(cin >> ws, tempsDebut);
+                cout << "Voulez-vous préciser un temps de fin ?\n"
+                     << endl;
+                cout << "\t1: Oui" << endl;
+                cout << "\t0: Non" << endl;
+
+                cin >> choixS;
+                cout << endl;
+
+                choix = atoi(choixS.c_str());
+
+                switch (choix)
+                {
+                case 1:
+                    cout << "\nTemps de fin au format yyyy-MM-dd hh-mm-ss (exemple : '2019-01-01 12:00:00') : ";
+                    getline(cin >> ws, tempsFin);
+                    cout << "------------Résultats------------\n"
+                         << endl;
+                    cout << "Indice ATMO : " << controllerComputation.calculatePreciseAirQualityATMO(d, latitude, longitude, tempsDebut, tempsFin) << endl;
+                    cout << "Indice AQI : " << controllerComputation.calculatePreciseAirQualityAQI(d, latitude, longitude, tempsDebut, tempsFin) << endl
+                         << endl;
+                    break;
+                default:
+                    cout << "------------Résultats------------\n"
+                         << endl;
+                    cout << "Indice ATMO : " << controllerComputation.calculatePreciseAirQualityATMO(d, latitude, longitude, tempsDebut) << endl;
+                    cout << "Indice AQI : " << controllerComputation.calculatePreciseAirQualityAQI(d, latitude, longitude, tempsDebut) << endl
+                         << endl;
+                }
                 break;
             case 0:
                 goto connexion;
@@ -153,7 +227,7 @@ int main()
         {
             cout << "--------------------------Menu (Agence)--------------------------\n"
                  << endl;
-            cout << "\t1: Action1" << endl;
+            cout << "\t1: Consulter le niveau de qualité de l'air en un point" << endl;
             cout << "\t2: Action2" << endl;
             cout << "\t3: Action3" << endl;
             cout << "\t0: Se déconnecter\n"
@@ -166,6 +240,42 @@ int main()
             switch (choix)
             {
             case 1:
+                cout << "------------Consultation de la qualité de l'air en un point------------\n";
+                float latitude, longitude;
+                cout << "\nLatitude : ";
+                cin >> latitude;
+                cout << "\nLongitude : ";
+                cin >> longitude;
+                cout << "\nTemps de début au format yyyy-MM-dd hh-mm-ss (exemple : '2019-01-01 12:00:00') : ";
+                getline(cin >> ws, tempsDebut);
+                cout << "Voulez-vous préciser un temps de fin ?\n"
+                     << endl;
+                cout << "\t1: Oui" << endl;
+                cout << "\t0: Non" << endl;
+
+                cin >> choixS;
+                cout << endl;
+
+                choix = atoi(choixS.c_str());
+
+                switch (choix)
+                {
+                case 1:
+                    cout << "\nTemps de fin au format yyyy-MM-dd hh-mm-ss (exemple : '2019-01-01 12:00:00') : ";
+                    getline(cin >> ws, tempsFin);
+                    cout << "------------Résultats------------\n"
+                         << endl;
+                    cout << "Indice ATMO : " << controllerComputation.calculatePreciseAirQualityATMO(d, latitude, longitude, tempsDebut, tempsFin) << endl;
+                    cout << "Indice AQI : " << controllerComputation.calculatePreciseAirQualityAQI(d, latitude, longitude, tempsDebut, tempsFin) << endl
+                         << endl;
+                    break;
+                default:
+                    cout << "------------Résultats------------\n"
+                         << endl;
+                    cout << "Indice ATMO : " << controllerComputation.calculatePreciseAirQualityATMO(d, latitude, longitude, tempsDebut) << endl;
+                    cout << "Indice AQI : " << controllerComputation.calculatePreciseAirQualityAQI(d, latitude, longitude, tempsDebut) << endl
+                         << endl;
+                }
                 break;
             case 2:
                 break;
@@ -185,11 +295,6 @@ int main()
 fin:
     cout << "Fermeture de l'application" << endl;
     cout << "--------------------------------------------------------\n";
-
-    ControllerData controllerData;
-    ControllerComputation controllerComputation;
-
-    Database d = controllerData.retrieveData("./dataset/sensors.csv", "./dataset/measurements.csv", "./dataset/attributes.csv", "./dataset/providers.csv", "./dataset/cleaners.csv", "./dataset/users.csv");
 
     // =================================TESTS================================= //
 
