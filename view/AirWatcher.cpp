@@ -47,7 +47,6 @@ int main()
     int choix, choix2;
     string tempsDebut;
     string tempsFin;
-    char input[100];
 
     ControllerData controllerData;
     ControllerComputation controllerComputation;
