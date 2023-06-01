@@ -24,7 +24,7 @@
 #include <ctime>
 #include <shared_mutex>
 //------------------------------------------------------------- Constantes
-//const float EARTH_RADIUS = 6371.0;
+// const float EARTH_RADIUS = 6371.0;
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
@@ -44,38 +44,37 @@ public:
     //
     // Contrat :
     //
-    History& GetHistory();
+    History &GetHistory();
 
     float calculateMeanAirQualityATMO(const Database &sensorMeasurements, float radius, float centerLat, float centerLong, const string &startTime, const string &optionalEndTime = "");
 
     float calculateMeanAirQualityAQI(const Database &sensorMeasurements, float radius, float centerLat, float centerLong, const string &startTime, const string &optionalEndTime = "");
 
-    vector<pair<Sensor*, float>> calculateSimilarityScores(const Database& database, const Sensor& selectedSensor, const string& startTime, const string &optionalEndTime = "");
-    
-    float calculatePreciseAirQualityATMO(const Database& database, float centerLat, float centerLong, const string& startTime, const string &optionalEndTime = "");
+    vector<pair<Sensor *, float>> calculateSimilarityScores(const Database &database, const Sensor &selectedSensor, const string &startTime, const string &optionalEndTime = "");
 
-    float calculatePreciseAirQualityAQI(const Database& database, float centerLat, float centerLong, const string& startTime, const string &optionalEndTime = "");
+    float calculatePreciseAirQualityATMO(const Database &database, float centerLat, float centerLong, const string &startTime, const string &optionalEndTime = "");
 
-    vector<Sensor*> kNearestSensors(const map<string, Sensor*>& sensors, float centerLat, float centerLong, const string& startTime, const string& endTime, int k);
+    float calculatePreciseAirQualityAQI(const Database &database, float centerLat, float centerLong, const string &startTime, const string &optionalEndTime = "");
+
+    vector<Sensor *> kNearestSensors(const map<string, Sensor *> &sensors, float centerLat, float centerLong, const string &startTime, const string &endTime, int k);
 
     float calculateDistance(float lat1, float long1, float lat2, float long2);
 
-    float calculateMeanATMO(const list<Measurement*>& measurements, const string& startTime, const string& endTime);
-    
-    float calculateMeanAQI(const list<Measurement*>& measurements, const string& startTime, const string& endTime);
+    float calculateMeanATMO(const list<Measurement *> &measurements, const string &startTime, const string &endTime);
 
-    pair<vector<Sensor*>, vector<vector<float>>> detectDefectSensorsAndOutliers(const Database& database, const string& startTime, const string& optionalEndTime = "");
+    float calculateMeanAQI(const list<Measurement *> &measurements, const string &startTime, const string &endTime);
 
-    //pair<vector<shared_ptr<Sensor>>, vector<vector<float>>> detectDefectSensorsAndOutliers2(const Database &database, const string &startTime, const string &endTime);
+    pair<vector<Sensor *>, vector<vector<float>>> detectDefectSensorsAndOutliers(const Database &database, const string &startTime, const string &optionalEndTime = "");
 
-    void calculateMeanAndStdDev(const vector<float>& values, float& mean, float& stdDev);
+    // pair<vector<shared_ptr<Sensor>>, vector<vector<float>>> detectDefectSensorsAndOutliers2(const Database &database, const string &startTime, const string &endTime);
 
-    float calculatePercentile(const vector<float>& values, int percentile);
+    void calculateMeanAndStdDev(const vector<float> &values, float &mean, float &stdDev);
+
+    float calculatePercentile(const vector<float> &values, int percentile);
 
     float computeAlgoPerformanceMean(int idAlgo);
 
-    //float calculatePercentileFromDatabase(const Database& database, int percentile, const string& startTime, const string& endTime);
-
+    // float calculatePercentileFromDatabase(const Database& database, int percentile, const string& startTime, const string& endTime);
 
     //------------------------------------------------- Surcharge d'opérateurs
     ControllerComputation &operator=(const ControllerComputation &unControllerComputation);
@@ -103,20 +102,19 @@ public:
     // Contrat :
     //
 
-
     //------------------------------------------------------------------ PRIVE
 
 protected:
     //----------------------------------------------------- Méthodes protégées
-    //Database filterMeasurementsByTime(const Database &sensorMeasurements, const string &startTime, const string &endTime);
-    //Database filterMeasurementsByDistance(const Database &sensorMeasurements, float centerLat, float centerLong, float radius);
-    //bool isWithinTimeRange(const string &timestamp, const string &startTime, const string &endTime);
-    //bool isWithinDistance(float measurementLat, float measurementLong, float centerLat, float centerLong, float radius);
-    //time_t convertDateStingToTimestamp(const string &dateString);
-    //float degToRad(float degrees);
+    // Database filterMeasurementsByTime(const Database &sensorMeasurements, const string &startTime, const string &endTime);
+    // Database filterMeasurementsByDistance(const Database &sensorMeasurements, float centerLat, float centerLong, float radius);
+    // bool isWithinTimeRange(const string &timestamp, const string &startTime, const string &endTime);
+    // bool isWithinDistance(float measurementLat, float measurementLong, float centerLat, float centerLong, float radius);
+    // time_t convertDateStingToTimestamp(const string &dateString);
+    // float degToRad(float degrees);
     History history;
 
-    const Measurement* findMeasurement(const list<Measurement*>& measurements, const time_t& timestamp) const;
+    const Measurement *findMeasurement(const list<Measurement *> &measurements, const time_t &timestamp) const;
     //----------------------------------------------------- Attributs protégés
 };
 

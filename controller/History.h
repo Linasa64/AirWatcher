@@ -36,12 +36,11 @@ public:
     //
     // Contrat :
     //
-    map<int, list<float> > GetQueryDurationsHistory();
+    map<int, list<float>> GetQueryDurationsHistory();
 
     void Push_Back(int key, float duration);
 
-     float computeMean(int algoId);
-
+    float computeMean(int algoId);
 
     //------------------------------------------------- Surcharge d'opérateurs
     History &operator=(const History &unHistory);

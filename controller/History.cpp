@@ -85,7 +85,8 @@ string History::AlgoToString(int idAlgo)
     stringstream strs;
     if (queryDurationsHistory[idAlgo].size() == 0)
     {
-        strs << "Aucune requête valide utilisant l'algorithme " << idAlgo << " n'a été effecutée.\n" << endl;
+        strs << "Aucune requête valide utilisant l'algorithme " << idAlgo << " n'a été effecutée.\n"
+             << endl;
         return strs.str();
     }
     strs << "Historique des performances de l'algorithme " << idAlgo << " :" << endl;
@@ -103,7 +104,8 @@ string History::ToString()
     stringstream strs;
     if (queryDurationsHistory.empty())
     {
-        strs << "Aucune requête valide n'a encore été effecutée.\n" << endl;
+        strs << "Aucune requête valide n'a encore été effecutée.\n"
+             << endl;
         return strs.str();
     }
     /*strs << "===========Affichage map History===========" << endl;
@@ -113,7 +115,8 @@ string History::ToString()
         int key = kv.first; // clé
         if (queryDurationsHistory[key].size() == 0)
         {
-            strs << "Aucune requête valide utilisant l'algorithme " << key << " n'a été effecutée.\n" << endl;
+            strs << "Aucune requête valide utilisant l'algorithme " << key << " n'a été effecutée.\n"
+                 << endl;
             return strs.str();
         }
         else

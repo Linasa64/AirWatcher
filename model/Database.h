@@ -44,13 +44,13 @@ public:
 
     void SetAttributes(map<string, Attributes *> attributes);
 
-    map<string, User*> GetUsers() const;
+    map<string, User *> GetUsers() const;
 
-    map<string, Sensor*> GetSensors() const;
+    map<string, Sensor *> GetSensors() const;
 
     map<string, Attributes *> GetAttributes() const;
-    
-    Sensor* GetSensor(string id) const;
+
+    Sensor *GetSensor(string id) const;
 
     //------------------------------------------------- Surcharge d'opérateurs
     Database &operator=(const Database &unDatabase);

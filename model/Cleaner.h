@@ -39,7 +39,7 @@ public:
     //
 
     string getCleanerId() const;
-    
+
     float getLatitude() const;
 
     float getLongitude() const;

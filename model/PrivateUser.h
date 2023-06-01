@@ -72,7 +72,7 @@ public:
 
     int GetReputationPoints() const;
 
-    list <Sensor *> GetSensors() const;
+    list<Sensor *> GetSensors() const;
 
     string ToString() const;
 

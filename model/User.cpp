@@ -40,8 +40,8 @@ string User::GetPassword() const { return password; }
 
 ostream &operator<<(ostream &out, const User &u) { return out; }
 
-
-User & User::operator=(const User &unUser){
+User &User::operator=(const User &unUser)
+{
     this->login = unUser.login;
     this->password = unUser.password;
     return *this;

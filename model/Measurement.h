@@ -42,7 +42,7 @@ public:
 
     time_t getTimestamp() const;
 
-    float getValue()const;
+    float getValue() const;
 
     Attributes *getAttributes() const;
 
@@ -51,8 +51,6 @@ public:
     float GetAQIIndex() const;
 
     bool isWithinTimeRange(const string &startTime, const string &endTime) const;
-
-
 
     //------------------------------------------------- Surcharge d'opérateurs
 
@@ -89,7 +87,6 @@ public:
     //
 
     string ToString() const;
-
 
     //------------------------------------------------------------------ PRIVE
 

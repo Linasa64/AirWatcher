@@ -550,7 +550,7 @@ pair<vector<Sensor *>, vector<vector<float>>> ControllerComputation::detectDefec
 
     // We compute the difference final time - initial time and we convert it into ms
     timeDiff = (timeEnd - timeStart) / (CLOCKS_PER_SEC / 1000);
-    //cout << "Temps exécution defect sensors : " << timeDiff << "ms" << endl;
+    // cout << "Temps exécution defect sensors : " << timeDiff << "ms" << endl;
     history.Push_Back(4, timeDiff);
     return make_pair(defectSensors, outliers);
 }

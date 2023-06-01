@@ -53,10 +53,10 @@ public:
 
     bool operator<(const Sensor &other) const;
 
-    //Sensor &operator=(const Sensor &unSensor);
-    // Mode d'emploi :
+    // Sensor &operator=(const Sensor &unSensor);
+    //  Mode d'emploi :
     //
-    // Contrat :
+    //  Contrat :
     //
 
     //-------------------------------------------- Constructeurs - destructeur

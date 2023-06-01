@@ -43,12 +43,12 @@ void Database::SetAttributes(map<string, Attributes *> attributes)
     this->attributes = attributes;
 }
 
-map<string, Sensor*> Database::GetSensors() const
+map<string, Sensor *> Database::GetSensors() const
 {
     return sensors;
 }
 
-Sensor* Database::GetSensor(string id) const
+Sensor *Database::GetSensor(string id) const
 {
     return sensors.at(id);
 }
@@ -58,7 +58,8 @@ map<string, User *> Database::GetUsers() const
     return users;
 }
 
-map<string, Attributes *> Database::GetAttributes() const {
+map<string, Attributes *> Database::GetAttributes() const
+{
     return attributes;
 }
 

@@ -124,7 +124,7 @@ Sensor::~Sensor()
         delete measurement;
     }
     measurements.clear();*/
-    for (std::list<Measurement*>::iterator it = measurements.begin(); it != measurements.end(); ++it)
+    for (std::list<Measurement *>::iterator it = measurements.begin(); it != measurements.end(); ++it)
     {
         delete *it;
     }
@@ -152,7 +152,7 @@ void Sensor::displayMeasurements()
         if (++i == 10)
             break;
     }*/
-    for (std::list<Measurement*>::iterator it = measurements.begin(); it != measurements.end(); ++it)
+    for (std::list<Measurement *>::iterator it = measurements.begin(); it != measurements.end(); ++it)
     {
         std::cout << **it;
         if (++i == 10)
@@ -162,9 +162,6 @@ void Sensor::displayMeasurements()
 
 float degToRad(float degrees) { return degrees * M_PI / 180.0; }
 
-
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-
-

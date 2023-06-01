@@ -117,7 +117,6 @@ int main()
             pair<vector<Sensor *>, vector<vector<float>>> testDefectSensors2;
             switch (choix)
             {
-            //===================Consultation de la qualité de l'air en un point===================//
             case 1:
                 cout << "==========Consultation de la qualité de l'air en un point==========\n";
                 cout << "\nLatitude : ";
@@ -160,7 +159,6 @@ int main()
                      << endl;
 
                 break;
-            //===================Consultation de la qualité de l'air dans un rayon===================//
             case 2:
                 cout << "==========Consultation de la qualité de l'air dans un rayon==========\n";
                 cout << "\nLatitude du centre : ";
@@ -280,12 +278,14 @@ int main()
 
                 cout << "==========Résultats==========\n"
                      << endl;
-                cout << "Capteurs défectueux :\n" << endl;
+                cout << "Capteurs défectueux :\n"
+                     << endl;
                 for (auto it = testDefectSensors2.first.begin(); it != testDefectSensors2.first.end(); ++it)
                 {
                     cout << " • " << (*it)->ToString() << endl;
                 }
-                cout << "Valeurs aberrantes :\n" << endl;
+                cout << "Valeurs aberrantes :\n"
+                     << endl;
                 for (auto it = testDefectSensors2.second.begin(); it != testDefectSensors2.second.end(); ++it)
                 {
                     for (auto it2 = it->begin(); it2 != it->end(); ++it2)
@@ -358,7 +358,6 @@ int main()
             float latitude, longitude, rayon;
             switch (choix)
             {
-            //===================Consultation de la qualité de l'air en un point===================//
             case 1:
                 cout << "==========Consultation de la qualité de l'air en un point==========\n";
                 cout << "\nLatitude : ";
@@ -401,7 +400,6 @@ int main()
                      << endl;
 
                 break;
-            //===================Consultation de la qualité de l'air dans un rayon===================//
             case 2:
                 cout << "==========Consultation de la qualité de l'air dans un rayon==========\n";
                 cout << "\nLatitude du centre : ";
@@ -469,7 +467,6 @@ int main()
             float latitude, longitude, rayon;
             switch (choix)
             {
-            //===================Consultation de la qualité de l'air en un point===================//
             case 1:
                 cout << "==========Consultation de la qualité de l'air en un point==========\n";
                 cout << "\nLatitude : ";
@@ -512,7 +509,6 @@ int main()
                      << endl;
 
                 break;
-            //===================Consultation de la qualité de l'air dans un rayon===================//
             case 2:
                 cout << "==========Consultation de la qualité de l'air dans un rayon==========\n";
                 cout << "\nLatitude du centre : ";
@@ -568,7 +564,6 @@ fin:
     cout << "Fermeture de l'application" << endl;
     cout << "===============================================================\n";
 
-    // =================================TESTS================================= //
     cout << "\n=================================TESTS=================================\n";
     // ================INDICES ATMO================ //
     // Avec durée
