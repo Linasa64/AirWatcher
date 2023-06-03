@@ -120,14 +120,6 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
     fileCleaners.close();
     cout << "[1/6] Extraction des données de 'cleaners.csv' terminée !" << endl;
 
-    /*     cout << "===========Tests sur les Cleaner===========" << endl;
-        cout << "TAILLE MAP " << cleanersMap.size() << endl;
-        for (const auto &kv : cleanersMap)
-        {
-            string key = kv.first; // clé
-            cout << kv.first << " / " << *cleanersMap[key];
-        } */
-
     // =================================PROVIDERS================================= //
     map<string, Provider *> providersMap;
 
@@ -175,13 +167,6 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
     }
     fileProviders.close();
     cout << "[2/6] Extraction des données de 'providers.csv' terminée !" << endl;
-    /*     cout << "===========Tests sur les Provider===========" << endl;
-        cout << "TAILLE MAP " << providersMap.size() << endl;
-        for (const auto &kv : providersMap)
-        {
-            string key = kv.first; // clé
-            cout << kv.first << " / " << *providersMap[key];
-        } */
 
     // =================================ATTRIBUTES================================= //
     map<string, Attributes *> attributesMap;
@@ -217,13 +202,6 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
     }
     fileAttributes.close();
     cout << "[3/6] Extraction des données de 'attributes.csv' terminée !" << endl;
-
-    /*     cout << "===========Affichage liste Attributes===========" << endl;
-        for (const auto &kv : attributesMap)
-        {
-            string key = kv.first; // clé
-            cout << kv.first << " / " << attributesMap[key]->ToString();
-        } */
 
     // =================================MEASUREMENTS================================= //
     list<Measurement *> measurementsList;
@@ -267,15 +245,6 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
     }
     fileMeasurements.close();
     cout << "[4/6] Extraction des données de 'measurements.csv' terminée !" << endl;
-    /*     cout << "===========Affichage liste Measurements (10 premiers)===========" << endl;
-        cout << "TAILLE LISTE : " << measurementsList.size() << endl;
-        int i = 0;
-        for (Measurement *measurement : measurementsList)
-        {
-            cout << *measurement;
-            if (++i == 10)
-                break;
-        } */
 
     // =================================SENSORS================================= //
     map<string, Sensor *> sensorsMap;
@@ -311,10 +280,8 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
     fileSensors.close();
 
     // On ajoute les Measurement aux Sensor
-    int j = 0;
     for (Measurement *measurement : measurementsList)
     {
-        // cout << ++j << endl;
         //  On vérifie bien que le sensor renseigné existe
         if (sensorsMap[measurement->getAssociatedSensorId()] != nullptr)
         {
@@ -327,16 +294,6 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
         }
     }
     cout << "[5/6] Extraction des données de 'sensors.csv' terminée !" << endl;
-
-    /*     cout << "===========Affichage liste Sensor===========" << endl;
-        cout << "TAILLE MAP " << sensorsMap.size() << endl;
-        for (const auto &kv : sensorsMap)
-        {
-            string key = kv.first; // clé
-            cout << kv.first << " / " << sensorsMap[key]->ToString();
-        }
-        cout << "TEST 10 PREMIERES MESURES DE Sensor0 : " << endl;
-        sensorsMap["Sensor0"]->displayMeasurements(); */
 
     // =================================PRIVATE USERS================================= //
     map<string, PrivateUser *> privateUsersMap;
@@ -374,7 +331,6 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
             }
             else
             {
-                // sensorsMap.erase(row[1]);
                 cout << "The private user " << privateUsersMap[row[0]]->GetId() << " owns a sensor (" << row[1] << ") that is not provided in the sensors.csv document.\n";
             }
         }
@@ -386,63 +342,16 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
     filePrivateUsers.close();
     cout << "[6/6] Extraction des données de 'users.csv' terminée !\n" << endl;
 
-    /*     cout << "===========Affichage liste PrivateUser===========" << endl;
-        cout << "TAILLE MAP " << privateUsersMap.size() << endl;
-        for (const auto &kv : privateUsersMap)
-        {
-            string key = kv.first; // clé
-            cout << kv.first << " / " << *privateUsersMap[key];
-        } */
-
     // =================================USERS================================= //
     map<string, User *> users;
     users.insert(providersMap.begin(), providersMap.end());       // On ajoute tous les Provider
     users.insert(privateUsersMap.begin(), privateUsersMap.end()); // On ajoute tous les PrivateUser
 
-    /*     cout << "===========Affichage liste User===========" << endl;
-        cout << "TAILLE MAP : " << users.size() << endl;
-        for (const auto &kv : users)
-        {
-            string key = kv.first; // clé
-            cout << kv.first << " / " << users[key]->ToString();
-        } */
-    /*     cout << "TEST 41 : " << users["Provider0"]->ToString();
-        Provider *precup = (Provider *)users["Provider0"];
-        cout << "TEST 42 : " << *precup; */
-
     database.SetAttributes(attributesMap);
     database.SetSensors(sensorsMap);
     database.SetUsers(users);
 
-    /*     // =================================DESTRUCTEURS================================= //
-        // DESTRUCTEUR SENSORS
-        for (const auto &kv : sensorsMap)
-        {
-            string key = kv.first; // clé
-            // cout << "SUPPRESSION DE " << kv.first << " / " << sensorsMap[key]->ToString();
-
-            delete kv.second;
-        }
-
-        // DESTRUCTEUR ATTRIBUTES
-        for (const auto &kv : attributesMap)
-        {
-            string key = kv.first; // clé
-            // cout << "SUPPRESSION DE " << kv.first << " / " << attributesMap[key]->ToString();
-
-            delete kv.second;
-        }
-
-        // DESTRUCTEUR USERS
-        for (const auto &kv : users)
-        {
-            string key = kv.first; // clé
-            // cout << "SUPPRESSION DE " << kv.first << " / " << users[key]->ToString();
-
-            delete kv.second;
-        } */
-
-    return database; // TODO: mettre toutes les listes/map dans une database et la renvoyer ici
+    return database;
 }
 
 //------------------------------------------------------------------ PRIVE

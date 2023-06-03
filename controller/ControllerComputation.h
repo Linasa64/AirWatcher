@@ -106,12 +106,6 @@ public:
 
 protected:
     //----------------------------------------------------- Méthodes protégées
-    // Database filterMeasurementsByTime(const Database &sensorMeasurements, const string &startTime, const string &endTime);
-    // Database filterMeasurementsByDistance(const Database &sensorMeasurements, float centerLat, float centerLong, float radius);
-    // bool isWithinTimeRange(const string &timestamp, const string &startTime, const string &endTime);
-    // bool isWithinDistance(float measurementLat, float measurementLong, float centerLat, float centerLong, float radius);
-    // time_t convertDateStingToTimestamp(const string &dateString);
-    // float degToRad(float degrees);
     History history;
 
     const Measurement *findMeasurement(const list<Measurement *> &measurements, const time_t &timestamp) const;

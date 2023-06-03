@@ -34,6 +34,7 @@ using namespace std;
 #define BOLD "\033[1m"
 #define RESET "\033[0m"
 
+//-------------------------------------------------------- STATIC
 static int tries = 0;
 static int successes = 0;
 static int globalTries = 0;
@@ -44,6 +45,8 @@ static ControllerComputation controllerComputation;
 static Database database = controllerData.retrieveData("./dataset/sensors.csv", "./dataset/measurements.csv", "./dataset/attributes.csv", "./dataset/providers.csv", "./dataset/cleaners.csv", "./dataset/users.csv");
 static Database dbTest1 = controllerData.retrieveData("./tests/datatests/test1/sensors.csv", "./tests/datatests/test1/measurements.csv", "./tests/datatests/test1/attributes.csv", "./tests/datatests/test1/providers.csv", "./tests/datatests/test1/cleaners.csv", "./tests/datatests/test1/users.csv");
 static Database dbTest2 = controllerData.retrieveData("./tests/datatests/test2/sensors.csv", "./tests/datatests/test2/measurements.csv", "./tests/datatests/test2/attributes.csv", "./tests/datatests/test2/providers.csv", "./tests/datatests/test2/cleaners.csv", "./tests/datatests/test2/users.csv");
+
+//==================Declarations==================//
 
 // User class
 void testUserClass();
@@ -72,8 +75,7 @@ void testControllerDataClass();
 
 void testRetrieveData();
 
-
-// Other functions
+// Others
 void resetTriesSuccesses();
 
 void displayTestsResults();
@@ -127,127 +129,10 @@ int main()
          << RESET << endl;
     displayFinalResults();
 
-    // TESTS TEMPS time_t
-    /* time_t t1, t2, t3;
-    t1 = convertDateStingToTimestamp("2019-03-01 12:00:00");
-    t2 = convertDateStingToTimestamp("2019-04-01 12:00:00");
-    t3 = t2 - t1;
-    cout << "DATE TEST : " << t3 << endl; */
-
-    // TESTS2 TEMPS time_t
-    /*
-        float timeStart, timeEnd, timeDiff;
-
-        // On stocke le temps initial
-        timeStart = clock();
-
-        // Créer une structure tm qui contient les informations sur la date et l'heure
-        tm datetime = {};
-        datetime.tm_year = 2022 - 1900; // année - 1900
-        datetime.tm_mon = 0; // mois (janvier est 0)
-        datetime.tm_mday = 1; // jour du mois (1-31)
-        datetime.tm_hour = 12; // heure (0-23)
-        datetime.tm_min = 30; // minute (0-59)
-        datetime.tm_sec = 0; // seconde (0-60)
-
-        // Convertir la structure tm en time_t
-        time_t timestamp = mktime(&datetime);
-        time_t now = time(0);
-
-        // Utiliser le timestamp
-        cout << "Le timestamp est : " << timestamp << endl;
-
-        cout << "Maintenant : " << now << endl;
-
-        cout << "hello new version here" << endl;
-
-        // On stocke le temps final
-        timeEnd = clock();
-
-        // On fait la différence temps final - temps initial et on met en ms
-        timeDiff = (timeEnd - timeStart)/(CLOCKS_PER_SEC/1000);
-        cout << "Temps exécution : " << timeDiff << "ms" << endl; */
-
-    // TEST STRUCTURE DE DONNEES CONTENANT DES USER*
-    /*     User* user[] =
-        {
-            new Provider("Provider0"),
-            new PrivateUser("User1"),
-            new GovernmentAgency()
-        };
-
-        for (int i = 0 ; i < 3 ; i++) {
-            cout << "User " << i << ": " << user[i]->ToString();
-        } */
-
-    // cout << d.ToString();
-
-    /*     // =================================TESTS================================= //
-
-        // ================INDICES ATMO================ //
-        // Avec durée
-        float testATMO1 = controllerComputation.calculateMeanAirQualityATMO(d, 10, 44, -1, "2019-01-01 12:00:00", "2019-01-02 12:00:00");
-        cout << "Indice ATMO 1 : " << testATMO1 << endl;
-
-        // Avec instant
-        float testATMO2 = controllerComputation.calculateMeanAirQualityATMO(d, 10, 44, -1, "2019-01-01 12:00:00");
-        cout << "Indice ATMO 2 : " << testATMO2 << endl;
-
-        // ================INDICES AQI================ //
-        // Avec durée
-        float testAQI1 = controllerComputation.calculateMeanAirQualityAQI(d, 10, 44, -1, "2019-01-01 12:00:00", "2019-01-02 12:00:00");
-        cout << "Indice AQI 1 : " << testAQI1 << endl;
-
-        // Avec instant
-        float testAQI2 = controllerComputation.calculateMeanAirQualityAQI(d, 10, 44, -1, "2019-01-01 12:00:00");
-        cout << "Indice AQI 2 : " << testAQI2 << endl;
-
-        // ================TEST SIMILARITY SCORES================ //
-        // Avec durée
-        // calculateSimilarityScores(const Database &database, const Sensor &selectedSensor, const std::string &startTime, const std::string &endTime);
-        Sensor *s = d.GetSensor("Sensor1");
-        std::vector<std::pair<Sensor *, float>> classement = controllerComputation.calculateSimilarityScores(d, *s, "2019-01-01 12:00:00", "2019-01-02 12:00:00");
-        cout << " ====================TESTS SCORES SIMILARITÈ CAPTEURS==================== " << endl;
-        cout << "Classement : " << endl;
-        for (auto it = classement.begin(); it != classement.end(); ++it)
-        {
-            cout << it->first->ToString() << " : " << it->second << endl;
-        }
-
-        // ================TESTS PRECISE QUALITY================ //
-        // Avec durée
-        cout << " ====================TESTS QUALITÈ PRÈCISE==================== " << endl;
-        float testPreciseQualityATMO = controllerComputation.calculatePreciseAirQualityATMO(d, 44, -1, "2019-01-01 12:00:00", "2019-01-02 12:00:00");
-        float testPreciseQualityAQI = controllerComputation.calculatePreciseAirQualityAQI(d, 44, -1, "2019-01-01 12:00:00", "2019-01-02 12:00:00");
-        cout << "Qualité précise ATMO : " << testPreciseQualityATMO << endl;
-        cout << "Qualité précise AQI : " << testPreciseQualityAQI << endl;
-
-        // ================TESTS DEFECT SENSORS================ //
-        // Avec durée
-        cout << " ====================TESTS CAPTEURS DÉFECTUEUX==================== " << endl;
-        std::pair<std::vector<Sensor *>, std::vector<std::vector<float>>> testDefectSensors2 = controllerComputation.detectDefectSensorsAndOutliers(d, "2019-01-01 12:00:00", "2019-01-02 12:00:00");
-        cout << "Capteurs défectueux : " << endl;
-        for (auto it = testDefectSensors2.first.begin(); it != testDefectSensors2.first.end(); ++it)
-        {
-            cout << (*it)->ToString() << endl;
-        }
-        cout << "Valeurs aberrantes : " << endl;
-        for (auto it = testDefectSensors2.second.begin(); it != testDefectSensors2.second.end(); ++it)
-        {
-            for (auto it2 = it->begin(); it2 != it->end(); ++it2)
-            {
-                cout << *it2 << " ";
-            }
-            cout << endl;
-        }
-
-        // ====================TESTS==================== //
-        cout << controllerComputation.GetHistory().ToString(); */
-
     return 0;
 }
 
-// Definitions
+//==================Definitions==================//
 void resetTriesSuccesses()
 {
     globalTries += tries;
@@ -324,7 +209,8 @@ void testHistoryClass()
     testComputeMean();
 }
 
-void testGetAlgoPerformanceHistory() {
+void testGetAlgoPerformanceHistory()
+{
     ++tries;
     bool success = false;
 
@@ -343,7 +229,7 @@ void testGetAlgoPerformanceHistory() {
         h2.GetQueryDurationsHistory()[0].front() == 1 &&
         h2.GetQueryDurationsHistory()[0].back() == 1)
         success = true;
-    
+
     if (success)
     {
         ++successes;
@@ -576,75 +462,3 @@ void testRetrieveData()
         cout << RED << "échec" << RESET << endl;
     }
 }
-
-
-/*     cout << "===============================================================\n";
-
-    cout << "\n=================================TESTS=================================\n";
-    // ================INDICES ATMO================ //
-    // Avec durée
-    float testATMO1 = controllerComputation.calculateMeanAirQualityATMO(d, 10, 44, -1, "2019-01-01 12:00:00", "2019-01-02 12:00:00");
-    cout << "Indice ATMO 1 : " << testATMO1 << endl;
-
-    // Avec instant
-    float testATMO2 = controllerComputation.calculateMeanAirQualityATMO(d, 0.1, 44.2, -1.2, "2019-01-01 12:00:00");
-    cout << "Indice ATMO 2 : " << testATMO2 << endl;
-
-    // ================INDICES AQI================ //
-    // Avec durée
-    float testAQI1 = controllerComputation.calculateMeanAirQualityAQI(d, 10, 44, -1, "2019-01-01 12:00:00", "2019-01-02 12:00:00");
-    cout << "Indice AQI 1 : " << testAQI1 << endl;
-
-    // Avec instant
-    float testAQI2 = controllerComputation.calculateMeanAirQualityAQI(d, 10, 44, -1, "2019-01-01 12:00:00");
-    cout << "Indice AQI 2 : " << testAQI2 << endl;
-
-    // ================TEST SIMILARITY SCORES================ //
-    // calculateSimilarityScores(const Database &database, const Sensor &selectedSensor, const string &startTime, const string &endTime);
-    Sensor *s = d.GetSensor("Sensor1");
-    vector<pair<Sensor *, float>> classement = controllerComputation.calculateSimilarityScores(d, *s, "2019-01-01 12:00:00", "2019-01-02 12:00:00");
-    cout << " ====================TESTS SCORES SIMILARITÉ CAPTEURS==================== " << endl;
-    cout << "Classement : " << endl;
-    int rankLimit = 10;
-    int count = 0;
-    for (auto it = classement.begin(); it != classement.end() && count < rankLimit; ++it)
-    {
-        cout << "\t" << ++count << " - " << it->first->ToString() << "\t-> " << it->second << endl
-             << endl;
-    }
-
-    // ================TESTS PRECISE QUALITY================ //
-    cout << " ====================TESTS QUALITÉ PRÉCISE==================== " << endl;
-    float testPreciseQualityATMO = controllerComputation.calculatePreciseAirQualityATMO(d, 44, -1, "2019-01-01 12:00:00");
-    float testPreciseQualityAQI = controllerComputation.calculatePreciseAirQualityAQI(d, 44, -1, "2019-01-01 12:00:00");
-    cout << "Qualité précise ATMO : " << testPreciseQualityATMO << endl;
-    cout << "Qualité précise AQI : " << testPreciseQualityAQI << endl;
-
-    // ================TESTS DEFECT SENSORS================ //
-    cout << " ====================TESTS CAPTEURS DÉFECTUEUX==================== " << endl;
-    pair<vector<Sensor *>, vector<vector<float>>> defectSensors = controllerComputation.detectDefectSensorsAndOutliers(d, "2019-01-01 12:00:00");
-    cout << "Capteurs défectueux : " << endl;
-    for (auto it = defectSensors.first.begin(); it != defectSensors.first.end(); ++it)
-    {
-        cout << (*it)->ToString() << endl;
-    }
-    cout << "Valeurs aberrantes : " << endl;
-    for (auto it = defectSensors.second.begin(); it != defectSensors.second.end(); ++it)
-    {
-        for (auto it2 = it->begin(); it2 != it->end(); ++it2)
-        {
-            cout << *it2 << " ";
-        }
-        cout << endl;
-    }
-
-    // ====================TESTS AUTRES==================== //
-    cout << controllerComputation.GetHistory().ToString() << endl;
-
-    cout << "Moyenne algo 1 : " << controllerComputation.computeAlgoPerformanceMean(1) << endl;
-    cout << "Moyenne algo 2 : " << controllerComputation.computeAlgoPerformanceMean(2) << endl;
-    cout << "Moyenne algo 3 : " << controllerComputation.computeAlgoPerformanceMean(3) << endl;
-    cout << "Moyenne algo 4 : " << controllerComputation.computeAlgoPerformanceMean(4) << endl;
-
-    cout << "Test distance : " << controllerComputation.calculateDistance(45.77849365407452, 4.871326879873561, 45.778733098569106, 4.91003651992487) << endl;
-    cout << controllerComputation.GetHistory().AlgoToString(1) << endl; */
