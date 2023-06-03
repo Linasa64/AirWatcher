@@ -53,6 +53,7 @@ void testGetId();
 // History class
 void testHistoryClass();
 
+void testGetAlgoPerformanceHistory();
 void testComputeMean();
 
 // ControllerComputation class
@@ -91,7 +92,7 @@ int main()
     testUserClass();
 
     cout << endl
-         << BOLD << "BILAN : " << RESET << endl;
+         << BOLD << "-> BILAN : " << RESET << endl;
     displayTestsResults();
     cout << endl;
 
@@ -100,7 +101,7 @@ int main()
     testHistoryClass();
 
     cout << endl
-         << BOLD << "BILAN : " << RESET << endl;
+         << BOLD << "-> BILAN : " << RESET << endl;
     displayTestsResults();
     cout << endl;
 
@@ -109,7 +110,7 @@ int main()
     testControllerComputationClass();
 
     cout << endl
-         << BOLD << "BILAN : " << RESET << endl;
+         << BOLD << "-> BILAN : " << RESET << endl;
     displayTestsResults();
     cout << endl;
 
@@ -118,7 +119,7 @@ int main()
     testControllerDataClass();
 
     cout << endl
-         << BOLD << "BILAN : " << RESET << endl;
+         << BOLD << "-> BILAN : " << RESET << endl;
     displayTestsResults();
     cout << endl;
 
@@ -316,8 +317,42 @@ void testGetId()
 void testHistoryClass()
 {
     resetTriesSuccesses();
-    cout << CYAN << "[1/1]" << RESET << " TestComputeMean() : ";
+    cout << CYAN << "[1/2]" << RESET << " TestGetAlgoPerformanceHistory() : ";
+    testGetAlgoPerformanceHistory();
+
+    cout << CYAN << "[2/2]" << RESET << " TestComputeMean() : ";
     testComputeMean();
+}
+
+void testGetAlgoPerformanceHistory() {
+    ++tries;
+    bool success = false;
+
+    History h1, h2, h3;
+    for (int n = 1; n <= 20; n++)
+    {
+        h1.Push_Back(0, n);
+        h1.Push_Back(1, 10);
+        h2.Push_Back(0, 1);
+    }
+
+    if (h1.GetQueryDurationsHistory()[0].front() == 1 &&
+        h1.GetQueryDurationsHistory()[0].back() == 20 &&
+        h1.GetQueryDurationsHistory()[1].front() == 10 &&
+        h1.GetQueryDurationsHistory()[1].back() == 10 &&
+        h2.GetQueryDurationsHistory()[0].front() == 1 &&
+        h2.GetQueryDurationsHistory()[0].back() == 1)
+        success = true;
+    
+    if (success)
+    {
+        ++successes;
+        cout << GREEN << "succès" << RESET << endl;
+    }
+    else
+    {
+        cout << RED << "échec" << RESET << endl;
+    }
 }
 
 void testComputeMean()
