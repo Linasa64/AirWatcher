@@ -384,7 +384,7 @@ Database ControllerData::retrieveData(string path_sensors, string path_measureme
         cout << "Could not open the file\n";
     }
     filePrivateUsers.close();
-    cout << "[6/6] Extraction des données de 'users.csv' terminée !" << endl;
+    cout << "[6/6] Extraction des données de 'users.csv' terminée !\n" << endl;
 
     /*     cout << "===========Affichage liste PrivateUser===========" << endl;
         cout << "TAILLE MAP " << privateUsersMap.size() << endl;

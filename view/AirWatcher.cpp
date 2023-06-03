@@ -39,6 +39,11 @@ using namespace std;
 #include "../model/Database.h"
 
 //------------------------------------------------------------- Constantes
+#define RED "\033[31m"
+#define GREEN "\033[32m"
+#define CYAN "\033[36m"
+#define BOLD "\033[1m"
+#define RESET "\033[0m"
 
 //----------------------------------------------------------------- PUBLIC
 int main()
@@ -52,23 +57,23 @@ int main()
     ControllerComputation controllerComputation;
 
     cout << "===============================================================" << endl;
-    cout << "Extraction des données en cours..." << endl;
+    cout << "Extraction des données en cours...\n" << endl;
     Database d = controllerData.retrieveData("./dataset/sensors.csv", "./dataset/measurements.csv", "./dataset/attributes.csv", "./dataset/providers.csv", "./dataset/cleaners.csv", "./dataset/users.csv");
     cout << "Extraction des données terminée !" << endl;
     cout << "===============================================================\n"
          << endl;
-    cout << "\t\t   Bienvenue sur AirWatcher !" << endl
+    cout << "\t\t   Bienvenue sur " << CYAN << BOLD << "AirWatcher" << RESET << " !" << endl
          << endl;
 
     while (1)
     {
     connexion:
-        cout << "========================Qui êtes-vous ?========================\n"
+        cout << "========================" << BOLD << "Qui êtes-vous ?" << RESET << "========================\n"
              << endl;
-        cout << "\t1: Agence gouvernementale" << endl;
-        cout << "\t2: Utilisateur privé" << endl;
-        cout << "\t3: Agence de purification de l'air" << endl;
-        cout << "\t0: Quitter\n"
+        cout << GREEN << BOLD << "\t1" << RESET << ": Agence gouvernementale" << endl;
+        cout << GREEN << BOLD << "\t2" << RESET << ": Utilisateur privé" << endl;
+        cout << GREEN << BOLD << "\t3" << RESET << ": Agence de purification de l'air" << endl;
+        cout << GREEN << BOLD << "\t0" << RESET << ": Quitter\n"
              << endl;
         cin >> choixS;
         cout << endl;
@@ -95,14 +100,14 @@ int main()
     menu_gov:
         while (1)
         {
-            cout << "========================Menu (Gouvernement)========================\n"
+            cout << "========================Menu (" << CYAN << BOLD << "Gouvernement" << RESET << ")========================\n"
                  << endl;
-            cout << "\t1: Consulter le niveau de qualité de l'air en un point" << endl;
-            cout << "\t2: Consulter le niveau moyen de qualité de l'air dans un rayon" << endl;
-            cout << "\t3: Observer des similarités entre des capteurs" << endl;
-            cout << "\t4: Vérifier la fiabilité des données des capteurs" << endl;
-            cout << "\t5: Consulter la performance des algorithmes de calcul" << endl;
-            cout << "\t0: Se déconnecter\n"
+            cout << GREEN << BOLD << "\t1" << RESET << ": Consulter le niveau de qualité de l'air en un point" << endl;
+            cout << GREEN << BOLD << "\t2" << RESET << ": Consulter le niveau moyen de qualité de l'air dans un rayon" << endl;
+            cout << GREEN << BOLD << "\t3" << RESET << ": Observer des similarités entre des capteurs" << endl;
+            cout << GREEN << BOLD << "\t4" << RESET << ": Vérifier la fiabilité des données des capteurs" << endl;
+            cout << GREEN << BOLD << "\t5" << RESET << ": Consulter la performance des algorithmes de calcul" << endl;
+            cout << GREEN << BOLD << "\t0" << RESET << ": Se déconnecter\n"
                  << endl;
             cin >> choixS;
             cout << endl;
@@ -114,7 +119,7 @@ int main()
             vector<pair<Sensor *, float>> classement;
             int count, idAlgo;
             Sensor *s;
-            pair<vector<Sensor *>, vector<vector<float>>> testDefectSensors2;
+            pair<vector<Sensor *>, vector<vector<float>>> defectSensors;
             switch (choix)
             {
             case 1:
@@ -127,8 +132,8 @@ int main()
                 getline(cin >> ws, tempsDebut);
                 cout << "\nVoulez-vous préciser un temps de fin ?\n"
                      << endl;
-                cout << "\t1: Oui" << endl;
-                cout << "\t0: Non" << endl;
+                cout << GREEN << BOLD << "\t1" << RESET << ": Oui" << endl;
+                cout << GREEN << BOLD << "\t0" << RESET << ": Non" << endl;
 
                 cin >> choixS;
                 cout << endl;
@@ -152,7 +157,7 @@ int main()
                     indiceAQI = controllerComputation.calculatePreciseAirQualityAQI(d, latitude, longitude, tempsDebut);
                 }
 
-                cout << "==========Résultats==========\n"
+                cout << GREEN << BOLD << "==========Résultats==========\n" << RESET
                      << endl;
                 cout << "Indice ATMO : " << indiceATMO << endl;
                 cout << "Indice AQI : " << indiceAQI << endl
@@ -171,8 +176,8 @@ int main()
                 getline(cin >> ws, tempsDebut);
                 cout << "\nVoulez-vous préciser un temps de fin ?\n"
                      << endl;
-                cout << "\t1: Oui" << endl;
-                cout << "\t0: Non" << endl;
+                cout << GREEN << BOLD << "\t1" << RESET << ": Oui" << endl;
+                cout << GREEN << BOLD << "\t0" << RESET << ": Non" << endl;
 
                 cin >> choixS;
                 cout << endl;
@@ -193,7 +198,7 @@ int main()
                     indiceATMO = controllerComputation.calculateMeanAirQualityATMO(d, rayon, latitude, longitude, tempsDebut);
                     indiceAQI = controllerComputation.calculateMeanAirQualityAQI(d, rayon, latitude, longitude, tempsDebut);
                 }
-                cout << "==========Résultats==========\n"
+                cout << GREEN << BOLD << "==========Résultats==========\n" << RESET
                      << endl;
                 cout << "Indice ATMO : " << indiceATMO << endl;
                 cout << "Indice AQI : " << indiceAQI << endl
@@ -214,8 +219,8 @@ int main()
                 getline(cin >> ws, tempsDebut);
                 cout << "\nVoulez-vous préciser un temps de fin ?\n"
                      << endl;
-                cout << "\t1: Oui" << endl;
-                cout << "\t0: Non" << endl;
+                cout << GREEN << BOLD << "\t1" << RESET << ": Oui" << endl;
+                cout << GREEN << BOLD << "\t0" << RESET << ": Non" << endl;
 
                 cin >> choixS;
                 cout << endl;
@@ -236,7 +241,7 @@ int main()
                     classement = controllerComputation.calculateSimilarityScores(d, *s, tempsDebut);
                 }
 
-                cout << "==========Résultats==========\n"
+                cout << GREEN << BOLD << "==========Résultats==========\n" << RESET
                      << endl;
                 cout << "Classement des capteurs similaires au capteur '" << ("Sensor" + selectedSensor) << "' : " << endl
                      << endl;
@@ -255,8 +260,8 @@ int main()
                 getline(cin >> ws, tempsDebut);
                 cout << "\nVoulez-vous préciser un temps de fin ?\n"
                      << endl;
-                cout << "\t1: Oui" << endl;
-                cout << "\t0: Non" << endl;
+                cout << GREEN << BOLD << "\t1" << RESET << ": Oui" << endl;
+                cout << GREEN << BOLD << "\t0" << RESET << ": Non" << endl;
 
                 cin >> choixS;
                 cout << endl;
@@ -270,23 +275,23 @@ int main()
                     getline(cin >> ws, tempsFin);
                     cout << endl;
 
-                    testDefectSensors2 = controllerComputation.detectDefectSensorsAndOutliers(d, tempsDebut, tempsFin);
+                    defectSensors = controllerComputation.detectDefectSensorsAndOutliers(d, tempsDebut, tempsFin);
                     break;
                 default:
-                    testDefectSensors2 = controllerComputation.detectDefectSensorsAndOutliers(d, tempsDebut);
+                    defectSensors = controllerComputation.detectDefectSensorsAndOutliers(d, tempsDebut);
                 }
 
-                cout << "==========Résultats==========\n"
+                cout << GREEN << BOLD << "==========Résultats==========\n" << RESET
                      << endl;
                 cout << "Capteurs défectueux :\n"
                      << endl;
-                for (auto it = testDefectSensors2.first.begin(); it != testDefectSensors2.first.end(); ++it)
+                for (auto it = defectSensors.first.begin(); it != defectSensors.first.end(); ++it)
                 {
                     cout << " • " << (*it)->ToString() << endl;
                 }
                 cout << "Valeurs aberrantes :\n"
                      << endl;
-                for (auto it = testDefectSensors2.second.begin(); it != testDefectSensors2.second.end(); ++it)
+                for (auto it = defectSensors.second.begin(); it != defectSensors.second.end(); ++it)
                 {
                     for (auto it2 = it->begin(); it2 != it->end(); ++it2)
                     {
@@ -299,8 +304,8 @@ int main()
             case 5:
                 cout << "Quels performances voulez-vous consulter ?\n"
                      << endl;
-                cout << "\t1: Performances d'un algorithme donné" << endl;
-                cout << "\t2: Performances de tous les algorithmes" << endl;
+                cout << GREEN << BOLD << "\t1" << RESET << ": Performances d'un algorithme donné" << endl;
+                cout << GREEN << BOLD << "\t2" << RESET << ": Performances de tous les algorithmes" << endl;
 
                 cin >> choixS;
                 cout << endl;
@@ -313,19 +318,19 @@ int main()
 
                     cout << "\nID de l'algorithme :\n"
                          << endl;
-                    cout << "\t1: Calcul de la qualité de l'air en un point précis (ATMO/AQI)" << endl;
-                    cout << "\t2: Calcul de la qualité de l'air dans un rayon (ATMO/AQI)" << endl;
-                    cout << "\t3: Calcul des similarités entre capteurs" << endl;
-                    cout << "\t4: Analyse les données (mesures erronées)" << endl;
+                    cout << GREEN << BOLD << "\t1" << RESET << ": Calcul de la qualité de l'air en un point précis (ATMO/AQI)" << endl;
+                    cout << GREEN << BOLD << "\t2" << RESET << ": Calcul de la qualité de l'air dans un rayon (ATMO/AQI)" << endl;
+                    cout << GREEN << BOLD << "\t3" << RESET << ": Calcul des similarités entre capteurs" << endl;
+                    cout << GREEN << BOLD << "\t4" << RESET << ": Analyse les données (mesures erronées)" << endl;
                     cin >> idAlgo;
                     cout << endl;
 
-                    cout << "==========Résultats==========\n"
+                    cout << GREEN << BOLD << "==========Résultats==========\n" << RESET
                          << endl;
                     cout << controllerComputation.GetHistory().AlgoToString(idAlgo);
                     break;
                 case 2:
-                    cout << "==========Résultats==========\n"
+                    cout << GREEN << BOLD << "==========Résultats==========\n" << RESET
                          << endl;
                     cout << controllerComputation.GetHistory().ToString();
                     break;
@@ -344,11 +349,11 @@ int main()
     menu_user:
         while (1)
         {
-            cout << "========================Menu (Utilisateur privé)========================\n"
+            cout << "========================Menu (" << CYAN << BOLD << "Utilisateur privé" << RESET << ")========================\n"
                  << endl;
-            cout << "\t1: Consulter le niveau de qualité de l'air en un point" << endl;
-            cout << "\t2: Consulter le niveau moyen de qualité de l'air dans un rayon" << endl;
-            cout << "\t0: Se déconnecter\n"
+            cout << GREEN << BOLD << "\t1" << RESET << ": Consulter le niveau de qualité de l'air en un point" << endl;
+            cout << GREEN << BOLD << "\t2" << RESET << ": Consulter le niveau moyen de qualité de l'air dans un rayon" << endl;
+            cout << GREEN << BOLD << "\t0" << RESET << ": Se déconnecter\n"
                  << endl;
             cin >> choixS;
             cout << endl;
@@ -368,8 +373,8 @@ int main()
                 getline(cin >> ws, tempsDebut);
                 cout << "\nVoulez-vous préciser un temps de fin ?\n"
                      << endl;
-                cout << "\t1: Oui" << endl;
-                cout << "\t0: Non" << endl;
+                cout << GREEN << BOLD << "\t1" << RESET << ": Oui" << endl;
+                cout << GREEN << BOLD << "\t0" << RESET << ": Non" << endl;
 
                 cin >> choixS;
                 cout << endl;
@@ -393,7 +398,7 @@ int main()
                     indiceAQI = controllerComputation.calculatePreciseAirQualityAQI(d, latitude, longitude, tempsDebut);
                 }
 
-                cout << "==========Résultats==========\n"
+                cout << GREEN << BOLD << "==========Résultats==========\n" << RESET
                      << endl;
                 cout << "Indice ATMO : " << indiceATMO << endl;
                 cout << "Indice AQI : " << indiceAQI << endl
@@ -412,8 +417,8 @@ int main()
                 getline(cin >> ws, tempsDebut);
                 cout << "\nVoulez-vous préciser un temps de fin ?\n"
                      << endl;
-                cout << "\t1: Oui" << endl;
-                cout << "\t0: Non" << endl;
+                cout << GREEN << BOLD << "\t1" << RESET << ": Oui" << endl;
+                cout << GREEN << BOLD << "\t0" << RESET << ": Non" << endl;
 
                 cin >> choixS;
                 cout << endl;
@@ -434,7 +439,7 @@ int main()
                     indiceATMO = controllerComputation.calculateMeanAirQualityATMO(d, rayon, latitude, longitude, tempsDebut);
                     indiceAQI = controllerComputation.calculateMeanAirQualityAQI(d, rayon, latitude, longitude, tempsDebut);
                 }
-                cout << "==========Résultats==========\n"
+                cout << GREEN << BOLD << "==========Résultats==========\n" << RESET
                      << endl;
                 cout << "Indice ATMO : " << indiceATMO << endl;
                 cout << "Indice AQI : " << indiceAQI << endl
@@ -453,11 +458,11 @@ int main()
     menu_provider:
         while (1)
         {
-            cout << "========================Menu (Agence de purification)========================\n"
+            cout << "========================Menu (" << CYAN << BOLD << "Agence de purification" << RESET << ")========================\n"
                  << endl;
-            cout << "\t1: Consulter le niveau de qualité de l'air en un point" << endl;
-            cout << "\t2: Consulter le niveau moyen de qualité de l'air dans un rayon" << endl;
-            cout << "\t0: Se déconnecter\n"
+            cout << GREEN << BOLD << "\t1" << RESET << ": Consulter le niveau de qualité de l'air en un point" << endl;
+            cout << GREEN << BOLD << "\t2" << RESET << ": Consulter le niveau moyen de qualité de l'air dans un rayon" << endl;
+            cout << GREEN << BOLD << "\t0" << RESET << ": Se déconnecter\n"
                  << endl;
             cin >> choixS;
             cout << endl;
@@ -477,8 +482,8 @@ int main()
                 getline(cin >> ws, tempsDebut);
                 cout << "\nVoulez-vous préciser un temps de fin ?\n"
                      << endl;
-                cout << "\t1: Oui" << endl;
-                cout << "\t0: Non" << endl;
+                cout << GREEN << BOLD << "\t1" << RESET << ": Oui" << endl;
+                cout << GREEN << BOLD << "\t0" << RESET << ": Non" << endl;
 
                 cin >> choixS;
                 cout << endl;
@@ -502,7 +507,7 @@ int main()
                     indiceAQI = controllerComputation.calculatePreciseAirQualityAQI(d, latitude, longitude, tempsDebut);
                 }
 
-                cout << "==========Résultats==========\n"
+                cout << GREEN << BOLD << "==========Résultats==========\n" << RESET
                      << endl;
                 cout << "Indice ATMO : " << indiceATMO << endl;
                 cout << "Indice AQI : " << indiceAQI << endl
@@ -521,8 +526,8 @@ int main()
                 getline(cin >> ws, tempsDebut);
                 cout << "\nVoulez-vous préciser un temps de fin ?\n"
                      << endl;
-                cout << "\t1: Oui" << endl;
-                cout << "\t0: Non" << endl;
+                cout << GREEN << BOLD << "\t1" << RESET << ": Oui" << endl;
+                cout << GREEN << BOLD << "\t0" << RESET << ": Non" << endl;
 
                 cin >> choixS;
                 cout << endl;
@@ -543,7 +548,7 @@ int main()
                     indiceATMO = controllerComputation.calculateMeanAirQualityATMO(d, rayon, latitude, longitude, tempsDebut);
                     indiceAQI = controllerComputation.calculateMeanAirQualityAQI(d, rayon, latitude, longitude, tempsDebut);
                 }
-                cout << "==========Résultats==========\n"
+                cout << GREEN << BOLD << "==========Résultats==========\n" << RESET
                      << endl;
                 cout << "Indice ATMO : " << indiceATMO << endl;
                 cout << "Indice AQI : " << indiceAQI << endl
@@ -561,76 +566,8 @@ int main()
         }
     }
 fin:
-    cout << "Fermeture de l'application" << endl;
+    cout << RED << "Fermeture de l'application" << RESET << endl;
     cout << "===============================================================\n";
 
-    cout << "\n=================================TESTS=================================\n";
-    // ================INDICES ATMO================ //
-    // Avec durée
-    float testATMO1 = controllerComputation.calculateMeanAirQualityATMO(d, 10, 44, -1, "2019-01-01 12:00:00", "2019-01-02 12:00:00");
-    cout << "Indice ATMO 1 : " << testATMO1 << endl;
-
-    // Avec instant
-    float testATMO2 = controllerComputation.calculateMeanAirQualityATMO(d, 0.1, 44.2, -1.2, "2019-01-01 12:00:00");
-    cout << "Indice ATMO 2 : " << testATMO2 << endl;
-
-    // ================INDICES AQI================ //
-    // Avec durée
-    float testAQI1 = controllerComputation.calculateMeanAirQualityAQI(d, 10, 44, -1, "2019-01-01 12:00:00", "2019-01-02 12:00:00");
-    cout << "Indice AQI 1 : " << testAQI1 << endl;
-
-    // Avec instant
-    float testAQI2 = controllerComputation.calculateMeanAirQualityAQI(d, 10, 44, -1, "2019-01-01 12:00:00");
-    cout << "Indice AQI 2 : " << testAQI2 << endl;
-
-    // ================TEST SIMILARITY SCORES================ //
-    // calculateSimilarityScores(const Database &database, const Sensor &selectedSensor, const string &startTime, const string &endTime);
-    Sensor *s = d.GetSensor("Sensor1");
-    vector<pair<Sensor *, float>> classement = controllerComputation.calculateSimilarityScores(d, *s, "2019-01-01 12:00:00", "2019-01-02 12:00:00");
-    cout << " ====================TESTS SCORES SIMILARITÉ CAPTEURS==================== " << endl;
-    cout << "Classement : " << endl;
-    int rankLimit = 10;
-    int count = 0;
-    for (auto it = classement.begin(); it != classement.end() && count < rankLimit; ++it)
-    {
-        cout << "\t" << ++count << " - " << it->first->ToString() << "\t-> " << it->second << endl
-             << endl;
-    }
-
-    // ================TESTS PRECISE QUALITY================ //
-    cout << " ====================TESTS QUALITÉ PRÉCISE==================== " << endl;
-    float testPreciseQualityATMO = controllerComputation.calculatePreciseAirQualityATMO(d, 44, -1, "2019-01-01 12:00:00");
-    float testPreciseQualityAQI = controllerComputation.calculatePreciseAirQualityAQI(d, 44, -1, "2019-01-01 12:00:00");
-    cout << "Qualité précise ATMO : " << testPreciseQualityATMO << endl;
-    cout << "Qualité précise AQI : " << testPreciseQualityAQI << endl;
-
-    // ================TESTS DEFECT SENSORS================ //
-    cout << " ====================TESTS CAPTEURS DÉFECTUEUX==================== " << endl;
-    pair<vector<Sensor *>, vector<vector<float>>> testDefectSensors2 = controllerComputation.detectDefectSensorsAndOutliers(d, "2019-01-01 12:00:00");
-    cout << "Capteurs défectueux : " << endl;
-    for (auto it = testDefectSensors2.first.begin(); it != testDefectSensors2.first.end(); ++it)
-    {
-        cout << (*it)->ToString() << endl;
-    }
-    cout << "Valeurs aberrantes : " << endl;
-    for (auto it = testDefectSensors2.second.begin(); it != testDefectSensors2.second.end(); ++it)
-    {
-        for (auto it2 = it->begin(); it2 != it->end(); ++it2)
-        {
-            cout << *it2 << " ";
-        }
-        cout << endl;
-    }
-
-    // ====================TESTS AUTRES==================== //
-    cout << controllerComputation.GetHistory().ToString() << endl;
-
-    cout << "Moyenne algo 1 : " << controllerComputation.computeAlgoPerformanceMean(1) << endl;
-    cout << "Moyenne algo 2 : " << controllerComputation.computeAlgoPerformanceMean(2) << endl;
-    cout << "Moyenne algo 3 : " << controllerComputation.computeAlgoPerformanceMean(3) << endl;
-    cout << "Moyenne algo 4 : " << controllerComputation.computeAlgoPerformanceMean(4) << endl;
-
-    cout << "Test distance : " << controllerComputation.calculateDistance(45.77849365407452, 4.871326879873561, 45.778733098569106, 4.91003651992487) << endl;
-    cout << controllerComputation.GetHistory().AlgoToString(1) << endl;
     return 0;
 }

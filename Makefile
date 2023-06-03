@@ -21,7 +21,10 @@ VIEW_DIRS ?= ./view
 TESTS_DIRS ?= ./tests
 
 # Find cpp files in subdirectories
-SOURCES := $(shell find . -name '*.cpp' -not -path "./tests/*")
+SOURCES := $(shell find . -name '*.cpp' -not -path "$(VIEW_DIRS)/*" -not -path "$(TESTS_DIRS)/*")
+
+MAIN_SOURCE := $(VIEW_DIRS)/AirWatcher.cpp
+TEST_SOURCE :=  $(TESTS_DIRS)/TestsAirWatcher.cpp
 
 # Find headers
 CONTROLLER_H := $(shell find $(CONTROLLER_DIRS) -name *.h)
@@ -38,78 +41,35 @@ TESTS := $(shell find tests -name '*.cpp')
 # We create the first target in our makefile i.e. the executable main (or the test).
 # -o option flag write the build output to an output file
 main: main.o
-	$(CC) $(CFLAGS) -o main $(SOURCES)
+	$(CC) $(CFLAGS) -o main $(SOURCES) $(MAIN_SOURCE)
 
 # Generate objects
 CONTROLLER_OBJECT := $(addsuffix .o,$(basename $(CONTROLLER_H)))
 MODEL_OBJECT := $(addsuffix .o,$(basename $(MODEL_H)))
 VIEW_OBJECT := $(addsuffix .o,$(basename $(VIEW_H)))
 
-
-
 # Our next target will be to generate object files:
 
 # To generate main.o
 # The -c flag says to generate the object file
-main.o: ./view/main.cpp $(VIEW_H) $(CONTROLLER_H) $(MODEL_H)
-	$(CC) $(CFLAGS) -c ./view/main.cpp 
-
-
-
-Attributes.o: ./model/Attributes.cpp
-	$(CC) $(CFLAGS) -c Attributes.cpp
-
-Cleaner.o: ./model/Cleaner.cpp
-	$(CC) $(CFLAGS) -c Cleaner.cpp
-
-Database.o: ./model/Database.cpp
-	$(CC) $(CFLAGS) -c Database.cpp
-
-GovernmentAgency.o: ./model/GovernmentAgency.cpp
-	$(CC) $(CFLAGS) -c GovernmentAgency.cpp
-
-Measurement.o: ./model/Measurement.cpp
-	$(CC) $(CFLAGS) -c Measurement.cpp
-
-PrivateUser.o: ./model/PrivateUser.cpp
-	$(CC) $(CFLAGS) -c PrivateUser.cpp
-
-Provider.o: ./model/Provider.cpp
-	$(CC) $(CFLAGS) -c Provider.cpp
-
-Sensor.o: ./model/Sensor.cpp
-	$(CC) $(CFLAGS) -c Sensor.cpp
-
-User.o: ./model/User.cpp
-	$(CC) $(CFLAGS) -c User.cpp
-
-ControllerPrivateUser.o: ./controller/ControllerPrivateUser.cpp
-	$(CC) $(CFLAGS) -c ControllerPrivateUser.cpp
-
-History.o: ./controller/History.cpp
-	$(CC) $(CFLAGS) -c History.cpp
+main.o: $(VIEW_DIRS)/main.cpp $(VIEW_H) $(CONTROLLER_H) $(MODEL_H)
+	$(CC) $(CFLAGS) -c $(VIEW_DIRS)/main.cpp 
 
 # ****************************************************
 # Cleaning files
 clean:
-	rm -rf *.o
-
+	find . -name "*.o" -type f -delete
+	rm main test
 
 # ****************************************************
 # Running tests
 
-# make tests to run test
-tests : runTestCaseExample runTestAirWatcher
-	echo "Tests terminés."
+# make test
+test: TestsAirWatcher.o
+	$(CC) $(CFLAGS) -o test $(SOURCES) $(TEST_SOURCE)
 
-runTestCaseExample : $(TESTS_DIRS)/TestCaseExample
-	$(TESTS_DIRS)/TestCaseExample
+TestsAirWatcher: TestsAirWatcher.o $(CONTROLLER_OBJECT) $(MODEL_OBJECT) $(VIEW_OBJECT)
+	$(CC) $(CFLAGS) -o TestsAirWatcher TestsAirWatcher.o $(CONTROLLER_OBJECT) $(MODEL_OBJECT) $(VIEW_OBJECT)
 
-runTestAirWatcher : $(TESTS_DIRS)/TestAirWatcher
-	$(TESTS_DIRS)/TestAirWatcher
-
-TestCaseExample : $(TESTS_DIRS)/TestCaseExample.cpp
-	$(CC) -o $(TESTS_DIRS)/TestCaseExample $(TESTS_DIRS)/TestCaseExample.cpp
-
-TestAirWatcher : $(TESTS_DIRS)/TestAirWatcher.cpp
-	$(CC) -o $(TESTS_DIRS)/TestAirWatcher$(TESTS_DIRS)/TestAirWatcher.cpp
+TestsAirWatcher.o: $(TESTS_DIRS)/TestsAirWatcher.cpp $(VIEW_H) $(CONTROLLER_H) $(MODEL_H)
+	$(CC) $(CFLAGS) -c $(TESTS_DIRS)/TestsAirWatcher.cpp -o TestsAirWatcher.o
