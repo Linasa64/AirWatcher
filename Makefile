@@ -52,8 +52,8 @@ VIEW_OBJECT := $(addsuffix .o,$(basename $(VIEW_H)))
 
 # To generate main.o
 # The -c flag says to generate the object file
-main.o: $(VIEW_DIRS)/main.cpp $(VIEW_H) $(CONTROLLER_H) $(MODEL_H)
-	$(CC) $(CFLAGS) -c $(VIEW_DIRS)/main.cpp 
+main.o: $(VIEW_DIRS)/AirWatcher.cpp $(VIEW_H) $(CONTROLLER_H) $(MODEL_H)
+	$(CC) $(CFLAGS) -c $(VIEW_DIRS)/AirWatcher.cpp 
 
 # ****************************************************
 # Cleaning files
